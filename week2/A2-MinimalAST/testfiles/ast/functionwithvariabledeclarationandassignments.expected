@@ -1,0 +1,10 @@
+Program
+  List
+    Function ID="a"
+      List
+        IdDecl ID="x"
+        IdDecl ID="y"
+        IdUse ID="x"
+          Numeral NUMERAL="5"
+        IdUse ID="y"
+          Var ID="x"

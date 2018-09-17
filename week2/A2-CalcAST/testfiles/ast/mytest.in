@@ -1,0 +1,7 @@
+let radius = 5.0 in
+  let PI = 3.14 in 
+    let hej = ask user [5.0] in      
+      2.0 * PI * radius * hej
+    end
+  end 
+end

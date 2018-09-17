@@ -1,0 +1,72 @@
+%class "LangParser";
+%package "lang.ast";
+
+%embed {:
+	static public class SyntaxError extends RuntimeException { public SyntaxError(String msg) {super(msg);}}
+	// Disable syntax error recovery
+	protected void recoverFromError(Symbol token, TokenStream in) {
+		throw new SyntaxError("Cannot recover from the syntax error");
+	}
+:};
+
+%terminals ID;
+%terminals LPAREN;
+%terminals RPAREN;
+%terminals LBRACE;
+%terminals RBRACE;
+%terminals INT;
+%terminals SEMICOLON;
+%terminals RETURN;
+%terminals NUMERAL;
+%terminals EQUALS;
+%terminals MUL;
+%terminals PLUS;
+
+
+
+%typeof program = "Program";
+%typeof function = "Function";
+%typeof statement = "Statement";
+%typeof expression = "Expr";
+%typeof programlist = "List";
+%typeof statementlist = "List";
+%typeof op = "Expr";
+%typeof term = "Expr";
+%typeof factor = "Expr";
+
+%goal program;
+
+program = programlist.a {: return new Program(a); :} ;
+
+programlist = function.a {: return new List().add(a); :}
+		| programlist.a function.b {: return a.add(b); :}
+		;
+
+function = INT ID.id LPAREN RPAREN LBRACE statementlist.sl RBRACE {: return new Function(id, sl); :} ;
+
+statement = INT ID.a SEMICOLON 							{: return new IdDecl(a); 		:}
+			| ID.a EQUALS expression.b SEMICOLON		{: return new IdUse(a, b);	:}
+			| expression.a SEMICOLON					{: return new ExpressionStatement(a);		:}
+			| RETURN SEMICOLON 							{: return new Return();  		:}
+			;
+
+statementlist = statement.a {: return new List().add(a); :}
+			| statementlist.a statement.b {: return a.add(b); :}
+			;
+
+expression = 	expression.a PLUS term.b 			{: return new Plus(a,b); 	:}
+		|		term.a								{: return a;				:}
+		;
+
+term = 			term.a MUL factor.b 				{: return new Mul(a,b); 	:}
+		|		factor.a							{: return a;				:}
+		;
+
+factor = 		LPAREN expression.a RPAREN 			{: return a;				:}
+		|		op.a								{: return a;				:}
+		;
+
+
+op = ID.a 		{: return new Var(a); 		:} 
+	| NUMERAL.a	{: return new Numeral(a); 	:}
+	;

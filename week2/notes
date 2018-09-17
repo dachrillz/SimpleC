@@ -1,0 +1,2 @@
+>   What  would  be  examples  of  other  well-formed  ASTs  for  the
+    P ::= A [B] C* class?   What  would  be examples of ill-formed ASTs?

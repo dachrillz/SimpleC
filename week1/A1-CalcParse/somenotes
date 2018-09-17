@@ -1,0 +1,14 @@
+How many tests were run? 7
+
+-> Create a new file to test the 'compiler' 
+
+-> Add a new test case
+
+
+
+-> Write an example program in MiniS that uses all constructs in the grammar in a syntactically correct
+way. @TODO:
+
+-> Generate a scanner for MiniS using JFlex: look in scanner.flex
+
+

@@ -1,0 +1,1 @@
+for a = not 5.0 until 5.0 do a=5.0 od

@@ -1,0 +1,21 @@
+Program ::= Function*;
+Function ::= <ID> Statement*;
+
+abstract Statement;
+IdDecl : Statement ::= <ID>;
+ExpressionStatement : Statement ::= Expr;
+IdUse : Statement ::= <ID> Expr;
+Return : Statement;
+
+
+abstract Expr;
+Mul : Expr ::= Left:Expr Right:Expr;
+Div : Expr ::= Left:Expr Right:Expr;
+Plus : Expr ::= Left:Expr Right:Expr;
+Minus : Expr ::= Left:Expr Right:Expr;
+Numeral : Expr ::= <NUMERAL>;
+Var     : Expr ::= <ID>;
+
+
+
+
