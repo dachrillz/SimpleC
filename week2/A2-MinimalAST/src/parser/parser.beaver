@@ -21,18 +21,29 @@
 %terminals EQUALS;
 %terminals MUL;
 %terminals PLUS;
-
-
+%terminals MINUS;
+%terminals DIV;
+%terminals MOD;
+%terminals LT;
+%terminals GT;
+%terminals GTE;
+%terminals LTE;
+%terminals EQ;
+%terminals NEQ;
+%terminals WHILE;
+%terminals IF;
+%terminals ELSE;
 
 %typeof program = "Program";
 %typeof function = "Function";
 %typeof statement = "Statement";
-%typeof expression = "Expr";
+%typeof arexpr = "Expr";
 %typeof programlist = "List";
 %typeof statementlist = "List";
 %typeof op = "Expr";
 %typeof term = "Expr";
 %typeof factor = "Expr";
+%typeof expr = "Expr";
 
 %goal program;
 
@@ -44,25 +55,39 @@ programlist = function.a {: return new List().add(a); :}
 
 function = INT ID.id LPAREN RPAREN LBRACE statementlist.sl RBRACE {: return new Function(id, sl); :} ;
 
-statement = INT ID.a SEMICOLON 							{: return new IdDecl(a); 		:}
-			| ID.a EQUALS expression.b SEMICOLON		{: return new IdUse(a, b);	:}
-			| expression.a SEMICOLON					{: return new ExpressionStatement(a);		:}
-			| RETURN SEMICOLON 							{: return new Return();  		:}
+statement = INT ID.a SEMICOLON 						 				{: return new IdDecl(a); 				:}
+			| ID.a EQUALS expr.b SEMICOLON			 				{: return new IdUse(a, b);				:}
+			| WHILE LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE  {: return new While(a,b);				:}
+			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE ELSE LBRACE statementlist.c RBRACE {: return new If(a,b,c);				:}
+			| expr.a SEMICOLON						 				{: return new ExpressionStatement(a);	:}
+			| RETURN SEMICOLON 						 				{: return new Return();  				:}
 			;
 
 statementlist = statement.a {: return new List().add(a); :}
 			| statementlist.a statement.b {: return a.add(b); :}
 			;
 
-expression = 	expression.a PLUS term.b 			{: return new Plus(a,b); 	:}
+expr = 			expr.a LT arexpr.b					{: return new LT(a,b);		:}
+		| 		expr.a GT arexpr.b					{: return new GT(a,b);		:}
+		|		expr.a GTE arexpr.b					{: return new GTE(a,b);		:}
+		|		expr.a LTE arexpr.b					{: return new LTE(a,b);		:}
+		|		expr.a EQ arexpr.b					{: return new EQ(a,b);		:}		
+		|		expr.a NEQ arexpr.b					{: return new NEQ(a,b);		:}
+		| 		arexpr.a							{: return a;				:}
+		;
+
+arexpr = 		arexpr.a PLUS term.b 				{: return new Plus(a,b); 	:}
+		|		arexpr.a MINUS term.b				{: return new Minus(a,b); 	:}
 		|		term.a								{: return a;				:}
 		;
 
 term = 			term.a MUL factor.b 				{: return new Mul(a,b); 	:}
+		|		term.a DIV factor.b					{: return new Div(a,b);		:}
+		|		term.a MOD factor.b					{: return new Mod(a,b);		:}
 		|		factor.a							{: return a;				:}
 		;
 
-factor = 		LPAREN expression.a RPAREN 			{: return a;				:}
+factor = 		LPAREN expr.a RPAREN 				{: return a;				:}
 		|		op.a								{: return a;				:}
 		;
 

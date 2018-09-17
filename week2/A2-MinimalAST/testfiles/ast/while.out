@@ -1,0 +1,12 @@
+Program
+  List
+    Function ID="a"
+      List
+        While
+          Plus
+            Numeral NUMERAL="5"
+            Numeral NUMERAL="5"
+          List
+            IdUse ID="a"
+              Numeral NUMERAL="5"
+        Return

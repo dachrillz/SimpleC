@@ -30,11 +30,13 @@ import lang.ast.LangParser.SyntaxError;
 WhiteSpace = [ ] | \t | \f | \n | \r
 ID = [a-zA-Z]+
 NUMERAL = [0-9]+
+COMMENT = \/\/([a-zA-Z]|([ ] | \t .))* \n
 
 %%
 
-// discard whitespace information
+// discard whitespace information and comments
 {WhiteSpace}  { }
+{COMMENT}     { }
 
 // token definitions
 "int"         { return sym(Terminals.INT);      }
@@ -45,8 +47,20 @@ NUMERAL = [0-9]+
 ";"           { return sym(Terminals.SEMICOLON);}
 "="           { return sym(Terminals.EQUALS);   }
 "*"           { return sym(Terminals.MUL);      }
-"+"           { return sym(Terminals.PLUS);      }
+"+"           { return sym(Terminals.PLUS);     }
+"/"           { return sym(Terminals.DIV);      }
+"-"           { return sym(Terminals.MINUS);    }
+"%"           { return sym(Terminals.MOD);      }
+"<"           { return sym(Terminals.LT);       }
+">="          { return sym(Terminals.GTE);      }
+"<="          { return sym(Terminals.LTE);      }
+"!="          { return sym(Terminals.NEQ);      }
+"=="          { return sym(Terminals.EQ);       }
+">"           { return sym(Terminals.GT);       }
 "return"      { return sym(Terminals.RETURN);   }
+"while"       { return sym(Terminals.WHILE);    }
+"if"          { return sym(Terminals.IF);       }
+"else"        { return sym(Terminals.ELSE);     }
 {ID}          { return sym(Terminals.ID);       }
 {NUMERAL}     { return sym(Terminals.NUMERAL);  }
 <<EOF>>       { return sym(Terminals.EOF);      }

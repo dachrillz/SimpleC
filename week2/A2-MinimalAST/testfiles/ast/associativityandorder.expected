@@ -1,0 +1,78 @@
+Program
+  List
+    Function ID="a"
+      List
+        IdUse ID="a"
+          Plus
+            Plus
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+            Numeral NUMERAL="5"
+        Return
+    Function ID="b"
+      List
+        IdUse ID="a"
+          Plus
+            Mul
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+            Numeral NUMERAL="1"
+        Return
+    Function ID="c"
+      List
+        IdUse ID="a"
+          Plus
+            Numeral NUMERAL="1"
+            Mul
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+        Return
+    Function ID="d"
+      List
+        IdUse ID="a"
+          Plus
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+            Numeral NUMERAL="3"
+        IdUse ID="b"
+          Plus
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+            Numeral NUMERAL="3"
+        IdUse ID="c"
+          Plus
+            Numeral NUMERAL="2"
+            Plus
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="3"
+        Return
+    Function ID="e"
+      List
+        IdUse ID="a"
+          Plus
+            Numeral NUMERAL="1"
+            Mul
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="3"
+        IdUse ID="b"
+          Mul
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+            Numeral NUMERAL="3"
+        Return
+    Function ID="f"
+      List
+        IdUse ID="a"
+          Minus
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+            Div
+              Mul
+                Numeral NUMERAL="3"
+                Numeral NUMERAL="10"
+              Numeral NUMERAL="5"
+        Return

@@ -2,24 +2,24 @@ Program
   List
     Function ID="a"
       List
-        ExpressionStatement
-          IdUse ID="x"
-            Plus
-              Numeral NUMERAL="1"
-              Numeral NUMERAL="2"
-        ExpressionStatement
-          IdUse ID="y"
-            Minus
-              Var ID="x"
-              Numeral NUMERAL="2"
-        ExpressionStatement
-          IdUse ID="q"
-            Mul
-              Numeral NUMERAL="5"
-              Var ID="a"
-        ExpressionStatement
-          IdUse ID="c"
-            Minus
-              Numeral NUMERAL="5"
-              Numeral NUMERAL="1"
+        IdUse ID="x"
+          Plus
+            Numeral NUMERAL="1"
+            Numeral NUMERAL="2"
+        IdUse ID="y"
+          Minus
+            Var ID="x"
+            Numeral NUMERAL="2"
+        IdUse ID="q"
+          Mul
+            Numeral NUMERAL="5"
+            Var ID="a"
+        IdUse ID="c"
+          Minus
+            Numeral NUMERAL="5"
+            Numeral NUMERAL="1"
+        IdUse ID="d"
+          Mod
+            Numeral NUMERAL="5"
+            Numeral NUMERAL="5"
         Return

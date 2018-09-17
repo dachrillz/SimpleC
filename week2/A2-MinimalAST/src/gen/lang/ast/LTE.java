@@ -5,16 +5,16 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:20
- * @astdecl Mul : Expr ::= Left:Expr Right:Expr;
- * @production Mul : {@link Expr} ::= <span class="component">Left:{@link Expr}</span> <span class="component">Right:{@link Expr}</span>;
+ * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:17
+ * @astdecl LTE : Expr ::= Left:Expr Right:Expr;
+ * @production LTE : {@link Expr} ::= <span class="component">Left:{@link Expr}</span> <span class="component">Right:{@link Expr}</span>;
 
  */
-public class Mul extends Expr implements Cloneable {
+public class LTE extends Expr implements Cloneable {
   /**
    * @declaredat ASTNode:1
    */
-  public Mul() {
+  public LTE() {
     super();
   }
   /**
@@ -35,7 +35,7 @@ public class Mul extends Expr implements Cloneable {
     type = {"Expr", "Expr"},
     kind = {"Child", "Child"}
   )
-  public Mul(Expr p0, Expr p1) {
+  public LTE(Expr p0, Expr p1) {
     setChild(p0, 0);
     setChild(p1, 1);
   }
@@ -60,16 +60,16 @@ public class Mul extends Expr implements Cloneable {
   /** @apilevel internal 
    * @declaredat ASTNode:35
    */
-  public Mul clone() throws CloneNotSupportedException {
-    Mul node = (Mul) super.clone();
+  public LTE clone() throws CloneNotSupportedException {
+    LTE node = (LTE) super.clone();
     return node;
   }
   /** @apilevel internal 
    * @declaredat ASTNode:40
    */
-  public Mul copy() {
+  public LTE copy() {
     try {
-      Mul node = (Mul) clone();
+      LTE node = (LTE) clone();
       node.parent = null;
       if (children != null) {
         node.children = (ASTNode[]) children.clone();
@@ -88,7 +88,7 @@ public class Mul extends Expr implements Cloneable {
    * @declaredat ASTNode:59
    */
   @Deprecated
-  public Mul fullCopy() {
+  public LTE fullCopy() {
     return treeCopyNoTransform();
   }
   /**
@@ -98,8 +98,8 @@ public class Mul extends Expr implements Cloneable {
    * @apilevel low-level
    * @declaredat ASTNode:69
    */
-  public Mul treeCopyNoTransform() {
-    Mul tree = (Mul) copy();
+  public LTE treeCopyNoTransform() {
+    LTE tree = (LTE) copy();
     if (children != null) {
       for (int i = 0; i < children.length; ++i) {
         ASTNode child = (ASTNode) children[i];
@@ -119,8 +119,8 @@ public class Mul extends Expr implements Cloneable {
    * @apilevel low-level
    * @declaredat ASTNode:89
    */
-  public Mul treeCopy() {
-    Mul tree = (Mul) copy();
+  public LTE treeCopy() {
+    LTE tree = (LTE) copy();
     if (children != null) {
       for (int i = 0; i < children.length; ++i) {
         ASTNode child = (ASTNode) getChild(i);

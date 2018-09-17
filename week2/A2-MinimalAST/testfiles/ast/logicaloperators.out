@@ -1,0 +1,72 @@
+Program
+  List
+    Function ID="simple"
+      List
+        IdUse ID="a"
+          LT
+            Numeral NUMERAL="5"
+            Numeral NUMERAL="2"
+        IdUse ID="b"
+          LT
+            Numeral NUMERAL="1"
+            Numeral NUMERAL="2"
+        Return
+    Function ID="order"
+      List
+        IdUse ID="a"
+          LT
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="5"
+            Numeral NUMERAL="4"
+        IdUse ID="a"
+          LT
+            Numeral NUMERAL="5"
+            Plus
+              Numeral NUMERAL="4"
+              Numeral NUMERAL="1"
+        Return
+    Function ID="alloperators"
+      List
+        IdUse ID="a"
+          LT
+            Var ID="b"
+            Var ID="c"
+        IdUse ID="b"
+          GT
+            Numeral NUMERAL="5"
+            Var ID="d"
+        IdUse ID="c"
+          NEQ
+            Var ID="a"
+            Numeral NUMERAL="5"
+        IdUse ID="d"
+          EQ
+            Var ID="g"
+            Numeral NUMERAL="2"
+        IdUse ID="e"
+          GTE
+            Numeral NUMERAL="2"
+            Numeral NUMERAL="2"
+        IdUse ID="f"
+          LTE
+            Numeral NUMERAL="5"
+            Var ID="a"
+        Return
+    Function ID="several"
+      List
+        IdUse ID="a"
+          GTE
+            GT
+              EQ
+                NEQ
+                  LTE
+                    LT
+                      Var ID="a"
+                      Var ID="a"
+                    Var ID="a"
+                  Var ID="a"
+                Var ID="a"
+              Var ID="a"
+            Var ID="a"
+        Return

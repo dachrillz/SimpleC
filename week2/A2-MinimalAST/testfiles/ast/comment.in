@@ -1,0 +1,6 @@
+//should be ignored
+int a(){
+    // lol
+    return;
+}
+//ignore me as well

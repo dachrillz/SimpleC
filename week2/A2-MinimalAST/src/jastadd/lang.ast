@@ -5,13 +5,22 @@ abstract Statement;
 IdDecl : Statement ::= <ID>;
 ExpressionStatement : Statement ::= Expr;
 IdUse : Statement ::= <ID> Expr;
+While : Statement ::= Condition:Expr Do:Statement*;
+If    : Statement ::= Condition:Expr Then:Statement* Else:Statement*;
 Return : Statement;
 
 
 abstract Expr;
+LT : Expr ::= Left:Expr Right:Expr;
+GT : Expr ::= Left:Expr Right:Expr;
+GTE : Expr ::= Left:Expr Right:Expr;
+LTE : Expr ::= Left:Expr Right:Expr;
+EQ : Expr ::= Left:Expr Right:Expr;
+NEQ : Expr ::= Left:Expr Right:Expr;
 Mul : Expr ::= Left:Expr Right:Expr;
 Div : Expr ::= Left:Expr Right:Expr;
 Plus : Expr ::= Left:Expr Right:Expr;
+Mod : Expr ::= Left:Expr Right:Expr;
 Minus : Expr ::= Left:Expr Right:Expr;
 Numeral : Expr ::= <NUMERAL>;
 Var     : Expr ::= <ID>;

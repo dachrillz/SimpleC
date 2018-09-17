@@ -11,46 +11,78 @@ import java.util.ArrayList;
 public class LangParser extends Parser {
 	static public class Terminals {
 		static public final short EOF = 0;
-		static public final short ID = 1;
-		static public final short INT = 2;
-		static public final short LPAREN = 3;
-		static public final short SEMICOLON = 4;
-		static public final short PLUS = 5;
-		static public final short NUMERAL = 6;
-		static public final short RPAREN = 7;
-		static public final short MUL = 8;
-		static public final short RETURN = 9;
-		static public final short RBRACE = 10;
-		static public final short LBRACE = 11;
-		static public final short EQUALS = 12;
+		static public final short LPAREN = 1;
+		static public final short ID = 2;
+		static public final short NUMERAL = 3;
+		static public final short LT = 4;
+		static public final short GT = 5;
+		static public final short GTE = 6;
+		static public final short LTE = 7;
+		static public final short EQ = 8;
+		static public final short NEQ = 9;
+		static public final short SEMICOLON = 10;
+		static public final short RPAREN = 11;
+		static public final short INT = 12;
+		static public final short PLUS = 13;
+		static public final short MINUS = 14;
+		static public final short IF = 15;
+		static public final short WHILE = 16;
+		static public final short RETURN = 17;
+		static public final short RBRACE = 18;
+		static public final short MUL = 19;
+		static public final short DIV = 20;
+		static public final short MOD = 21;
+		static public final short LBRACE = 22;
+		static public final short ELSE = 23;
+		static public final short EQUALS = 24;
 
 		static public final String[] NAMES = {
 			"EOF",
-			"ID",
-			"INT",
 			"LPAREN",
-			"SEMICOLON",
-			"PLUS",
+			"ID",
 			"NUMERAL",
+			"LT",
+			"GT",
+			"GTE",
+			"LTE",
+			"EQ",
+			"NEQ",
+			"SEMICOLON",
 			"RPAREN",
-			"MUL",
+			"INT",
+			"PLUS",
+			"MINUS",
+			"IF",
+			"WHILE",
 			"RETURN",
 			"RBRACE",
+			"MUL",
+			"DIV",
+			"MOD",
 			"LBRACE",
+			"ELSE",
 			"EQUALS"
 		};
 	}
 
 	static final ParsingTables PARSING_TABLES = new ParsingTables(
-		"U9oLaZrJKr4GXjzmmqtu22GtNoeGHSMXOmPijALZnX$0s5dOsjZOECpOs3aMjZgM$ZY#8wX" +
-		"0bcSt9vXHPCQxy#p7UtDEzkuvahvfGOkwexjcUg2ofZIlMNLLjWlr8DEofkt4JPDsJZnN9U" +
-		"epDtMqY2$KZFgNct9LyVVGlFxfffeDY0FDHVt3JTBzy8hwr2sgv8d3NlpfXLyUTKi#O$lOT" +
-		"molDaezlMtOiHspW$kXSiiExH05Rttha$NLjYCx8iFRWHsGuNrFCjzvp$R8t3$KaYRKjLrY" +
-		"xweVtxc5ieJI3QMd9l6sQfgZypfvmRgMIlWCn6Gcr636qqah9Qqofldgd9EO7DCopVobZTQ" +
-		"MVskSOLcvyOnhL3TfgLlo8lx1gT9H5MNswbjGgL6lKVu$Qz17asze4$DHFsdd4fR5j#JOS8" +
-		"MqiXDZfr#nZ#XCJ5Pw55DMt8XduB$jG0FMOGCMO1i#fdkq0f$WENo6b$05li8hU0rlu2syW" +
-		"$Um2clm59x09ZnEFUtG$i3pFq7d7chhkdTfxVPO$Y758iKN$rft4#afOhRDmEzS1IMB4$Ox" +
-		"ERgNBM8TlKu#J$Jfr#8EbZYB8PrBkOdrYW==");
+		"U9pDLajiJ54O$kwTrbIdRtteOpeTHMdhKQeULKfH969198GG4XlfXfM4nCQ6XCJ6oa8YeR6" +
+		"miBQqiX4M4ZkjH#kjzDswldFEF#EUwUsOBfheb#$yZ$Fzv$xdzioS0TopNhy53o5biHnnDA" +
+		"3KP95557cVRI1RZqPPWmh4iDGRj845UZIQbPBzP0DXFHfDawmpO0CvUZIQLP9zQmFvUZIQD" +
+		"PArTzUF0ZtkW#kzmNh9zjb0cnuhiGJrs2BP3pRGeKUZwPJiUnlOeKUZwPRiHnk07bNFvO3i" +
+		"$PqDQjHere5aVzfWRHcYtf0DoVwm8TdlDYJxpOPalzgGx1SR9ii#2zbdejjV2fp9msBkSJF" +
+		"MOGzocPjEp16J2gR2c$Oc53WxYJh4pHmnuKqnDo6plcTuKzwuWdx6ikGpDZ7tcnNZCcigr7" +
+		"kkPTv4gaBzcOhjLjJbZIaazp6gG3kc96QE6DNHg6148Lanh40xeZKZWc4T3SlitwuQq89Ts" +
+		"8k5ALqjGZLMe17DM8qIAmBMfiGR0jRRc6OzO6j0nRQKYfcAdMdMtErJHkRa5oUzggJNclJQ" +
+		"vRsc7xEGZGK88uVlCPVzrI4V1PohOeSrxBEK9pHFdqLR6O4Re4pLE1be8XbeoZFGPD9FhjR" +
+		"mKyAzEscVvN2zK4QQYWmqkS4QtXt9dkcdq#Xr$g7v7xA9zsQwJTWylST25F7CbgXF0dE9o5" +
+		"V1cVciC6V3L#5vFeqTpRAFUQX8dDWeQX5BgR3ViI#Y8Z8ZdjDw6LRCjKU$Scv#Ui$$Fvzj1" +
+		"FPVqL#ox0Vi24uxRJMflhdRo0xcdf0Dv65IvS#GFVGxkINUcBXE$ndPJVyE#OfyH1QJBqdU" +
+		"L4uZ#OBiOjn7UrpV9N1kqAgwe#GvyZ9pzsbladV9nu1xY9Otltk4bdUZIwt3tbskuHGmzvI" +
+		"salOISoVflwP$WPQ$QXobFSMOpt5FqrU$OgxIyjvspjE$HjxcN27ZYoJtuaPfRp7VItkFV4" +
+		"Zso7iwnZqFA3#Lr3nGwmJDcNct8U5pZI5PhrTggqNJBFcmv4#8RGrutW4xHgNO9h4TOWy6z" +
+		"DBYM#SvupBVN9jlRf1njI$choOtFjiUvNdghrRV5t5Db$T7c9aGcKKgFqAwcZ5gOhHHpWVJ" +
+		"uNaE2HsUpf2F3a#y#hGvFFU6zNy05QWA1G==");
 
 	static public class SyntaxError extends RuntimeException { public SyntaxError(String msg) {super(msg);}}
 	// Disable syntax error recovery
@@ -96,30 +128,48 @@ public class LangParser extends Parser {
 					final Symbol a = _symbols[offset + 2];
 					 return new IdDecl(a);
 			}
-			case 5: // statement = ID.a EQUALS expression.b SEMICOLON
+			case 5: // statement = ID.a EQUALS expr.b SEMICOLON
 			{
 					final Symbol a = _symbols[offset + 1];
 					final Symbol _symbol_b = _symbols[offset + 3];
 					final Expr b = (Expr) _symbol_b.value;
 					 return new IdUse(a, b);
 			}
-			case 6: // statement = expression.a SEMICOLON
+			case 6: // statement = WHILE LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE
+			{
+					final Symbol _symbol_a = _symbols[offset + 3];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 6];
+					final List b = (List) _symbol_b.value;
+					 return new While(a,b);
+			}
+			case 7: // statement = IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE ELSE LBRACE statementlist.c RBRACE
+			{
+					final Symbol _symbol_a = _symbols[offset + 3];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 6];
+					final List b = (List) _symbol_b.value;
+					final Symbol _symbol_c = _symbols[offset + 10];
+					final List c = (List) _symbol_c.value;
+					 return new If(a,b,c);
+			}
+			case 8: // statement = expr.a SEMICOLON
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
 					 return new ExpressionStatement(a);
 			}
-			case 7: // statement = RETURN SEMICOLON
+			case 9: // statement = RETURN SEMICOLON
 			{
 					 return new Return();
 			}
-			case 8: // statementlist = statement.a
+			case 10: // statementlist = statement.a
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Statement a = (Statement) _symbol_a.value;
 					 return new List().add(a);
 			}
-			case 9: // statementlist = statementlist.a statement.b
+			case 11: // statementlist = statementlist.a statement.b
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final List a = (List) _symbol_a.value;
@@ -127,7 +177,61 @@ public class LangParser extends Parser {
 					final Statement b = (Statement) _symbol_b.value;
 					 return a.add(b);
 			}
-			case 10: // expression = expression.a PLUS term.b
+			case 12: // expr = expr.a LT arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new LT(a,b);
+			}
+			case 13: // expr = expr.a GT arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new GT(a,b);
+			}
+			case 14: // expr = expr.a GTE arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new GTE(a,b);
+			}
+			case 15: // expr = expr.a LTE arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new LTE(a,b);
+			}
+			case 16: // expr = expr.a EQ arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new EQ(a,b);
+			}
+			case 17: // expr = expr.a NEQ arexpr.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new NEQ(a,b);
+			}
+			case 18: // expr = arexpr.a
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					 return a;
+			}
+			case 19: // arexpr = arexpr.a PLUS term.b
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
@@ -135,13 +239,21 @@ public class LangParser extends Parser {
 					final Expr b = (Expr) _symbol_b.value;
 					 return new Plus(a,b);
 			}
-			case 11: // expression = term.a
+			case 20: // arexpr = arexpr.a MINUS term.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new Minus(a,b);
+			}
+			case 21: // arexpr = term.a
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
 					 return a;
 			}
-			case 12: // term = term.a MUL factor.b
+			case 22: // term = term.a MUL factor.b
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
@@ -149,30 +261,46 @@ public class LangParser extends Parser {
 					final Expr b = (Expr) _symbol_b.value;
 					 return new Mul(a,b);
 			}
-			case 13: // term = factor.a
+			case 23: // term = term.a DIV factor.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new Div(a,b);
+			}
+			case 24: // term = term.a MOD factor.b
+			{
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final Expr a = (Expr) _symbol_a.value;
+					final Symbol _symbol_b = _symbols[offset + 3];
+					final Expr b = (Expr) _symbol_b.value;
+					 return new Mod(a,b);
+			}
+			case 25: // term = factor.a
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
 					 return a;
 			}
-			case 14: // factor = LPAREN expression.a RPAREN
+			case 26: // factor = LPAREN expr.a RPAREN
 			{
 					final Symbol _symbol_a = _symbols[offset + 2];
 					final Expr a = (Expr) _symbol_a.value;
 					 return a;
 			}
-			case 15: // factor = op.a
+			case 27: // factor = op.a
 			{
 					final Symbol _symbol_a = _symbols[offset + 1];
 					final Expr a = (Expr) _symbol_a.value;
 					 return a;
 			}
-			case 16: // op = ID.a
+			case 28: // op = ID.a
 			{
 					final Symbol a = _symbols[offset + 1];
 					 return new Var(a);
 			}
-			case 17: // op = NUMERAL.a
+			case 29: // op = NUMERAL.a
 			{
 					final Symbol a = _symbols[offset + 1];
 					 return new Numeral(a);
