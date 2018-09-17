@@ -1,10 +1,9 @@
 Program
   List
     Function ID="a"
-      null
       List
-        Return
-    Function ID="b"
-      null
+        Var ID="b"
+        Var ID="c"
+        Var ID="d"
       List
         Return

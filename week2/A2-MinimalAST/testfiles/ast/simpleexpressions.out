@@ -1,6 +1,7 @@
 Program
   List
     Function ID="a"
+      null
       List
         IdUse ID="a"
           Mul

@@ -1,5 +1,5 @@
 Program ::= Function*;
-Function ::= <ID> Statement*;
+Function ::= <ID> Var* Statement*;
 
 abstract Statement;
 IdDecl : Statement ::= <ID>;

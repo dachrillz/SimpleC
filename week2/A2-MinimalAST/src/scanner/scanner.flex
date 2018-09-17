@@ -57,6 +57,7 @@ COMMENT = \/\/([a-zA-Z]|([ ] | \t .))* \n
 "!="          { return sym(Terminals.NEQ);      }
 "=="          { return sym(Terminals.EQ);       }
 ">"           { return sym(Terminals.GT);       }
+","           { return sym(Terminals.COMMA);       }
 "return"      { return sym(Terminals.RETURN);   }
 "while"       { return sym(Terminals.WHILE);    }
 "if"          { return sym(Terminals.IF);       }

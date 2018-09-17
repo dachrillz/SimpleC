@@ -33,6 +33,7 @@
 %terminals WHILE;
 %terminals IF;
 %terminals ELSE;
+%terminals COMMA;
 
 %typeof program = "Program";
 %typeof function = "Function";
@@ -40,6 +41,8 @@
 %typeof arexpr = "Expr";
 %typeof programlist = "List";
 %typeof statementlist = "List";
+%typeof functionarguments = "List";
+%typeof functionargument = "ASTNode";
 %typeof op = "Expr";
 %typeof term = "Expr";
 %typeof factor = "Expr";
@@ -53,7 +56,13 @@ programlist = function.a {: return new List().add(a); :}
 		| programlist.a function.b {: return a.add(b); :}
 		;
 
-function = INT ID.id LPAREN RPAREN LBRACE statementlist.sl RBRACE {: return new Function(id, sl); :} ;
+function = INT ID.id LPAREN functionarguments.arg? RPAREN LBRACE statementlist.sl RBRACE {: return new Function(id, arg, sl); :} ;
+
+functionarguments = functionargument.a 		 {: return new List().add(a); :}
+			| functionarguments.a COMMA functionargument.b {: return a.add(b); :}
+			;
+
+functionargument = INT ID.a {: return new Var(a); :};
 
 statement = INT ID.a SEMICOLON 						 				{: return new IdDecl(a); 				:}
 			| ID.a EQUALS expr.b SEMICOLON			 				{: return new IdUse(a, b);				:}
