@@ -1,6 +1,68 @@
 Program
   List
-    Function ID="a"
+    Function ID="gcd1"
+      List
+        Var ID="a"
+        Var ID="b"
+      List
+        While
+          NEQ
+            Var ID="a"
+            Var ID="b"
+          List
+            IfElse
+              GT
+                Var ID="a"
+                Var ID="b"
+              List
+                IdUse ID="a"
+                  Minus
+                    Var ID="a"
+                    Var ID="b"
+              List
+                IdUse ID="b"
+                  Minus
+                    Var ID="b"
+                    Var ID="a"
+        Return
+          Var ID="a"
+    Function ID="gcd2"
+      List
+        Var ID="a"
+        Var ID="b"
+      List
+        If
+          EQ
+            Var ID="b"
+            Var ID="0"
+          List
+            Return
+              Var ID="a"
+        Return
+          FuncCall Name="gcd2"
+            List
+              Var ID="b"
+              Mod
+                Var ID="a"
+                Var ID="b"
+    Function ID="main"
       null
       List
+        IdDecl ID="a"
+        IdDecl ID="b"
+        IdUse ID="a"
+          Read
+        IdUse ID="b"
+          Read
+        IdDeclAndUse ID="diff"
+          Minus
+            FuncCall Name="gcd1"
+              List
+                Var ID="a"
+                Var ID="b"
+            FuncCall Name="gcd2"
+              List
+                Var ID="a"
+                Var ID="b"
         Return
+          Var ID="0"

@@ -1,78 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestDumpTree" tests="14" skipped="0" failures="14" errors="0" timestamp="2018-09-17T18:33:01" hostname="chrille-X540LA" time="0.33">
+<testsuite name="lang.TestDumpTree" tests="17" skipped="0" failures="15" errors="0" timestamp="2018-09-18T09:13:20" hostname="chrille-X540LA" time="0.378">
   <properties/>
-  <testcase name="runTest[functionwithvariabledeclarationandassignments.in]" classname="lang.TestDumpTree" time="0.069">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        IdDecl ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        IdDecl ...&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[arithmeticoperations.in]" classname="lang.TestDumpTree" time="0.027">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        IdUse I...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        IdUse I...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        IdUse I...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
+  <testcase name="runTest[functionwithvariabledeclarationandassignments.in]" classname="lang.TestDumpTree" time="0.06">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...se ID=&quot;x&quot;&#10;          [Numeral NUMERAL]=&quot;5&quot;&#10;        IdUse I...&gt; but was:&lt;...se ID=&quot;x&quot;&#10;          [Var ID]=&quot;5&quot;&#10;        IdUse I...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...se ID=&quot;x&quot;
+          [Numeral NUMERAL]=&quot;5&quot;
+        IdUse I...&gt; but was:&lt;...se ID=&quot;x&quot;
+          [Var ID]=&quot;5&quot;
         IdUse I...&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
@@ -133,211 +66,251 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[emptyfunction.in]" classname="lang.TestDumpTree" time="0.012">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        Return&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        Return&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        Return&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        Return&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[functionwithvariabledeclaration.in]" classname="lang.TestDumpTree" time="0.009">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        IdDecl ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        IdDecl ...&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[associativityandorder.in]" classname="lang.TestDumpTree" time="0.064">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      [List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;b&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;c&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;d&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;e&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Mul&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;f&quot;]&#10;      List&#10;        ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;b&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;c&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;d&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;e&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Mul&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;f&quot;&#10;      null]&#10;      List&#10;        ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      [List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Plus
-              Numeral NUMERAL=&quot;5&quot;
-              Numeral NUMERAL=&quot;5&quot;
-            Numeral NUMERAL=&quot;5&quot;
-        Return
-    Function ID=&quot;b&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Mul
-              Numeral NUMERAL=&quot;5&quot;
-              Numeral NUMERAL=&quot;5&quot;
-            Numeral NUMERAL=&quot;1&quot;
-        Return
-    Function ID=&quot;c&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Numeral NUMERAL=&quot;1&quot;
-            Mul
-              Numeral NUMERAL=&quot;5&quot;
-              Numeral NUMERAL=&quot;5&quot;
-        Return
-    Function ID=&quot;d&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Plus
-              Numeral NUMERAL=&quot;1&quot;
-              Numeral NUMERAL=&quot;2&quot;
-            Numeral NUMERAL=&quot;3&quot;
-        IdUse ID=&quot;b&quot;
-          Plus
-            Plus
-              Numeral NUMERAL=&quot;1&quot;
-              Numeral NUMERAL=&quot;2&quot;
-            Numeral NUMERAL=&quot;3&quot;
-        IdUse ID=&quot;c&quot;
-          Plus
+  <testcase name="runTest[arithmeticoperations.in]" classname="lang.TestDumpTree" time="0.037">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...   Plus&#10;            [Numeral NUMERAL=&quot;1&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;y&quot;&#10;          Minus&#10;            Var ID=&quot;x&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;q&quot;&#10;          Mul&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Minus&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;1&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          Mod&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        Return]&gt; but was:&lt;...   Plus&#10;            [Var ID=&quot;1&quot;&#10;            Var ID=&quot;2&quot;&#10;        IdUse ID=&quot;y&quot;&#10;          Minus&#10;            Var ID=&quot;x&quot;&#10;            Var ID=&quot;2&quot;&#10;        IdUse ID=&quot;q&quot;&#10;          Mul&#10;            Var ID=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Minus&#10;            Var ID=&quot;5&quot;&#10;            Var ID=&quot;1&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          Mod&#10;            Var ID=&quot;5&quot;&#10;            Var ID=&quot;5&quot;&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...   Plus
+            [Numeral NUMERAL=&quot;1&quot;
             Numeral NUMERAL=&quot;2&quot;
-            Plus
-              Numeral NUMERAL=&quot;2&quot;
-              Numeral NUMERAL=&quot;3&quot;
-        Return
-    Function ID=&quot;e&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Numeral NUMERAL=&quot;1&quot;
-            Mul
-              Numeral NUMERAL=&quot;2&quot;
-              Numeral NUMERAL=&quot;3&quot;
-        IdUse ID=&quot;b&quot;
+        IdUse ID=&quot;y&quot;
+          Minus
+            Var ID=&quot;x&quot;
+            Numeral NUMERAL=&quot;2&quot;
+        IdUse ID=&quot;q&quot;
           Mul
-            Plus
-              Numeral NUMERAL=&quot;1&quot;
-              Numeral NUMERAL=&quot;2&quot;
-            Numeral NUMERAL=&quot;3&quot;
+            Numeral NUMERAL=&quot;5&quot;
+            Var ID=&quot;a&quot;
+        IdUse ID=&quot;c&quot;
+          Minus
+            Numeral NUMERAL=&quot;5&quot;
+            Numeral NUMERAL=&quot;1&quot;
+        IdUse ID=&quot;d&quot;
+          Mod
+            Numeral NUMERAL=&quot;5&quot;
+            Numeral NUMERAL=&quot;5&quot;
+        Return]&gt; but was:&lt;...   Plus
+            [Var ID=&quot;1&quot;
+            Var ID=&quot;2&quot;
+        IdUse ID=&quot;y&quot;
+          Minus
+            Var ID=&quot;x&quot;
+            Var ID=&quot;2&quot;
+        IdUse ID=&quot;q&quot;
+          Mul
+            Var ID=&quot;5&quot;
+            Var ID=&quot;a&quot;
+        IdUse ID=&quot;c&quot;
+          Minus
+            Var ID=&quot;5&quot;
+            Var ID=&quot;1&quot;
+        IdUse ID=&quot;d&quot;
+          Mod
+            Var ID=&quot;5&quot;
+            Var ID=&quot;5&quot;
         Return
-    Function ID=&quot;f&quot;]
+          null]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[emptyfunction.in]" classname="lang.TestDumpTree" time="0.011">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;... List&#10;        Return[]&gt; but was:&lt;... List&#10;        Return[&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;... List
+        Return[]&gt; but was:&lt;... List
+        Return[
+          null]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[expressionoffunctions.in]" classname="lang.TestDumpTree" time="0.043">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program&#10;  List&#10;    Function ID=&quot;a&quot;&#10;      null&#10;      List&#10;        IdDeclAndUse ID=&quot;diff&quot;&#10;          Minus&#10;            FuncCall Name=&quot;gcd1&quot;&#10;              List&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;            FuncCall Name=&quot;gcd2&quot;&#10;              List&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;        Return&#10;          Var ID=&quot;diff&quot;]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program
+  List
+    Function ID=&quot;a&quot;
+      null
       List
-        ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      List
-        IdUse ID=&quot;a&quot;
-          Plus
-            Plus
-              Numeral NUMERAL=&quot;5&quot;
+        IdDeclAndUse ID=&quot;diff&quot;
+          Minus
+            FuncCall Name=&quot;gcd1&quot;
+              List
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+            FuncCall Name=&quot;gcd2&quot;
+              List
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+        Return
+          Var ID=&quot;diff&quot;]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[functionwithvariabledeclaration.in]" classname="lang.TestDumpTree" time="0.015"/>
+  <testcase name="runTest[associativityandorder.in]" classname="lang.TestDumpTree" time="0.054">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;... Plus&#10;              [Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;b&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;c&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;5&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;        Return&#10;    Function ID=&quot;d&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Plus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;e&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Mul&#10;              Numeral NUMERAL=&quot;2&quot;&#10;              Numeral NUMERAL=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Mul&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;3&quot;&#10;        Return&#10;    Function ID=&quot;f&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Minus&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;            Div&#10;              Mul&#10;                Numeral NUMERAL=&quot;3&quot;&#10;                Numeral NUMERAL=&quot;10&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;        Return]&gt; but was:&lt;... Plus&#10;              [Var ID=&quot;5&quot;&#10;              Var ID=&quot;5&quot;&#10;            Var ID=&quot;5&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;b&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Mul&#10;              Var ID=&quot;5&quot;&#10;              Var ID=&quot;5&quot;&#10;            Var ID=&quot;1&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;c&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Var ID=&quot;1&quot;&#10;            Mul&#10;              Var ID=&quot;5&quot;&#10;              Var ID=&quot;5&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;d&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Plus&#10;              Var ID=&quot;1&quot;&#10;              Var ID=&quot;2&quot;&#10;            Var ID=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Plus&#10;            Plus&#10;              Var ID=&quot;1&quot;&#10;              Var ID=&quot;2&quot;&#10;            Var ID=&quot;3&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          Plus&#10;            Var ID=&quot;2&quot;&#10;            Plus&#10;              Var ID=&quot;2&quot;&#10;              Var ID=&quot;3&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;e&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Plus&#10;            Var ID=&quot;1&quot;&#10;            Mul&#10;              Var ID=&quot;2&quot;&#10;              Var ID=&quot;3&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          Mul&#10;            Plus&#10;              Var ID=&quot;1&quot;&#10;              Var ID=&quot;2&quot;&#10;            Var ID=&quot;3&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;f&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          Minus&#10;            Plus&#10;              Var ID=&quot;1&quot;&#10;              Var ID=&quot;2&quot;&#10;            Div&#10;              Mul&#10;                Var ID=&quot;3&quot;&#10;                Var ID=&quot;10&quot;&#10;              Var ID=&quot;5&quot;&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;... Plus
+              [Numeral NUMERAL=&quot;5&quot;
               Numeral NUMERAL=&quot;5&quot;
             Numeral NUMERAL=&quot;5&quot;
         Return
@@ -400,82 +373,101 @@
             Numeral NUMERAL=&quot;3&quot;
         Return
     Function ID=&quot;f&quot;
-      null]
+      null
       List
-        ...&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[emptyfunctions.in]" classname="lang.TestDumpTree" time="0.005">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      [List&#10;        Return&#10;    Function ID=&quot;b&quot;]&#10;      List&#10;        ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      List&#10;        Return&#10;    Function ID=&quot;b&quot;&#10;      null]&#10;      List&#10;        ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      [List
+        IdUse ID=&quot;a&quot;
+          Minus
+            Plus
+              Numeral NUMERAL=&quot;1&quot;
+              Numeral NUMERAL=&quot;2&quot;
+            Div
+              Mul
+                Numeral NUMERAL=&quot;3&quot;
+                Numeral NUMERAL=&quot;10&quot;
+              Numeral NUMERAL=&quot;5&quot;
+        Return]&gt; but was:&lt;... Plus
+              [Var ID=&quot;5&quot;
+              Var ID=&quot;5&quot;
+            Var ID=&quot;5&quot;
         Return
-    Function ID=&quot;b&quot;]
-      List
-        ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      List
-        Return
+          null
     Function ID=&quot;b&quot;
-      null]
+      null
       List
-        ...&gt;
+        IdUse ID=&quot;a&quot;
+          Plus
+            Mul
+              Var ID=&quot;5&quot;
+              Var ID=&quot;5&quot;
+            Var ID=&quot;1&quot;
+        Return
+          null
+    Function ID=&quot;c&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          Plus
+            Var ID=&quot;1&quot;
+            Mul
+              Var ID=&quot;5&quot;
+              Var ID=&quot;5&quot;
+        Return
+          null
+    Function ID=&quot;d&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          Plus
+            Plus
+              Var ID=&quot;1&quot;
+              Var ID=&quot;2&quot;
+            Var ID=&quot;3&quot;
+        IdUse ID=&quot;b&quot;
+          Plus
+            Plus
+              Var ID=&quot;1&quot;
+              Var ID=&quot;2&quot;
+            Var ID=&quot;3&quot;
+        IdUse ID=&quot;c&quot;
+          Plus
+            Var ID=&quot;2&quot;
+            Plus
+              Var ID=&quot;2&quot;
+              Var ID=&quot;3&quot;
+        Return
+          null
+    Function ID=&quot;e&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          Plus
+            Var ID=&quot;1&quot;
+            Mul
+              Var ID=&quot;2&quot;
+              Var ID=&quot;3&quot;
+        IdUse ID=&quot;b&quot;
+          Mul
+            Plus
+              Var ID=&quot;1&quot;
+              Var ID=&quot;2&quot;
+            Var ID=&quot;3&quot;
+        Return
+          null
+    Function ID=&quot;f&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          Minus
+            Plus
+              Var ID=&quot;1&quot;
+              Var ID=&quot;2&quot;
+            Div
+              Mul
+                Var ID=&quot;3&quot;
+                Var ID=&quot;10&quot;
+              Var ID=&quot;5&quot;
+        Return
+          null]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
 	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
@@ -535,12 +527,159 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[simpleexpressions.in]" classname="lang.TestDumpTree" time="0.013">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        IdUse I...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        IdUse I...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        IdUse I...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
+  <testcase name="runTest[emptyfunctions.in]" classname="lang.TestDumpTree" time="0.008">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...&#10;        Return&#10;    [Function ID=&quot;b&quot;&#10;      null&#10;      List&#10;        Return]&gt; but was:&lt;...&#10;        Return&#10;    [      null&#10;    Function ID=&quot;b&quot;&#10;      null&#10;      List&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...
+        Return
+    [Function ID=&quot;b&quot;
+      null
+      List
+        Return]&gt; but was:&lt;...
+        Return
+    [      null
+    Function ID=&quot;b&quot;
+      null
+      List
+        Return
+          null]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[simpleexpressions.in]" classname="lang.TestDumpTree" time="0.01">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...    Mul&#10;            [Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;b&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          Mul&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL]=&quot;5&quot;&gt; but was:&lt;...    Mul&#10;            [Var ID=&quot;5&quot;&#10;            Var ID=&quot;b&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          Mul&#10;            Var ID=&quot;5&quot;&#10;            Var ID]=&quot;5&quot;&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...    Mul
+            [Numeral NUMERAL=&quot;5&quot;
+            Var ID=&quot;b&quot;
+        IdUse ID=&quot;a&quot;
+          Mul
+            Numeral NUMERAL=&quot;5&quot;
+            Numeral NUMERAL]=&quot;5&quot;&gt; but was:&lt;...    Mul
+            [Var ID=&quot;5&quot;
+            Var ID=&quot;b&quot;
+        IdUse ID=&quot;a&quot;
+          Mul
+            Var ID=&quot;5&quot;
+            Var ID]=&quot;5&quot;&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[functioncalls.in]" classname="lang.TestDumpTree" time="0.015">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...lus&#10;                [Numeral NUMERAL=&quot;1&quot;&#10;                Numeral NUMERAL]=&quot;1&quot;&#10;        IdUse I...&gt; but was:&lt;...lus&#10;                [Var ID=&quot;1&quot;&#10;                Var ID]=&quot;1&quot;&#10;        IdUse I...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...lus
+                [Numeral NUMERAL=&quot;1&quot;
+                Numeral NUMERAL]=&quot;1&quot;
+        IdUse I...&gt; but was:&lt;...lus
+                [Var ID=&quot;1&quot;
+                Var ID]=&quot;1&quot;
         IdUse I...&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
@@ -601,13 +740,12 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[functionwithvariabledeclarations.in]" classname="lang.TestDumpTree" time="0.018">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        IdDecl ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        IdDecl ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        IdDecl ...&gt;
+  <testcase name="runTest[functionwithvariabledeclarations.in]" classname="lang.TestDumpTree" time="0.005"/>
+  <testcase name="runTest[functionwitharguments.in]" classname="lang.TestDumpTree" time="0.024">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;... List&#10;        Return[]&gt; but was:&lt;... List&#10;        Return[&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;... List
+        Return[]&gt; but was:&lt;... List
+        Return[
+          null]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
 	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
@@ -667,137 +805,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[functionwitharguments.in]" classname="lang.TestDumpTree" time="0.009">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program&#10;  List&#10;    Function ID=&quot;a&quot;&#10;      List&#10;        Var ID=&quot;b&quot;&#10;        Var ID=&quot;c&quot;&#10;        Var ID=&quot;d&quot;&#10;      List&#10;        Return]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program
-  List
-    Function ID=&quot;a&quot;
-      List
-        Var ID=&quot;b&quot;
-        Var ID=&quot;c&quot;
-        Var ID=&quot;d&quot;
-      List
-        Return]&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[logicaloperators.in]" classname="lang.TestDumpTree" time="0.049">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...n ID=&quot;simple&quot;&#10;      [List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        Return&#10;    Function ID=&quot;order&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;4&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;4&quot;&#10;              Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;alloperators&quot;&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Var ID=&quot;b&quot;&#10;            Var ID=&quot;c&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          GT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;d&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          NEQ&#10;            Var ID=&quot;a&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          EQ&#10;            Var ID=&quot;g&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;e&quot;&#10;          GTE&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;f&quot;&#10;          LTE&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return&#10;    Function ID=&quot;several&quot;]&#10;      List&#10;        ...&gt; but was:&lt;...n ID=&quot;simple&quot;&#10;      [null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        Return&#10;    Function ID=&quot;order&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;4&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;4&quot;&#10;              Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;alloperators&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Var ID=&quot;b&quot;&#10;            Var ID=&quot;c&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          GT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;d&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          NEQ&#10;            Var ID=&quot;a&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          EQ&#10;            Var ID=&quot;g&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;e&quot;&#10;          GTE&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;f&quot;&#10;          LTE&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return&#10;    Function ID=&quot;several&quot;&#10;      null]&#10;      List&#10;        ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...n ID=&quot;simple&quot;
-      [List
-        IdUse ID=&quot;a&quot;
-          LT
-            Numeral NUMERAL=&quot;5&quot;
-            Numeral NUMERAL=&quot;2&quot;
-        IdUse ID=&quot;b&quot;
-          LT
-            Numeral NUMERAL=&quot;1&quot;
-            Numeral NUMERAL=&quot;2&quot;
-        Return
-    Function ID=&quot;order&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          LT
-            Plus
-              Numeral NUMERAL=&quot;1&quot;
-              Numeral NUMERAL=&quot;5&quot;
-            Numeral NUMERAL=&quot;4&quot;
-        IdUse ID=&quot;a&quot;
-          LT
-            Numeral NUMERAL=&quot;5&quot;
-            Plus
-              Numeral NUMERAL=&quot;4&quot;
-              Numeral NUMERAL=&quot;1&quot;
-        Return
-    Function ID=&quot;alloperators&quot;
-      List
-        IdUse ID=&quot;a&quot;
-          LT
-            Var ID=&quot;b&quot;
-            Var ID=&quot;c&quot;
-        IdUse ID=&quot;b&quot;
-          GT
-            Numeral NUMERAL=&quot;5&quot;
-            Var ID=&quot;d&quot;
-        IdUse ID=&quot;c&quot;
-          NEQ
-            Var ID=&quot;a&quot;
-            Numeral NUMERAL=&quot;5&quot;
-        IdUse ID=&quot;d&quot;
-          EQ
-            Var ID=&quot;g&quot;
-            Numeral NUMERAL=&quot;2&quot;
-        IdUse ID=&quot;e&quot;
-          GTE
-            Numeral NUMERAL=&quot;2&quot;
-            Numeral NUMERAL=&quot;2&quot;
-        IdUse ID=&quot;f&quot;
-          LTE
-            Numeral NUMERAL=&quot;5&quot;
-            Var ID=&quot;a&quot;
-        Return
-    Function ID=&quot;several&quot;]
-      List
-        ...&gt; but was:&lt;...n ID=&quot;simple&quot;
-      [null
-      List
-        IdUse ID=&quot;a&quot;
-          LT
-            Numeral NUMERAL=&quot;5&quot;
+  <testcase name="runTest[logicaloperators.in]" classname="lang.TestDumpTree" time="0.041">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...     LT&#10;            [Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;1&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        Return&#10;    Function ID=&quot;order&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Plus&#10;              Numeral NUMERAL=&quot;1&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;4&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Plus&#10;              Numeral NUMERAL=&quot;4&quot;&#10;              Numeral NUMERAL=&quot;1&quot;&#10;        Return&#10;    Function ID=&quot;alloperators&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Var ID=&quot;b&quot;&#10;            Var ID=&quot;c&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          GT&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;d&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          NEQ&#10;            Var ID=&quot;a&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          EQ&#10;            Var ID=&quot;g&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;e&quot;&#10;          GTE&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;2&quot;&#10;        IdUse ID=&quot;f&quot;&#10;          LTE&#10;            Numeral NUMERAL=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return&#10;    Function ID=&quot;several&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          GTE&#10;            GT&#10;              EQ&#10;                NEQ&#10;                  LTE&#10;                    LT&#10;                      Var ID=&quot;a&quot;&#10;                      Var ID=&quot;a&quot;&#10;                    Var ID=&quot;a&quot;&#10;                  Var ID=&quot;a&quot;&#10;                Var ID=&quot;a&quot;&#10;              Var ID=&quot;a&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return]&gt; but was:&lt;...     LT&#10;            [Var ID=&quot;5&quot;&#10;            Var ID=&quot;2&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          LT&#10;            Var ID=&quot;1&quot;&#10;            Var ID=&quot;2&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;order&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Plus&#10;              Var ID=&quot;1&quot;&#10;              Var ID=&quot;5&quot;&#10;            Var ID=&quot;4&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Var ID=&quot;5&quot;&#10;            Plus&#10;              Var ID=&quot;4&quot;&#10;              Var ID=&quot;1&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;alloperators&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          LT&#10;            Var ID=&quot;b&quot;&#10;            Var ID=&quot;c&quot;&#10;        IdUse ID=&quot;b&quot;&#10;          GT&#10;            Var ID=&quot;5&quot;&#10;            Var ID=&quot;d&quot;&#10;        IdUse ID=&quot;c&quot;&#10;          NEQ&#10;            Var ID=&quot;a&quot;&#10;            Var ID=&quot;5&quot;&#10;        IdUse ID=&quot;d&quot;&#10;          EQ&#10;            Var ID=&quot;g&quot;&#10;            Var ID=&quot;2&quot;&#10;        IdUse ID=&quot;e&quot;&#10;          GTE&#10;            Var ID=&quot;2&quot;&#10;            Var ID=&quot;2&quot;&#10;        IdUse ID=&quot;f&quot;&#10;          LTE&#10;            Var ID=&quot;5&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return&#10;          null&#10;    Function ID=&quot;several&quot;&#10;      null&#10;      List&#10;        IdUse ID=&quot;a&quot;&#10;          GTE&#10;            GT&#10;              EQ&#10;                NEQ&#10;                  LTE&#10;                    LT&#10;                      Var ID=&quot;a&quot;&#10;                      Var ID=&quot;a&quot;&#10;                    Var ID=&quot;a&quot;&#10;                  Var ID=&quot;a&quot;&#10;                Var ID=&quot;a&quot;&#10;              Var ID=&quot;a&quot;&#10;            Var ID=&quot;a&quot;&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...     LT
+            [Numeral NUMERAL=&quot;5&quot;
             Numeral NUMERAL=&quot;2&quot;
         IdUse ID=&quot;b&quot;
           LT
@@ -849,9 +859,96 @@
             Var ID=&quot;a&quot;
         Return
     Function ID=&quot;several&quot;
-      null]
+      null
       List
-        ...&gt;
+        IdUse ID=&quot;a&quot;
+          GTE
+            GT
+              EQ
+                NEQ
+                  LTE
+                    LT
+                      Var ID=&quot;a&quot;
+                      Var ID=&quot;a&quot;
+                    Var ID=&quot;a&quot;
+                  Var ID=&quot;a&quot;
+                Var ID=&quot;a&quot;
+              Var ID=&quot;a&quot;
+            Var ID=&quot;a&quot;
+        Return]&gt; but was:&lt;...     LT
+            [Var ID=&quot;5&quot;
+            Var ID=&quot;2&quot;
+        IdUse ID=&quot;b&quot;
+          LT
+            Var ID=&quot;1&quot;
+            Var ID=&quot;2&quot;
+        Return
+          null
+    Function ID=&quot;order&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          LT
+            Plus
+              Var ID=&quot;1&quot;
+              Var ID=&quot;5&quot;
+            Var ID=&quot;4&quot;
+        IdUse ID=&quot;a&quot;
+          LT
+            Var ID=&quot;5&quot;
+            Plus
+              Var ID=&quot;4&quot;
+              Var ID=&quot;1&quot;
+        Return
+          null
+    Function ID=&quot;alloperators&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          LT
+            Var ID=&quot;b&quot;
+            Var ID=&quot;c&quot;
+        IdUse ID=&quot;b&quot;
+          GT
+            Var ID=&quot;5&quot;
+            Var ID=&quot;d&quot;
+        IdUse ID=&quot;c&quot;
+          NEQ
+            Var ID=&quot;a&quot;
+            Var ID=&quot;5&quot;
+        IdUse ID=&quot;d&quot;
+          EQ
+            Var ID=&quot;g&quot;
+            Var ID=&quot;2&quot;
+        IdUse ID=&quot;e&quot;
+          GTE
+            Var ID=&quot;2&quot;
+            Var ID=&quot;2&quot;
+        IdUse ID=&quot;f&quot;
+          LTE
+            Var ID=&quot;5&quot;
+            Var ID=&quot;a&quot;
+        Return
+          null
+    Function ID=&quot;several&quot;
+      null
+      List
+        IdUse ID=&quot;a&quot;
+          GTE
+            GT
+              EQ
+                NEQ
+                  LTE
+                    LT
+                      Var ID=&quot;a&quot;
+                      Var ID=&quot;a&quot;
+                    Var ID=&quot;a&quot;
+                  Var ID=&quot;a&quot;
+                Var ID=&quot;a&quot;
+              Var ID=&quot;a&quot;
+            Var ID=&quot;a&quot;
+        Return
+          null]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
 	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
@@ -911,149 +1008,78 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[example.in]" classname="lang.TestDumpTree" time="0.009">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        Return&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        Return&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        Return&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        Return&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[if.in]" classname="lang.TestDumpTree" time="0.02">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        If&#10;    ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        If&#10;    ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        If
-    ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        If
-    ...&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at lang.Util.compareOutput(Util.java:46)
-	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-	at org.junit.runners.Suite.runChild(Suite.java:27)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.lang.Thread.run(Thread.java:748)
-</failure>
-  </testcase>
-  <testcase name="runTest[while.in]" classname="lang.TestDumpTree" time="0.012">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        While&#10; ...&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        While&#10; ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
+  <testcase name="runTest[example.in]" classname="lang.TestDumpTree" time="0.023">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...st&#10;    Function ID=&quot;[a&quot;&#10;      null&#10;      List&#10;        Return]&gt; but was:&lt;...st&#10;    Function ID=&quot;[gcd1&quot;&#10;      List&#10;        Var ID=&quot;a&quot;&#10;        Var ID=&quot;b&quot;&#10;      List&#10;        While&#10;          NEQ&#10;            Var ID=&quot;a&quot;&#10;            Var ID=&quot;b&quot;&#10;          List&#10;            IfElse&#10;              GT&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;              List&#10;                IdUse ID=&quot;a&quot;&#10;                  Minus&#10;                    Var ID=&quot;a&quot;&#10;                    Var ID=&quot;b&quot;&#10;              List&#10;                IdUse ID=&quot;b&quot;&#10;                  Minus&#10;                    Var ID=&quot;b&quot;&#10;                    Var ID=&quot;a&quot;&#10;        Return&#10;          Var ID=&quot;a&quot;&#10;    Function ID=&quot;gcd2&quot;&#10;      List&#10;        Var ID=&quot;a&quot;&#10;        Var ID=&quot;b&quot;&#10;      List&#10;        If&#10;          EQ&#10;            Var ID=&quot;b&quot;&#10;            Var ID=&quot;0&quot;&#10;          List&#10;            Return&#10;              Var ID=&quot;a&quot;&#10;        Return&#10;          FuncCall Name=&quot;gcd2&quot;&#10;            List&#10;              Var ID=&quot;b&quot;&#10;              Mod&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;    Function ID=&quot;main&quot;&#10;      null&#10;      List&#10;        IdDecl ID=&quot;a&quot;&#10;        IdDecl ID=&quot;b&quot;&#10;        IdUse ID=&quot;a&quot;&#10;          Read&#10;        IdUse ID=&quot;b&quot;&#10;          Read&#10;        IdDeclAndUse ID=&quot;diff&quot;&#10;          Minus&#10;            FuncCall Name=&quot;gcd1&quot;&#10;              List&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;            FuncCall Name=&quot;gcd2&quot;&#10;              List&#10;                Var ID=&quot;a&quot;&#10;                Var ID=&quot;b&quot;&#10;        Return&#10;          Var ID=&quot;0&quot;]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...st
+    Function ID=&quot;[a&quot;
+      null
+      List
+        Return]&gt; but was:&lt;...st
+    Function ID=&quot;[gcd1&quot;
+      List
+        Var ID=&quot;a&quot;
+        Var ID=&quot;b&quot;
+      List
         While
- ...&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        While
- ...&gt;
+          NEQ
+            Var ID=&quot;a&quot;
+            Var ID=&quot;b&quot;
+          List
+            IfElse
+              GT
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+              List
+                IdUse ID=&quot;a&quot;
+                  Minus
+                    Var ID=&quot;a&quot;
+                    Var ID=&quot;b&quot;
+              List
+                IdUse ID=&quot;b&quot;
+                  Minus
+                    Var ID=&quot;b&quot;
+                    Var ID=&quot;a&quot;
+        Return
+          Var ID=&quot;a&quot;
+    Function ID=&quot;gcd2&quot;
+      List
+        Var ID=&quot;a&quot;
+        Var ID=&quot;b&quot;
+      List
+        If
+          EQ
+            Var ID=&quot;b&quot;
+            Var ID=&quot;0&quot;
+          List
+            Return
+              Var ID=&quot;a&quot;
+        Return
+          FuncCall Name=&quot;gcd2&quot;
+            List
+              Var ID=&quot;b&quot;
+              Mod
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+    Function ID=&quot;main&quot;
+      null
+      List
+        IdDecl ID=&quot;a&quot;
+        IdDecl ID=&quot;b&quot;
+        IdUse ID=&quot;a&quot;
+          Read
+        IdUse ID=&quot;b&quot;
+          Read
+        IdDeclAndUse ID=&quot;diff&quot;
+          Minus
+            FuncCall Name=&quot;gcd1&quot;
+              List
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+            FuncCall Name=&quot;gcd2&quot;
+              List
+                Var ID=&quot;a&quot;
+                Var ID=&quot;b&quot;
+        Return
+          Var ID=&quot;0&quot;]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
 	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
@@ -1113,18 +1139,250 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="runTest[comment.in]" classname="lang.TestDumpTree" time="0.007">
-    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;&#10;      []List&#10;        Return&gt; but was:&lt;...nction ID=&quot;a&quot;&#10;      [null&#10;      ]List&#10;        Return&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...nction ID=&quot;a&quot;
-      []List
-        Return&gt; but was:&lt;...nction ID=&quot;a&quot;
-      [null
-      ]List
-        Return&gt;
+  <testcase name="runTest[if.in]" classname="lang.TestDumpTree" time="0.005">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...     List&#10;        If[&#10;          LT&#10;            Numeral NUMERAL=&quot;2&quot;&#10;            Numeral NUMERAL=&quot;4&quot;&#10;          List&#10;            IdUse ID=&quot;a&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;          List&#10;            IdUse ID=&quot;b&quot;&#10;              Numeral NUMERAL=&quot;2&quot;&#10;        Return]&gt; but was:&lt;...     List&#10;        If[Else&#10;          LT&#10;            Var ID=&quot;2&quot;&#10;            Var ID=&quot;4&quot;&#10;          List&#10;            IdUse ID=&quot;a&quot;&#10;              Var ID=&quot;5&quot;&#10;          List&#10;            IdUse ID=&quot;b&quot;&#10;              Var ID=&quot;2&quot;&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...     List
+        If[
+          LT
+            Numeral NUMERAL=&quot;2&quot;
+            Numeral NUMERAL=&quot;4&quot;
+          List
+            IdUse ID=&quot;a&quot;
+              Numeral NUMERAL=&quot;5&quot;
+          List
+            IdUse ID=&quot;b&quot;
+              Numeral NUMERAL=&quot;2&quot;
+        Return]&gt; but was:&lt;...     List
+        If[Else
+          LT
+            Var ID=&quot;2&quot;
+            Var ID=&quot;4&quot;
+          List
+            IdUse ID=&quot;a&quot;
+              Var ID=&quot;5&quot;
+          List
+            IdUse ID=&quot;b&quot;
+              Var ID=&quot;2&quot;
+        Return
+          null]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at lang.Util.compareOutput(Util.java:46)
 	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[print.in]" classname="lang.TestDumpTree" time="0.006">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program&#10;  List&#10;    Function ID=&quot;a&quot;&#10;      null&#10;      List&#10;        Print&#10;          FuncCall Name=&quot;gcd1&quot;&#10;            List&#10;              Var ID=&quot;a&quot;&#10;              Var ID=&quot;b&quot;&#10;        Print&#10;          FuncCall Name=&quot;gcd2&quot;&#10;            List&#10;              Var ID=&quot;a&quot;&#10;              Var ID=&quot;b&quot;&#10;        Return&#10;          Var ID=&quot;0&quot;]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;[]&gt; but was:&lt;[Program
+  List
+    Function ID=&quot;a&quot;
+      null
+      List
+        Print
+          FuncCall Name=&quot;gcd1&quot;
+            List
+              Var ID=&quot;a&quot;
+              Var ID=&quot;b&quot;
+        Print
+          FuncCall Name=&quot;gcd2&quot;
+            List
+              Var ID=&quot;a&quot;
+              Var ID=&quot;b&quot;
+        Return
+          Var ID=&quot;0&quot;]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[while.in]" classname="lang.TestDumpTree" time="0.007">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;...   Plus&#10;            [Numeral NUMERAL=&quot;5&quot;&#10;            Numeral NUMERAL=&quot;5&quot;&#10;          List&#10;            IdUse ID=&quot;a&quot;&#10;              Numeral NUMERAL=&quot;5&quot;&#10;        Return]&gt; but was:&lt;...   Plus&#10;            [Var ID=&quot;5&quot;&#10;            Var ID=&quot;5&quot;&#10;          List&#10;            IdUse ID=&quot;a&quot;&#10;              Var ID=&quot;5&quot;&#10;        Return&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;...   Plus
+            [Numeral NUMERAL=&quot;5&quot;
+            Numeral NUMERAL=&quot;5&quot;
+          List
+            IdUse ID=&quot;a&quot;
+              Numeral NUMERAL=&quot;5&quot;
+        Return]&gt; but was:&lt;...   Plus
+            [Var ID=&quot;5&quot;
+            Var ID=&quot;5&quot;
+          List
+            IdUse ID=&quot;a&quot;
+              Var ID=&quot;5&quot;
+        Return
+          null]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy1.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:108)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:146)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:128)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="runTest[comment.in]" classname="lang.TestDumpTree" time="0.005">
+    <failure message="org.junit.ComparisonFailure: Output differs expected:&lt;... List&#10;        Return[]&gt; but was:&lt;... List&#10;        Return[&#10;          null]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Output differs expected:&lt;... List
+        Return[]&gt; but was:&lt;... List
+        Return[
+          null]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at lang.Util.compareOutput(Util.java:46)
+	at lang.TestDumpTree.runTest(TestDumpTree.java:31)
+	at sun.reflect.GeneratedMethodAccessor6.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)

@@ -1,8 +1,10 @@
 Program
   List
     Function ID="a"
+      null
       List
         Return
     Function ID="b"
+      null
       List
         Return

@@ -5,22 +5,23 @@ Program
       List
         IdUse ID="x"
           Plus
-            Numeral NUMERAL="1"
-            Numeral NUMERAL="2"
+            Var ID="1"
+            Var ID="2"
         IdUse ID="y"
           Minus
             Var ID="x"
-            Numeral NUMERAL="2"
+            Var ID="2"
         IdUse ID="q"
           Mul
-            Numeral NUMERAL="5"
+            Var ID="5"
             Var ID="a"
         IdUse ID="c"
           Minus
-            Numeral NUMERAL="5"
-            Numeral NUMERAL="1"
+            Var ID="5"
+            Var ID="1"
         IdUse ID="d"
           Mod
-            Numeral NUMERAL="5"
-            Numeral NUMERAL="5"
+            Var ID="5"
+            Var ID="5"
         Return
+          null

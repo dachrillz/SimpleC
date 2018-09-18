@@ -1,6 +1,7 @@
 Program
   List
     Function ID="simple"
+      null
       List
         IdUse ID="a"
           LT
@@ -12,6 +13,7 @@ Program
             Numeral NUMERAL="2"
         Return
     Function ID="order"
+      null
       List
         IdUse ID="a"
           LT
@@ -27,6 +29,7 @@ Program
               Numeral NUMERAL="1"
         Return
     Function ID="alloperators"
+      null
       List
         IdUse ID="a"
           LT
@@ -54,6 +57,7 @@ Program
             Var ID="a"
         Return
     Function ID="several"
+      null
       List
         IdUse ID="a"
           GTE

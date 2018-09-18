@@ -6,6 +6,6 @@ Program
         IdDecl ID="x"
         IdDecl ID="y"
         IdUse ID="x"
-          Numeral NUMERAL="5"
+          Var ID="5"
         IdUse ID="y"
           Var ID="x"

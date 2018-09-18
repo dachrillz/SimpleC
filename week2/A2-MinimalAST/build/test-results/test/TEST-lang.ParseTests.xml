@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-09-17T18:33:00" hostname="chrille-X540LA" time="0.044">
+<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-09-18T09:13:20" hostname="chrille-X540LA" time="0.042">
   <properties/>
-  <testcase name="simpleexpressions" classname="lang.ParseTests" time="0.032"/>
-  <testcase name="emptyfunction" classname="lang.ParseTests" time="0.0"/>
-  <testcase name="example" classname="lang.ParseTests" time="0.0"/>
+  <testcase name="simpleexpressions" classname="lang.ParseTests" time="0.034"/>
+  <testcase name="emptyfunction" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="example" classname="lang.ParseTests" time="0.001"/>
   <testcase name="functionwithvariabledeclaration" classname="lang.ParseTests" time="0.001"/>
   <testcase name="functionwithvariabledeclarations" classname="lang.ParseTests" time="0.001"/>
   <testcase name="emptyfunctions" classname="lang.ParseTests" time="0.0"/>

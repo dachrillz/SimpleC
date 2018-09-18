@@ -34,6 +34,8 @@
 %terminals IF;
 %terminals ELSE;
 %terminals COMMA;
+%terminals PRINT;
+%terminals READ;
 
 %typeof program = "Program";
 %typeof function = "Function";
@@ -47,6 +49,8 @@
 %typeof term = "Expr";
 %typeof factor = "Expr";
 %typeof expr = "Expr";
+%typeof argumentcall = "Expr";
+%typeof argumentcalls = "List";
 
 %goal program;
 
@@ -65,11 +69,14 @@ functionarguments = functionargument.a 		 {: return new List().add(a); :}
 functionargument = INT ID.a {: return new Var(a); :};
 
 statement = INT ID.a SEMICOLON 						 				{: return new IdDecl(a); 				:}
+			| PRINT LPAREN expr.a RPAREN SEMICOLON						{: return new Print(a);					:}
+			| INT ID.a EQUALS expr.b SEMICOLON						{: return new IdDeclAndUse(a,b);	:}
 			| ID.a EQUALS expr.b SEMICOLON			 				{: return new IdUse(a, b);				:}
 			| WHILE LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE  {: return new While(a,b);				:}
-			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE ELSE LBRACE statementlist.c RBRACE {: return new If(a,b,c);				:}
+			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE {: return new If(a,b);				:}
+			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE ELSE LBRACE statementlist.c RBRACE {: return new IfElse(a,b,c);				:}
 			| expr.a SEMICOLON						 				{: return new ExpressionStatement(a);	:}
-			| RETURN SEMICOLON 						 				{: return new Return();  				:}
+			| RETURN expr.a? SEMICOLON 						 		{: return new Return(a);  				:}
 			;
 
 statementlist = statement.a {: return new List().add(a); :}
@@ -101,6 +108,17 @@ factor = 		LPAREN expr.a RPAREN 				{: return a;				:}
 		;
 
 
-op = ID.a 		{: return new Var(a); 		:} 
-	| NUMERAL.a	{: return new Numeral(a); 	:}
+op = ID.a 					{: return new Var(a); 		:} 
+	| NUMERAL.a				{: return new Numeral(a); 	:}
+	| functioncall.a 		{: return a;			    :}
+	| READ LPAREN RPAREN	{: return new Read();		:}
 	;
+
+functioncall = ID.a LPAREN argumentcalls.args? RPAREN {: return new FuncCall(a, args);   :};
+
+
+argumentcalls = argumentcall.a 		 			   	  {: return new List().add(a); :}
+			| argumentcalls.a COMMA argumentcall.b 	  {: return a.add(b); :}
+			;
+
+argumentcall = expr.a {: return a; :}; 

@@ -5,9 +5,9 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:9
- * @astdecl If : Statement ::= Condition:Expr Then:Statement* Else:Statement*;
- * @production If : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Then:{@link Statement}*</span> <span class="component">Else:{@link Statement}*</span>;
+ * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:11
+ * @astdecl If : Statement ::= Condition:Expr Then:Statement*;
+ * @production If : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Then:{@link Statement}*</span>;
 
  */
 public class If extends Statement implements Cloneable {
@@ -25,50 +25,48 @@ public class If extends Statement implements Cloneable {
    * @declaredat ASTNode:10
    */
   public void init$Children() {
-    children = new ASTNode[3];
+    children = new ASTNode[2];
     setChild(new List(), 1);
-    setChild(new List(), 2);
   }
   /**
-   * @declaredat ASTNode:15
+   * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"Condition", "Then", "Else"},
-    type = {"Expr", "List<Statement>", "List<Statement>"},
-    kind = {"Child", "List", "List"}
+    name = {"Condition", "Then"},
+    type = {"Expr", "List<Statement>"},
+    kind = {"Child", "List"}
   )
-  public If(Expr p0, List<Statement> p1, List<Statement> p2) {
+  public If(Expr p0, List<Statement> p1) {
     setChild(p0, 0);
     setChild(p1, 1);
-    setChild(p2, 2);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:26
+   * @declaredat ASTNode:24
    */
   protected int numChildren() {
-    return 3;
+    return 2;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:30
+   * @declaredat ASTNode:28
    */
   public void flushAttrCache() {
     super.flushAttrCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:34
+   * @declaredat ASTNode:32
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:38
+   * @declaredat ASTNode:36
    */
   public If clone() throws CloneNotSupportedException {
     If node = (If) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:43
+   * @declaredat ASTNode:41
    */
   public If copy() {
     try {
@@ -88,7 +86,7 @@ public class If extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:62
+   * @declaredat ASTNode:60
    */
   @Deprecated
   public If fullCopy() {
@@ -99,7 +97,7 @@ public class If extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:72
+   * @declaredat ASTNode:70
    */
   public If treeCopyNoTransform() {
     If tree = (If) copy();
@@ -120,7 +118,7 @@ public class If extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:92
+   * @declaredat ASTNode:90
    */
   public If treeCopy() {
     If tree = (If) copy();
@@ -136,7 +134,7 @@ public class If extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:106
+   * @declaredat ASTNode:104
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -276,115 +274,5 @@ public class If extends Statement implements Cloneable {
    */
   public List<Statement> getThensNoTransform() {
     return getThenListNoTransform();
-  }
-  /**
-   * Replaces the Else list.
-   * @param list The new list node to be used as the Else list.
-   * @apilevel high-level
-   */
-  public void setElseList(List<Statement> list) {
-    setChild(list, 2);
-  }
-  /**
-   * Retrieves the number of children in the Else list.
-   * @return Number of children in the Else list.
-   * @apilevel high-level
-   */
-  public int getNumElse() {
-    return getElseList().getNumChild();
-  }
-  /**
-   * Retrieves the number of children in the Else list.
-   * Calling this method will not trigger rewrites.
-   * @return Number of children in the Else list.
-   * @apilevel low-level
-   */
-  public int getNumElseNoTransform() {
-    return getElseListNoTransform().getNumChildNoTransform();
-  }
-  /**
-   * Retrieves the element at index {@code i} in the Else list.
-   * @param i Index of the element to return.
-   * @return The element at position {@code i} in the Else list.
-   * @apilevel high-level
-   */
-  public Statement getElse(int i) {
-    return (Statement) getElseList().getChild(i);
-  }
-  /**
-   * Check whether the Else list has any children.
-   * @return {@code true} if it has at least one child, {@code false} otherwise.
-   * @apilevel high-level
-   */
-  public boolean hasElse() {
-    return getElseList().getNumChild() != 0;
-  }
-  /**
-   * Append an element to the Else list.
-   * @param node The element to append to the Else list.
-   * @apilevel high-level
-   */
-  public void addElse(Statement node) {
-    List<Statement> list = (parent == null) ? getElseListNoTransform() : getElseList();
-    list.addChild(node);
-  }
-  /** @apilevel low-level 
-   */
-  public void addElseNoTransform(Statement node) {
-    List<Statement> list = getElseListNoTransform();
-    list.addChild(node);
-  }
-  /**
-   * Replaces the Else list element at index {@code i} with the new node {@code node}.
-   * @param node The new node to replace the old list element.
-   * @param i The list index of the node to be replaced.
-   * @apilevel high-level
-   */
-  public void setElse(Statement node, int i) {
-    List<Statement> list = getElseList();
-    list.setChild(node, i);
-  }
-  /**
-   * Retrieves the Else list.
-   * @return The node representing the Else list.
-   * @apilevel high-level
-   */
-  @ASTNodeAnnotation.ListChild(name="Else")
-  public List<Statement> getElseList() {
-    List<Statement> list = (List<Statement>) getChild(2);
-    return list;
-  }
-  /**
-   * Retrieves the Else list.
-   * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Else list.
-   * @apilevel low-level
-   */
-  public List<Statement> getElseListNoTransform() {
-    return (List<Statement>) getChildNoTransform(2);
-  }
-  /**
-   * @return the element at index {@code i} in the Else list without
-   * triggering rewrites.
-   */
-  public Statement getElseNoTransform(int i) {
-    return (Statement) getElseListNoTransform().getChildNoTransform(i);
-  }
-  /**
-   * Retrieves the Else list.
-   * @return The node representing the Else list.
-   * @apilevel high-level
-   */
-  public List<Statement> getElses() {
-    return getElseList();
-  }
-  /**
-   * Retrieves the Else list.
-   * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Else list.
-   * @apilevel low-level
-   */
-  public List<Statement> getElsesNoTransform() {
-    return getElseListNoTransform();
   }
 }

@@ -1,5 +1,6 @@
 Program
   List
     Function ID="a"
+      null
       List
         Return

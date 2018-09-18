@@ -5,9 +5,9 @@ Program
       List
         IdUse ID="a"
           Mul
-            Numeral NUMERAL="5"
+            Var ID="5"
             Var ID="b"
         IdUse ID="a"
           Mul
-            Numeral NUMERAL="5"
-            Numeral NUMERAL="5"
+            Var ID="5"
+            Var ID="5"

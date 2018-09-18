@@ -3,14 +3,15 @@ Program
     Function ID="a"
       null
       List
-        If
+        IfElse
           LT
-            Numeral NUMERAL="2"
-            Numeral NUMERAL="4"
+            Var ID="2"
+            Var ID="4"
           List
             IdUse ID="a"
-              Numeral NUMERAL="5"
+              Var ID="5"
           List
             IdUse ID="b"
-              Numeral NUMERAL="2"
+              Var ID="2"
         Return
+          null
