@@ -4,65 +4,74 @@ Program
       List
         Var ID="a"
         Var ID="b"
-      List
-        While
-          NEQ
+      Block
+        List
+          While
+            NEQ
+              Var ID="a"
+              Var ID="b"
+            Block
+              List
+                IfElse
+                  GT
+                    Var ID="a"
+                    Var ID="b"
+                  Block
+                    List
+                      IdUse ID="a"
+                        Minus
+                          Var ID="a"
+                          Var ID="b"
+                  Block
+                    List
+                      IdUse ID="b"
+                        Minus
+                          Var ID="b"
+                          Var ID="a"
+          Return
             Var ID="a"
-            Var ID="b"
-          List
-            IfElse
-              GT
-                Var ID="a"
-                Var ID="b"
-              List
-                IdUse ID="a"
-                  Minus
-                    Var ID="a"
-                    Var ID="b"
-              List
-                IdUse ID="b"
-                  Minus
-                    Var ID="b"
-                    Var ID="a"
-        Return
-          Var ID="a"
     Function ID="gcd2"
       List
         Var ID="a"
         Var ID="b"
-      List
-        If
-          EQ
-            Var ID="b"
-            Var ID="0"
-          List
-            Return
-              Var ID="a"
-        Return
-          FuncCall Name="gcd2"
-            List
+      Block
+        List
+          If
+            EQ
               Var ID="b"
-              Mod
-                Var ID="a"
-                Var ID="b"
-    Function ID="main"
-      null
-      List
-        IdDecl ID="a"
-        IdDecl ID="b"
-        IdUse ID="a"
-          Read
-        IdUse ID="b"
-          Read
-        IdDeclAndUse ID="diff"
-          Minus
-            FuncCall Name="gcd1"
+              Numeral NUMERAL="0"
+            Block
               List
-                Var ID="a"
-                Var ID="b"
+                Return
+                  Var ID="a"
+          Return
             FuncCall Name="gcd2"
               List
-                Var ID="a"
                 Var ID="b"
-        Return
-          Var ID="0"
+                Mod
+                  Var ID="a"
+                  Var ID="b"
+    Function ID="main"
+      List
+      Block
+        List
+          IdDecl ID="a"
+          IdDecl ID="b"
+          IdUse ID="a"
+            FuncCall Name="read"
+              List
+          IdUse ID="b"
+            FuncCall Name="read"
+              List
+          IdDeclAndUse ID="diff"
+            Minus
+              FuncCall Name="gcd1"
+                List
+                  Var ID="a"
+                  Var ID="b"
+              FuncCall Name="gcd2"
+                List
+                  Var ID="a"
+                  Var ID="b"
+          Return
+            Numeral NUMERAL="0"

@@ -1,6 +1,8 @@
 Program
   List
     Function ID="a"
-      null
       List
-        Return
+      Block
+        List
+          Return
+            Var ID="a"

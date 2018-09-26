@@ -4,5 +4,5 @@ int a(){
     q = 5*a;
     c = 5-1;
     d = 5%5;
-    return;
+    return 0;
 }

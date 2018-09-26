@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:27
+ * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:30
  * @astdecl Minus : Expr ::= Left:Expr Right:Expr;
  * @production Minus : {@link Expr} ::= <span class="component">Left:{@link Expr}</span> <span class="component">Right:{@link Expr}</span>;
 

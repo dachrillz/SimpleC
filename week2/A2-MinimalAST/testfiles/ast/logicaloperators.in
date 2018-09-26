@@ -1,13 +1,13 @@
 int simple(){
     a = 5<2;
     b = (1<2);
-    return;
+    return 0;
 }
 
 int order(){
     a = 1 + 5 < 4;
     a = 5 < 4 + 1;
-    return;
+    return 0;
 }
 
 int alloperators(){
@@ -17,10 +17,10 @@ int alloperators(){
     d = g == 2;
     e = 2 >= 2;
     f = 5 <= a;
-    return;
+    return 0;
 }
 
 int several(){
     a = a < a <= a != a == a > a >= a;
-    return;
+    return 0;
 }

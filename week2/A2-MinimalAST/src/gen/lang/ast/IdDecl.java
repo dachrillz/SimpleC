@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:5
+ * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:7
  * @astdecl IdDecl : Statement ::= <ID:String>;
  * @production IdDecl : {@link Statement} ::= <span class="component">&lt;ID:String&gt;</span>;
 

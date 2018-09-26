@@ -5,5 +5,5 @@ int a(){
     else{
         b = 2;
     }
-    return;
+    return 0;
 }

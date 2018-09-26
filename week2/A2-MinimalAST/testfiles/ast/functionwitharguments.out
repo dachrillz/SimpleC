@@ -5,6 +5,7 @@ Program
         Var ID="b"
         Var ID="c"
         Var ID="d"
-      List
-        Return
-          null
+      Block
+        List
+          Return
+            Numeral NUMERAL="0"

@@ -1,19 +1,22 @@
 Program ::= Function*;
-Function ::= <ID> Var* Statement*;
+Function ::= <ID> Var* Block;
+
+Block ::= Statement*;
 
 abstract Statement;
 IdDecl : Statement ::= <ID>;
 ExpressionStatement : Statement ::= Expr;
 IdDeclAndUse : Statement ::= <ID> Expr;
 IdUse : Statement ::= <ID> Expr;
-While : Statement ::= Condition:Expr Do:Statement*;
-IfElse    : Statement ::= Condition:Expr Then:Statement* Else:Statement*;
-If    : Statement ::= Condition:Expr Then:Statement*;
-Print : Statement ::= Expr;
+While : Statement ::= Condition:Expr Do:Block;
+IfElse    : Statement ::= Condition:Expr Then:Block Else:Block;
+If    : Statement ::= Condition:Expr Then:Block;
 Return : Statement ::= Expr;
+CallStatement : Statement ::= FuncCall;
 
 
 abstract Expr;
+
 LT : Expr ::= Left:Expr Right:Expr;
 GT : Expr ::= Left:Expr Right:Expr;
 GTE : Expr ::= Left:Expr Right:Expr;
@@ -28,7 +31,6 @@ Minus : Expr ::= Left:Expr Right:Expr;
 Numeral : Expr ::= <NUMERAL>;
 Var     : Expr ::= <ID>;
 FuncCall: Expr ::= <Name> Args:Expr*;
-Read : Expr;
 
 
 

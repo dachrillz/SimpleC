@@ -1,7 +1,8 @@
 Program
   List
     Function ID="a"
-      null
       List
-        IdDecl ID="x"
-        IdDecl ID="y"
+      Block
+        List
+          IdDecl ID="x"
+          IdDecl ID="y"

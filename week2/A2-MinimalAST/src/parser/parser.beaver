@@ -34,8 +34,6 @@
 %terminals IF;
 %terminals ELSE;
 %terminals COMMA;
-%terminals PRINT;
-%terminals READ;
 
 %typeof program = "Program";
 %typeof function = "Function";
@@ -51,6 +49,10 @@
 %typeof expr = "Expr";
 %typeof argumentcall = "Expr";
 %typeof argumentcalls = "List";
+%typeof block = "Block";
+
+
+%nonassoc LT, GT, GTE, LTE, EQ, NEQ;
 
 %goal program;
 
@@ -60,7 +62,10 @@ programlist = function.a {: return new List().add(a); :}
 		| programlist.a function.b {: return a.add(b); :}
 		;
 
-function = INT ID.id LPAREN functionarguments.arg? RPAREN LBRACE statementlist.sl RBRACE {: return new Function(id, arg, sl); :} ;
+function = INT ID.id LPAREN functionarguments.arg RPAREN block.sl {: return new Function(id, arg, sl); :} 
+            | INT ID.id LPAREN RPAREN block.sl {: return new Function(id, new List(), sl); :} 
+            ;
+
 
 functionarguments = functionargument.a 		 {: return new List().add(a); :}
 			| functionarguments.a COMMA functionargument.b {: return a.add(b); :}
@@ -68,20 +73,23 @@ functionarguments = functionargument.a 		 {: return new List().add(a); :}
 
 functionargument = INT ID.a {: return new Var(a); :};
 
+
+block = LBRACE statementlist.a RBRACE {: return new Block(a); :} ;
+
 statement = INT ID.a SEMICOLON 						 				{: return new IdDecl(a); 				:}
-			| PRINT LPAREN expr.a RPAREN SEMICOLON						{: return new Print(a);					:}
-			| INT ID.a EQUALS expr.b SEMICOLON						{: return new IdDeclAndUse(a,b);	:}
+			| INT ID.a EQUALS expr.b SEMICOLON						{: return new IdDeclAndUse(a,b);	    :}
 			| ID.a EQUALS expr.b SEMICOLON			 				{: return new IdUse(a, b);				:}
-			| WHILE LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE  {: return new While(a,b);				:}
-			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE {: return new If(a,b);				:}
-			| IF LPAREN expr.a RPAREN LBRACE statementlist.b RBRACE ELSE LBRACE statementlist.c RBRACE {: return new IfElse(a,b,c);				:}
+			| WHILE LPAREN expr.a RPAREN block.b                    {: return new While(a,b);				:}
+			| IF LPAREN expr.a RPAREN block.b                       {: return new If(a,b);				    :}
+			| IF LPAREN expr.a RPAREN block.b ELSE block.c          {: return new IfElse(a,b,c);			:}
 			| expr.a SEMICOLON						 				{: return new ExpressionStatement(a);	:}
-			| RETURN expr.a? SEMICOLON 						 		{: return new Return(a);  				:}
+			| RETURN expr.a SEMICOLON 						 		{: return new Return(a);  				:}
 			;
 
 statementlist = statement.a {: return new List().add(a); :}
 			| statementlist.a statement.b {: return a.add(b); :}
 			;
+			
 
 expr = 			expr.a LT arexpr.b					{: return new LT(a,b);		:}
 		| 		expr.a GT arexpr.b					{: return new GT(a,b);		:}
@@ -110,11 +118,11 @@ factor = 		LPAREN expr.a RPAREN 				{: return a;				:}
 
 op = ID.a 					{: return new Var(a); 		:} 
 	| NUMERAL.a				{: return new Numeral(a); 	:}
-	| functioncall.a 		{: return a;			    :}
-	| READ LPAREN RPAREN	{: return new Read();		:}
+	| functioncall.a        {: return a;				:}
 	;
 
-functioncall = ID.a LPAREN argumentcalls.args? RPAREN {: return new FuncCall(a, args);   :};
+functioncall = ID.a LPAREN argumentcalls.args RPAREN {: return new FuncCall(a, args);   :} 
+                | ID.a LPAREN RPAREN {: return new FuncCall(a, new List());   :};
 
 
 argumentcalls = argumentcall.a 		 			   	  {: return new List().add(a); :}

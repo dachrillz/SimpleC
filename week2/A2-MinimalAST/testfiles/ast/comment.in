@@ -1,6 +1,6 @@
 //should be ignored
 int a(){
     // lol
-    return;
+    return 0;
 }
 //ignore me as well

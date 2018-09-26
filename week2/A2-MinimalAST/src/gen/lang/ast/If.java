@@ -5,9 +5,9 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:11
- * @astdecl If : Statement ::= Condition:Expr Then:Statement*;
- * @production If : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Then:{@link Statement}*</span>;
+ * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:13
+ * @astdecl If : Statement ::= Condition:Expr Then:Block;
+ * @production If : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Then:{@link Block}</span>;
 
  */
 public class If extends Statement implements Cloneable {
@@ -26,47 +26,46 @@ public class If extends Statement implements Cloneable {
    */
   public void init$Children() {
     children = new ASTNode[2];
-    setChild(new List(), 1);
   }
   /**
-   * @declaredat ASTNode:14
+   * @declaredat ASTNode:13
    */
   @ASTNodeAnnotation.Constructor(
     name = {"Condition", "Then"},
-    type = {"Expr", "List<Statement>"},
-    kind = {"Child", "List"}
+    type = {"Expr", "Block"},
+    kind = {"Child", "Child"}
   )
-  public If(Expr p0, List<Statement> p1) {
+  public If(Expr p0, Block p1) {
     setChild(p0, 0);
     setChild(p1, 1);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:24
+   * @declaredat ASTNode:23
    */
   protected int numChildren() {
     return 2;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:28
+   * @declaredat ASTNode:27
    */
   public void flushAttrCache() {
     super.flushAttrCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:31
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:35
    */
   public If clone() throws CloneNotSupportedException {
     If node = (If) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:40
    */
   public If copy() {
     try {
@@ -86,7 +85,7 @@ public class If extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:59
    */
   @Deprecated
   public If fullCopy() {
@@ -97,7 +96,7 @@ public class If extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:69
    */
   public If treeCopyNoTransform() {
     If tree = (If) copy();
@@ -118,7 +117,7 @@ public class If extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:89
    */
   public If treeCopy() {
     If tree = (If) copy();
@@ -134,7 +133,7 @@ public class If extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:103
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -166,113 +165,29 @@ public class If extends Statement implements Cloneable {
     return (Expr) getChildNoTransform(0);
   }
   /**
-   * Replaces the Then list.
-   * @param list The new list node to be used as the Then list.
+   * Replaces the Then child.
+   * @param node The new node to replace the Then child.
    * @apilevel high-level
    */
-  public void setThenList(List<Statement> list) {
-    setChild(list, 1);
+  public void setThen(Block node) {
+    setChild(node, 1);
   }
   /**
-   * Retrieves the number of children in the Then list.
-   * @return Number of children in the Then list.
+   * Retrieves the Then child.
+   * @return The current node used as the Then child.
    * @apilevel high-level
    */
-  public int getNumThen() {
-    return getThenList().getNumChild();
+  @ASTNodeAnnotation.Child(name="Then")
+  public Block getThen() {
+    return (Block) getChild(1);
   }
   /**
-   * Retrieves the number of children in the Then list.
-   * Calling this method will not trigger rewrites.
-   * @return Number of children in the Then list.
-   * @apilevel low-level
-   */
-  public int getNumThenNoTransform() {
-    return getThenListNoTransform().getNumChildNoTransform();
-  }
-  /**
-   * Retrieves the element at index {@code i} in the Then list.
-   * @param i Index of the element to return.
-   * @return The element at position {@code i} in the Then list.
-   * @apilevel high-level
-   */
-  public Statement getThen(int i) {
-    return (Statement) getThenList().getChild(i);
-  }
-  /**
-   * Check whether the Then list has any children.
-   * @return {@code true} if it has at least one child, {@code false} otherwise.
-   * @apilevel high-level
-   */
-  public boolean hasThen() {
-    return getThenList().getNumChild() != 0;
-  }
-  /**
-   * Append an element to the Then list.
-   * @param node The element to append to the Then list.
-   * @apilevel high-level
-   */
-  public void addThen(Statement node) {
-    List<Statement> list = (parent == null) ? getThenListNoTransform() : getThenList();
-    list.addChild(node);
-  }
-  /** @apilevel low-level 
-   */
-  public void addThenNoTransform(Statement node) {
-    List<Statement> list = getThenListNoTransform();
-    list.addChild(node);
-  }
-  /**
-   * Replaces the Then list element at index {@code i} with the new node {@code node}.
-   * @param node The new node to replace the old list element.
-   * @param i The list index of the node to be replaced.
-   * @apilevel high-level
-   */
-  public void setThen(Statement node, int i) {
-    List<Statement> list = getThenList();
-    list.setChild(node, i);
-  }
-  /**
-   * Retrieves the Then list.
-   * @return The node representing the Then list.
-   * @apilevel high-level
-   */
-  @ASTNodeAnnotation.ListChild(name="Then")
-  public List<Statement> getThenList() {
-    List<Statement> list = (List<Statement>) getChild(1);
-    return list;
-  }
-  /**
-   * Retrieves the Then list.
+   * Retrieves the Then child.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Then list.
+   * @return The current node used as the Then child.
    * @apilevel low-level
    */
-  public List<Statement> getThenListNoTransform() {
-    return (List<Statement>) getChildNoTransform(1);
-  }
-  /**
-   * @return the element at index {@code i} in the Then list without
-   * triggering rewrites.
-   */
-  public Statement getThenNoTransform(int i) {
-    return (Statement) getThenListNoTransform().getChildNoTransform(i);
-  }
-  /**
-   * Retrieves the Then list.
-   * @return The node representing the Then list.
-   * @apilevel high-level
-   */
-  public List<Statement> getThens() {
-    return getThenList();
-  }
-  /**
-   * Retrieves the Then list.
-   * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Then list.
-   * @apilevel low-level
-   */
-  public List<Statement> getThensNoTransform() {
-    return getThenListNoTransform();
+  public Block getThenNoTransform() {
+    return (Block) getChildNoTransform(1);
   }
 }

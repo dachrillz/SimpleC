@@ -1,2 +1,2 @@
-int a() {return;}
-int b() {return;}
+int a() {return a;}
+int b() {return a;}

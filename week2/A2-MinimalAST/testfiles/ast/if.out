@@ -1,17 +1,20 @@
 Program
   List
     Function ID="a"
-      null
       List
-        IfElse
-          LT
-            Var ID="2"
-            Var ID="4"
-          List
-            IdUse ID="a"
-              Var ID="5"
-          List
-            IdUse ID="b"
-              Var ID="2"
-        Return
-          null
+      Block
+        List
+          IfElse
+            LT
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="4"
+            Block
+              List
+                IdUse ID="a"
+                  Numeral NUMERAL="5"
+            Block
+              List
+                IdUse ID="b"
+                  Numeral NUMERAL="2"
+          Return
+            Numeral NUMERAL="0"

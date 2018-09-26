@@ -1,10 +1,14 @@
 Program
   List
     Function ID="a"
-      null
       List
-        Return
+      Block
+        List
+          Return
+            Numeral NUMERAL="0"
     Function ID="b"
-      null
       List
-        Return
+      Block
+        List
+          Return
+            Numeral NUMERAL="0"

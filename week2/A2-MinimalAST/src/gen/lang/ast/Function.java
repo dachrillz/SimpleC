@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week2/A2-MinimalAST/src/jastadd/lang.ast:2
- * @astdecl Function : ASTNode ::= <ID:String> Var* Statement*;
- * @production Function : {@link ASTNode} ::= <span class="component">&lt;ID:String&gt;</span> <span class="component">{@link Var}*</span> <span class="component">{@link Statement}*</span>;
+ * @astdecl Function : ASTNode ::= <ID:String> Var* Block;
+ * @production Function : {@link ASTNode} ::= <span class="component">&lt;ID:String&gt;</span> <span class="component">{@link Var}*</span> <span class="component">{@link Block}</span>;
 
  */
 public class Function extends ASTNode<ASTNode> implements Cloneable {
@@ -27,56 +27,55 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
   public void init$Children() {
     children = new ASTNode[2];
     setChild(new List(), 0);
-    setChild(new List(), 1);
   }
   /**
-   * @declaredat ASTNode:15
+   * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"ID", "Var", "Statement"},
-    type = {"String", "List<Var>", "List<Statement>"},
-    kind = {"Token", "List", "List"}
+    name = {"ID", "Var", "Block"},
+    type = {"String", "List<Var>", "Block"},
+    kind = {"Token", "List", "Child"}
   )
-  public Function(String p0, List<Var> p1, List<Statement> p2) {
+  public Function(String p0, List<Var> p1, Block p2) {
     setID(p0);
     setChild(p1, 0);
     setChild(p2, 1);
   }
   /**
-   * @declaredat ASTNode:25
+   * @declaredat ASTNode:24
    */
-  public Function(beaver.Symbol p0, List<Var> p1, List<Statement> p2) {
+  public Function(beaver.Symbol p0, List<Var> p1, Block p2) {
     setID(p0);
     setChild(p1, 0);
     setChild(p2, 1);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:31
+   * @declaredat ASTNode:30
    */
   protected int numChildren() {
     return 2;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:35
+   * @declaredat ASTNode:34
    */
   public void flushAttrCache() {
     super.flushAttrCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:39
+   * @declaredat ASTNode:38
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:43
+   * @declaredat ASTNode:42
    */
   public Function clone() throws CloneNotSupportedException {
     Function node = (Function) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:48
+   * @declaredat ASTNode:47
    */
   public Function copy() {
     try {
@@ -96,7 +95,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:67
+   * @declaredat ASTNode:66
    */
   @Deprecated
   public Function fullCopy() {
@@ -107,7 +106,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:77
+   * @declaredat ASTNode:76
    */
   public Function treeCopyNoTransform() {
     Function tree = (Function) copy();
@@ -128,7 +127,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:97
+   * @declaredat ASTNode:96
    */
   public Function treeCopy() {
     Function tree = (Function) copy();
@@ -144,7 +143,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:111
+   * @declaredat ASTNode:110
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((Function) node).tokenString_ID);    
@@ -298,113 +297,29 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
     return getVarListNoTransform();
   }
   /**
-   * Replaces the Statement list.
-   * @param list The new list node to be used as the Statement list.
+   * Replaces the Block child.
+   * @param node The new node to replace the Block child.
    * @apilevel high-level
    */
-  public void setStatementList(List<Statement> list) {
-    setChild(list, 1);
+  public void setBlock(Block node) {
+    setChild(node, 1);
   }
   /**
-   * Retrieves the number of children in the Statement list.
-   * @return Number of children in the Statement list.
+   * Retrieves the Block child.
+   * @return The current node used as the Block child.
    * @apilevel high-level
    */
-  public int getNumStatement() {
-    return getStatementList().getNumChild();
+  @ASTNodeAnnotation.Child(name="Block")
+  public Block getBlock() {
+    return (Block) getChild(1);
   }
   /**
-   * Retrieves the number of children in the Statement list.
-   * Calling this method will not trigger rewrites.
-   * @return Number of children in the Statement list.
-   * @apilevel low-level
-   */
-  public int getNumStatementNoTransform() {
-    return getStatementListNoTransform().getNumChildNoTransform();
-  }
-  /**
-   * Retrieves the element at index {@code i} in the Statement list.
-   * @param i Index of the element to return.
-   * @return The element at position {@code i} in the Statement list.
-   * @apilevel high-level
-   */
-  public Statement getStatement(int i) {
-    return (Statement) getStatementList().getChild(i);
-  }
-  /**
-   * Check whether the Statement list has any children.
-   * @return {@code true} if it has at least one child, {@code false} otherwise.
-   * @apilevel high-level
-   */
-  public boolean hasStatement() {
-    return getStatementList().getNumChild() != 0;
-  }
-  /**
-   * Append an element to the Statement list.
-   * @param node The element to append to the Statement list.
-   * @apilevel high-level
-   */
-  public void addStatement(Statement node) {
-    List<Statement> list = (parent == null) ? getStatementListNoTransform() : getStatementList();
-    list.addChild(node);
-  }
-  /** @apilevel low-level 
-   */
-  public void addStatementNoTransform(Statement node) {
-    List<Statement> list = getStatementListNoTransform();
-    list.addChild(node);
-  }
-  /**
-   * Replaces the Statement list element at index {@code i} with the new node {@code node}.
-   * @param node The new node to replace the old list element.
-   * @param i The list index of the node to be replaced.
-   * @apilevel high-level
-   */
-  public void setStatement(Statement node, int i) {
-    List<Statement> list = getStatementList();
-    list.setChild(node, i);
-  }
-  /**
-   * Retrieves the Statement list.
-   * @return The node representing the Statement list.
-   * @apilevel high-level
-   */
-  @ASTNodeAnnotation.ListChild(name="Statement")
-  public List<Statement> getStatementList() {
-    List<Statement> list = (List<Statement>) getChild(1);
-    return list;
-  }
-  /**
-   * Retrieves the Statement list.
+   * Retrieves the Block child.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Statement list.
+   * @return The current node used as the Block child.
    * @apilevel low-level
    */
-  public List<Statement> getStatementListNoTransform() {
-    return (List<Statement>) getChildNoTransform(1);
-  }
-  /**
-   * @return the element at index {@code i} in the Statement list without
-   * triggering rewrites.
-   */
-  public Statement getStatementNoTransform(int i) {
-    return (Statement) getStatementListNoTransform().getChildNoTransform(i);
-  }
-  /**
-   * Retrieves the Statement list.
-   * @return The node representing the Statement list.
-   * @apilevel high-level
-   */
-  public List<Statement> getStatements() {
-    return getStatementList();
-  }
-  /**
-   * Retrieves the Statement list.
-   * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the Statement list.
-   * @apilevel low-level
-   */
-  public List<Statement> getStatementsNoTransform() {
-    return getStatementListNoTransform();
+  public Block getBlockNoTransform() {
+    return (Block) getChildNoTransform(1);
   }
 }

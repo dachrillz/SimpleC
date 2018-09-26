@@ -1,80 +1,84 @@
 Program
   List
     Function ID="simple"
-      null
       List
-        IdUse ID="a"
-          LT
-            Var ID="5"
-            Var ID="2"
-        IdUse ID="b"
-          LT
-            Var ID="1"
-            Var ID="2"
-        Return
-          null
+      Block
+        List
+          IdUse ID="a"
+            LT
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="2"
+          IdUse ID="b"
+            LT
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+          Return
+            Numeral NUMERAL="0"
     Function ID="order"
-      null
       List
-        IdUse ID="a"
-          LT
-            Plus
-              Var ID="1"
-              Var ID="5"
-            Var ID="4"
-        IdUse ID="a"
-          LT
-            Var ID="5"
-            Plus
-              Var ID="4"
-              Var ID="1"
-        Return
-          null
+      Block
+        List
+          IdUse ID="a"
+            LT
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="5"
+              Numeral NUMERAL="4"
+          IdUse ID="a"
+            LT
+              Numeral NUMERAL="5"
+              Plus
+                Numeral NUMERAL="4"
+                Numeral NUMERAL="1"
+          Return
+            Numeral NUMERAL="0"
     Function ID="alloperators"
-      null
       List
-        IdUse ID="a"
-          LT
-            Var ID="b"
-            Var ID="c"
-        IdUse ID="b"
-          GT
-            Var ID="5"
-            Var ID="d"
-        IdUse ID="c"
-          NEQ
-            Var ID="a"
-            Var ID="5"
-        IdUse ID="d"
-          EQ
-            Var ID="g"
-            Var ID="2"
-        IdUse ID="e"
-          GTE
-            Var ID="2"
-            Var ID="2"
-        IdUse ID="f"
-          LTE
-            Var ID="5"
-            Var ID="a"
-        Return
-          null
-    Function ID="several"
-      null
-      List
-        IdUse ID="a"
-          GTE
+      Block
+        List
+          IdUse ID="a"
+            LT
+              Var ID="b"
+              Var ID="c"
+          IdUse ID="b"
             GT
-              EQ
-                NEQ
-                  LTE
-                    LT
-                      Var ID="a"
+              Numeral NUMERAL="5"
+              Var ID="d"
+          IdUse ID="c"
+            NEQ
+              Var ID="a"
+              Numeral NUMERAL="5"
+          IdUse ID="d"
+            EQ
+              Var ID="g"
+              Numeral NUMERAL="2"
+          IdUse ID="e"
+            GTE
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="2"
+          IdUse ID="f"
+            LTE
+              Numeral NUMERAL="5"
+              Var ID="a"
+          Return
+            Numeral NUMERAL="0"
+    Function ID="several"
+      List
+      Block
+        List
+          IdUse ID="a"
+            GTE
+              GT
+                EQ
+                  NEQ
+                    LTE
+                      LT
+                        Var ID="a"
+                        Var ID="a"
                       Var ID="a"
                     Var ID="a"
                   Var ID="a"
                 Var ID="a"
               Var ID="a"
-            Var ID="a"
-        Return
-          null
+          Return
+            Numeral NUMERAL="0"
