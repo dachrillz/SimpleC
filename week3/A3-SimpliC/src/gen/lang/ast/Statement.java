@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:6

@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:31
@@ -13,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Var extends Expr implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:200
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:201
    */
   public void prettyPrint(PrintStream out, String ind){
 		out.print(getID());

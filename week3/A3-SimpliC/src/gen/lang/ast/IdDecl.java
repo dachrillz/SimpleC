@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:7
@@ -13,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 public class IdDecl extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:51
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:52
    */
   public void prettyPrint(PrintStream out, String ind){
 		out.print(ind);
@@ -27,6 +29,17 @@ public class IdDecl extends Statement implements Cloneable {
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
+	}
+  /**
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:89
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+		if (!symbols.declare(getID())) {
+			err.format("Error at line %d: symbol \'%s\' is already declared!", getLine(), getID());
+			err.println();
+		}
+		symbols = symbols.push();
 	}
   /**
    * @declaredat ASTNode:1

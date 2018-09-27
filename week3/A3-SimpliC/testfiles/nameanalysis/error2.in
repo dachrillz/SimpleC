@@ -1,0 +1,6 @@
+int main() {
+int a;
+a = 1 + b; // error: b is not yet declared
+int b = 1;
+return a;
+}

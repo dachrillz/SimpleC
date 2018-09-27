@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:2
@@ -32,6 +34,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
             out.println(ind+"{");
             getBlock().prettyPrint(out, ind+"    ");
             out.println(ind+"}");
+			out.println("");
 	}
   /**
    * @aspect Visitor
@@ -40,6 +43,21 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
+  /**
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:71
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+		if(!symbols.declare(getID())) {
+            err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getID());
+            err.println();
+        }
+        symbols = symbols.push();
+        for( int i = 0; i < getNumVar(); i++) {
+            getVar(i).checkNames(err, symbols);
+        }
+        getBlock().checkNames(err, symbols);
+    }
   /**
    * @declaredat ASTNode:1
    */

@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:1
@@ -17,6 +19,15 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
+	}
+  /**
+   * @param err where to write error messages
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   */
+  public void checkNames(PrintStream err) {
+		SymbolTable symbols = new SymbolTable();
+		checkNames(err, symbols);
 	}
   /**
    * @declaredat ASTNode:1

@@ -29,6 +29,7 @@ aspect PrettyPrint {
             out.println(ind+"{");
             getBlock().prettyPrint(out, ind+"    ");
             out.println(ind+"}");
+			out.println("");
 	}
 
 	public void Block.prettyPrint(PrintStream out, String ind) {
@@ -158,38 +159,38 @@ aspect PrettyPrint {
 
 	public void LT.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print("<");
+		out.print(" < ");
 		getRight().prettyPrint(out, ind);
 	}
 
 	public void GT.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print(">");
+		out.print(" > ");
 		getRight().prettyPrint(out, ind);
 	}
 
 	public void GTE.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print(">=");
+		out.print(" >= ");
 		getRight().prettyPrint(out, ind);
 	}
 
 
 	public void LTE.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print("<=");
+		out.print(" <= ");
 		getRight().prettyPrint(out, ind);
 	}
 
 	public void EQ.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print("==");
+		out.print(" == ");
 		getRight().prettyPrint(out, ind);
 	}
 
 	public void NEQ.prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
-		out.print("!=");
+		out.print(" != ");
 		getRight().prettyPrint(out, ind);
 	}
 

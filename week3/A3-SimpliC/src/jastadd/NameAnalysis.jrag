@@ -1,0 +1,217 @@
+import java.util.Set;
+import java.util.HashSet;
+
+aspect NameAnalysis {
+	public class SymbolTable {
+		private static final SymbolTable BOTTOM = new SymbolTable() {
+			@Override
+			public boolean declare(String name) {
+				throw new UnsupportedOperationException(
+						"can not add name to bottom of name stack");
+			}
+			@Override
+			public boolean lookup(String name) {
+				return false;
+			}
+		};
+
+		private final SymbolTable tail;
+		private final Set<String> names = new HashSet<String>();
+
+		public SymbolTable() {
+			tail = BOTTOM;
+		}
+
+		public SymbolTable(SymbolTable tail) {
+			this.tail = tail;
+		}
+
+		/**
+		 * Attempt to add a new name to the symbol table.
+		 * @return true if name was not already declared
+		 */
+		public boolean declare(String name) {
+			return names.add(name);
+		}
+
+		/**
+		 * @return true if name has been declared
+		 */
+		public boolean lookup(String name) {
+			return names.contains(name) || tail.lookup(name);
+		}
+
+		/**
+		 * Push a new table on the stack.
+		 * @return the new top of the stack
+		 */
+		public SymbolTable push() {
+			return new SymbolTable(this);
+		}
+	}
+
+	/**
+	 * @param err where to write error messages
+	 */
+	public void Program.checkNames(PrintStream err) {
+		SymbolTable symbols = new SymbolTable();
+		checkNames(err, symbols);
+	}
+
+	/**
+	 * @param err where to write error messages
+	 * @param symbols symbol table
+	 */
+	public void ASTNode.checkNames(PrintStream err, SymbolTable symbols) {
+		for (int i = 0; i < getNumChild(); ++i) {
+			getChild(i).checkNames(err, symbols);
+		}
+	}
+
+    public void Function.checkNames(PrintStream err, SymbolTable symbols) {
+		if(!symbols.declare(getID())) {
+            err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getID());
+            err.println();
+        }
+        symbols = symbols.push();
+        for( int i = 0; i < getNumVar(); i++) {
+            getVar(i).checkNames(err, symbols);
+        }
+        getBlock().checkNames(err, symbols);
+    }
+
+    public void Block.checkNames(PrintStream err, SymbolTable symbols) {
+        for(int i = 0; i < getNumStatement(); i++) {
+            getStatement(i).checkNames(err, symbols);
+        }
+    }
+
+	public void IdDecl.checkNames(PrintStream err, SymbolTable symbols) {
+		if (!symbols.declare(getID())) {
+			err.format("Error at line %d: symbol \'%s\' is already declared!", getLine(), getID());
+			err.println();
+		}
+		symbols = symbols.push();
+	}
+
+	public void IdUse.checkNames(PrintStream err, SymbolTable symbols) {
+		if (!symbols.lookup(getID())) {
+			err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getID());
+			err.println();
+		}
+		getExpr().checkNames(err, symbols);
+	}
+
+	public void IdDeclAndUse.checkNames(PrintStream err, SymbolTable symbols) {
+		if (!symbols.declare(getID())) {
+			err.format("Error at line %d: symbol \'%s\' is already declared!", getLine(), getID());
+			err.println();
+		}
+		symbols = symbols.push();
+		getExpr().checkNames(err, symbols);
+	}
+
+	public void CallStatement.checkNames(PrintStream err, SymbolTable symbols) {
+		getFuncCall().checkNames(err, symbols); 
+	}
+
+    public void FuncCall.checkNames(PrintStream err, SymbolTable symbols) {
+		if(!symbols.lookup(getName())) {
+            err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getName());
+            err.println();
+        }
+
+        for(int i = 0; i < getNumArgs(); i++){
+            getArgs(i).checkNames(err, symbols);    
+        }  
+    } 
+
+    public void Return.checkNames(PrintStream err, SymbolTable symbols) {
+        getExpr().checkNames(err, symbols);
+    }
+
+    public void If.checkNames(PrintStream err, SymbolTable symbols) {
+        getCondition().checkNames(err, symbols);
+		getThen().checkNames(err, symbols.push());
+    }
+
+    public void IfElse.checkNames(PrintStream err, SymbolTable symbols) {
+        getCondition().checkNames(err, symbols);
+		getThen().checkNames(err, symbols.push());
+		getElse().checkNames(err, symbols.push());
+    }
+
+    public void While.checkNames(PrintStream err, SymbolTable symbols) {
+        getCondition().checkNames(err, symbols);
+		getDo().checkNames(err, symbols.push());
+    }
+
+    public void ExpressionStatement.checkNames(PrintStream err, SymbolTable symbols) {
+        getExpr().checkNames(err, symbols);
+    }
+
+	//All the binary expressions...
+
+    public void LT.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void GT.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void GTE.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void LTE.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void EQ.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void NEQ.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void Mul.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void Div.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void Plus.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void Mod.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+    public void Minus.checkNames(PrintStream err, SymbolTable symbols) {
+        getLeft().checkNames(err, symbols);
+        getRight().checkNames(err, symbols);
+    }
+
+	/**
+	 * Helper method
+	 * @return line number of this token
+	 */
+	public int ASTNode.getLine() {
+		return getLine(getStart());
+	}
+}

@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * @ast node
  * @astdecl ASTNode;
@@ -98,6 +100,26 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    */
   public Object accept(Visitor visitor, Object data) {
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
+	}
+  /**
+   * @param err where to write error messages
+   * @param symbols symbol table
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:65
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+		for (int i = 0; i < getNumChild(); ++i) {
+			getChild(i).checkNames(err, symbols);
+		}
+	}
+  /**
+   * Helper method
+   * @return line number of this token
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:214
+   */
+  public int getLine() {
+		return getLine(getStart());
 	}
   /**
    * @declaredat ASTNode:1

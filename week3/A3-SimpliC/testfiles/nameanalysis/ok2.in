@@ -1,6 +1,0 @@
-let
-	pi = 3.14
-	tau = pi*2.0
-in
-	tau
-end
