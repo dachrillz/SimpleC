@@ -1,0 +1,132 @@
+%class "LangParser";
+%package "lang.ast";
+
+%embed {:
+	static public class SyntaxError extends RuntimeException { public SyntaxError(String msg) {super(msg);}}
+	// Disable syntax error recovery
+	protected void recoverFromError(Symbol token, TokenStream in) {
+		throw new SyntaxError("Cannot recover from the syntax error");
+	}
+:};
+
+%terminals ID;
+%terminals LPAREN;
+%terminals RPAREN;
+%terminals LBRACE;
+%terminals RBRACE;
+%terminals INT;
+%terminals SEMICOLON;
+%terminals RETURN;
+%terminals NUMERAL;
+%terminals EQUALS;
+%terminals MUL;
+%terminals PLUS;
+%terminals MINUS;
+%terminals DIV;
+%terminals MOD;
+%terminals LT;
+%terminals GT;
+%terminals GTE;
+%terminals LTE;
+%terminals EQ;
+%terminals NEQ;
+%terminals WHILE;
+%terminals IF;
+%terminals ELSE;
+%terminals COMMA;
+
+%typeof program = "Program";
+%typeof function = "Function";
+%typeof statement = "Statement";
+%typeof arexpr = "Expr";
+%typeof programlist = "List";
+%typeof statementlist = "List";
+%typeof functionarguments = "List";
+%typeof functionargument = "ASTNode";
+%typeof op = "Expr";
+%typeof term = "Expr";
+%typeof factor = "Expr";
+%typeof expr = "Expr";
+%typeof argumentcall = "Expr";
+%typeof argumentcalls = "List";
+%typeof block = "Block";
+
+
+%nonassoc LT, GT, GTE, LTE, EQ, NEQ;
+
+%goal program;
+
+program = programlist.a {: return new Program(a); :} ;
+
+programlist = function.a {: return new List().add(a); :}
+		| programlist.a function.b {: return a.add(b); :}
+		;
+
+function = INT ID.id LPAREN functionarguments.arg RPAREN block.sl {: return new Function(id, arg, sl); :} 
+            | INT ID.id LPAREN RPAREN block.sl {: return new Function(id, new List(), sl); :} 
+            ;
+
+
+functionarguments = functionargument.a 		 {: return new List().add(a); :}
+			| functionarguments.a COMMA functionargument.b {: return a.add(b); :}
+			;
+
+functionargument = INT ID.a {: return new Var(a); :};
+
+
+block = LBRACE statementlist.a RBRACE {: return new Block(a); :} ;
+
+statement = INT ID.a SEMICOLON 						 				{: return new IdDecl(a); 				:}
+			| INT ID.a EQUALS expr.b SEMICOLON						{: return new IdDeclAndUse(a,b);	    :}
+			| ID.a EQUALS expr.b SEMICOLON			 				{: return new IdUse(a, b);				:}
+			| WHILE LPAREN expr.a RPAREN block.b                    {: return new While(a,b);				:}
+			| IF LPAREN expr.a RPAREN block.b                       {: return new If(a,b);				    :}
+			| IF LPAREN expr.a RPAREN block.b ELSE block.c          {: return new IfElse(a,b,c);			:}
+			| expr.a SEMICOLON						 				{: return new ExpressionStatement(a);	:}
+			| RETURN expr.a SEMICOLON 						 		{: return new Return(a);  				:}
+			;
+
+statementlist = statement.a {: return new List().add(a); :}
+			| statementlist.a statement.b {: return a.add(b); :}
+			;
+			
+
+expr = 			expr.a LT arexpr.b					{: return new LT(a,b);		:}
+		| 		expr.a GT arexpr.b					{: return new GT(a,b);		:}
+		|		expr.a GTE arexpr.b					{: return new GTE(a,b);		:}
+		|		expr.a LTE arexpr.b					{: return new LTE(a,b);		:}
+		|		expr.a EQ arexpr.b					{: return new EQ(a,b);		:}		
+		|		expr.a NEQ arexpr.b					{: return new NEQ(a,b);		:}
+		| 		arexpr.a							{: return a;				:}
+		;
+
+arexpr = 		arexpr.a PLUS term.b 				{: return new Plus(a,b); 	:}
+		|		arexpr.a MINUS term.b				{: return new Minus(a,b); 	:}
+		|		term.a								{: return a;				:}
+		;
+
+term = 			term.a MUL factor.b 				{: return new Mul(a,b); 	:}
+		|		term.a DIV factor.b					{: return new Div(a,b);		:}
+		|		term.a MOD factor.b					{: return new Mod(a,b);		:}
+		|		factor.a							{: return a;				:}
+		;
+
+factor = 		LPAREN expr.a RPAREN 				{: return a;				:}
+		|		op.a								{: return a;				:}
+		;
+
+
+op = ID.a 					{: return new Var(a); 		:} 
+	| NUMERAL.a				{: return new Numeral(a); 	:}
+	| functioncall.a        {: return a;				:}
+	;
+
+functioncall = ID.a LPAREN argumentcalls.args RPAREN {: return new FuncCall(a, args);   :} 
+                | ID.a LPAREN RPAREN {: return new FuncCall(a, new List());   :};
+
+
+argumentcalls = argumentcall.a 		 			   	  {: return new List().add(a); :}
+			| argumentcalls.a COMMA argumentcall.b 	  {: return a.add(b); :}
+			;
+
+argumentcall = expr.a {: return a; :}; 

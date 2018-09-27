@@ -1,0 +1,20 @@
+Program
+  List
+    Function ID="a"
+      List
+      Block
+        List
+          IfElse
+            LT
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="4"
+            Block
+              List
+                IdUse ID="a"
+                  Numeral NUMERAL="5"
+            Block
+              List
+                IdUse ID="b"
+                  Numeral NUMERAL="2"
+          Return
+            Numeral NUMERAL="0"

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestDumpTree" tests="17" skipped="0" failures="0" errors="0" timestamp="2018-09-26T13:39:59" hostname="chrille-X540LA" time="0.371">
+<testsuite name="lang.TestDumpTree" tests="17" skipped="0" failures="0" errors="0" timestamp="2018-09-27T12:47:52" hostname="chrille-X540LA" time="0.491">
   <properties/>
-  <testcase name="runTest[functionwithvariabledeclarationandassignments.in]" classname="lang.TestDumpTree" time="0.062"/>
-  <testcase name="runTest[arithmeticoperations.in]" classname="lang.TestDumpTree" time="0.033"/>
-  <testcase name="runTest[emptyfunction.in]" classname="lang.TestDumpTree" time="0.009"/>
-  <testcase name="runTest[expressionoffunctions.in]" classname="lang.TestDumpTree" time="0.017"/>
+  <testcase name="runTest[functionwithvariabledeclarationandassignments.in]" classname="lang.TestDumpTree" time="0.111"/>
+  <testcase name="runTest[arithmeticoperations.in]" classname="lang.TestDumpTree" time="0.029"/>
+  <testcase name="runTest[emptyfunction.in]" classname="lang.TestDumpTree" time="0.014"/>
+  <testcase name="runTest[expressionoffunctions.in]" classname="lang.TestDumpTree" time="0.033"/>
   <testcase name="runTest[functionwithvariabledeclaration.in]" classname="lang.TestDumpTree" time="0.008"/>
-  <testcase name="runTest[associativityandorder.in]" classname="lang.TestDumpTree" time="0.077"/>
-  <testcase name="runTest[emptyfunctions.in]" classname="lang.TestDumpTree" time="0.007"/>
+  <testcase name="runTest[associativityandorder.in]" classname="lang.TestDumpTree" time="0.067"/>
+  <testcase name="runTest[emptyfunctions.in]" classname="lang.TestDumpTree" time="0.011"/>
   <testcase name="runTest[simpleexpressions.in]" classname="lang.TestDumpTree" time="0.011"/>
-  <testcase name="runTest[functioncalls.in]" classname="lang.TestDumpTree" time="0.009"/>
-  <testcase name="runTest[functionwithvariabledeclarations.in]" classname="lang.TestDumpTree" time="0.008"/>
-  <testcase name="runTest[functionwitharguments.in]" classname="lang.TestDumpTree" time="0.005"/>
-  <testcase name="runTest[logicaloperators.in]" classname="lang.TestDumpTree" time="0.041"/>
-  <testcase name="runTest[example.in]" classname="lang.TestDumpTree" time="0.016"/>
+  <testcase name="runTest[functioncalls.in]" classname="lang.TestDumpTree" time="0.01"/>
+  <testcase name="runTest[functionwithvariabledeclarations.in]" classname="lang.TestDumpTree" time="0.011"/>
+  <testcase name="runTest[functionwitharguments.in]" classname="lang.TestDumpTree" time="0.021"/>
+  <testcase name="runTest[logicaloperators.in]" classname="lang.TestDumpTree" time="0.071"/>
+  <testcase name="runTest[example.in]" classname="lang.TestDumpTree" time="0.029"/>
   <testcase name="runTest[if.in]" classname="lang.TestDumpTree" time="0.006"/>
-  <testcase name="runTest[print.in]" classname="lang.TestDumpTree" time="0.012"/>
-  <testcase name="runTest[while.in]" classname="lang.TestDumpTree" time="0.006"/>
-  <testcase name="runTest[comment.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[print.in]" classname="lang.TestDumpTree" time="0.022"/>
+  <testcase name="runTest[while.in]" classname="lang.TestDumpTree" time="0.013"/>
+  <testcase name="runTest[comment.in]" classname="lang.TestDumpTree" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,0 +1,11 @@
+Program
+  List
+    Function ID="a"
+      List
+        Var ID="b"
+        Var ID="c"
+        Var ID="d"
+      Block
+        List
+          Return
+            Numeral NUMERAL="0"

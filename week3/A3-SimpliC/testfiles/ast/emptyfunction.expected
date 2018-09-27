@@ -1,0 +1,8 @@
+Program
+  List
+    Function ID="a"
+      List
+      Block
+        List
+          Return
+            Var ID="a"

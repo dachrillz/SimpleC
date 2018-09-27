@@ -9,7 +9,7 @@ int gcd1(int a, int b) {
     return a;
 }
 
-
+//hejsan
 int gcd2(int a, int b) {
     if (b == 0) {
         return a;
