@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:32
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:33
  * @astdecl FuncCall : Expr ::= <Name:String> Args:Expr*;
  * @production FuncCall : {@link Expr} ::= <span class="component">&lt;Name:String&gt;</span> <span class="component">Args:{@link Expr}*</span>;
 
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class FuncCall extends Expr implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:65
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:70
    */
   public void prettyPrint(PrintStream out, String ind){
 		out.print(getName());
@@ -32,14 +32,14 @@ public class FuncCall extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:118
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:124
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:118
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:130
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
 		if(!symbols.lookup(getName())) {

@@ -26,14 +26,14 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:86
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:92
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:83
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:88
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
         for(int i = 0; i < getNumStatement(); i++) {

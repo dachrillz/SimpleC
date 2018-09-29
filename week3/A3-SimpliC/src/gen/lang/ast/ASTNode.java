@@ -96,7 +96,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:166
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:172
    */
   public Object accept(Visitor visitor, Object data) {
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
@@ -105,7 +105,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @param err where to write error messages
    * @param symbols symbol table
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:65
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:67
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
 		for (int i = 0; i < getNumChild(); ++i) {
@@ -116,7 +116,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * Helper method
    * @return line number of this token
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:214
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:226
    */
   public int getLine() {
 		return getLine(getStart());

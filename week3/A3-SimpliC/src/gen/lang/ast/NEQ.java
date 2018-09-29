@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:24
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:25
  * @astdecl NEQ : Expr ::= Left:Expr Right:Expr;
  * @production NEQ : {@link Expr} ::= <span class="component">Left:{@link Expr}</span> <span class="component">Right:{@link Expr}</span>;
 
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class NEQ extends Expr implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:191
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:196
    */
   public void prettyPrint(PrintStream out, String ind) {
 		getLeft().prettyPrint(out, ind);
@@ -24,14 +24,14 @@ public class NEQ extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:142
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:148
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:180
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:192
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
         getLeft().checkNames(err, symbols);

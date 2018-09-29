@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:11
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:12
  * @astdecl While : Statement ::= Condition:Expr Do:Block;
  * @production While : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Do:{@link Block}</span>;
 
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class While extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:219
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:224
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print(ind + "while(");
@@ -27,14 +27,14 @@ public class While extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:98
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:104
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:144
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:156
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
         getCondition().checkNames(err, symbols);

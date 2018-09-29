@@ -1,10 +1,11 @@
 Program
   List
-    Function ID="a"
+    Function
+      VarDecl ID="a"
       List
-        Var ID="b"
-        Var ID="c"
-        Var ID="d"
+        VarDecl ID="b"
+        VarDecl ID="c"
+        VarDecl ID="d"
       Block
         List
           Return

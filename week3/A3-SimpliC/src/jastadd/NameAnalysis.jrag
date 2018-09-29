@@ -55,6 +55,8 @@ aspect NameAnalysis {
 	 */
 	public void Program.checkNames(PrintStream err) {
 		SymbolTable symbols = new SymbolTable();
+		symbols.declare("read"); //These two are reserved right?
+		symbols.declare("print");
 		checkNames(err, symbols);
 	}
 
@@ -69,17 +71,20 @@ aspect NameAnalysis {
 	}
 
     public void Function.checkNames(PrintStream err, SymbolTable symbols) {
-		if(!symbols.declare(getID())) {
-            err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getID());
-            err.println();
-        }
+        getName().checkNames(err,symbols);
         symbols = symbols.push();
-        for( int i = 0; i < getNumVar(); i++) {
-            getVar(i).checkNames(err, symbols);
+        for( int i = 0; i < getNumArguments(); i++) {
+            getArguments(i).checkNames(err, symbols);
         }
         getBlock().checkNames(err, symbols);
     }
 
+	public void Var.checkNames(PrintStream err, SymbolTable symbols) {
+		if(!symbols.lookup(getID())) {
+            err.format("Error at line %d: symbol \'%s\' has not been declared before this use!", getLine(), getID());
+            err.println();
+        }
+	}
     public void Block.checkNames(PrintStream err, SymbolTable symbols) {
         for(int i = 0; i < getNumStatement(); i++) {
             getStatement(i).checkNames(err, symbols);
@@ -92,6 +97,13 @@ aspect NameAnalysis {
 			err.println();
 		}
 		symbols = symbols.push();
+	}
+	
+	public void VarDecl.checkNames(PrintStream err, SymbolTable symbols) {
+		if (!symbols.declare(getID())) {
+			err.format("Error at line %d: symbol \'%s\' is already declared!", getLine(), getID());
+			err.println();
+		}
 	}
 
 	public void IdUse.checkNames(PrintStream err, SymbolTable symbols) {

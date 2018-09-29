@@ -15,14 +15,14 @@ aspect PrettyPrint {
 	public void Function.prettyPrint(PrintStream out, String ind){
 		//a function always starts with int in simpliC
 		out.print(ind + "int ");
-		out.print(getID());
+		out.print(getName().getID());
 		out.print("(");
-		if(hasVar()){
+		if(hasArguments()){
                 out.print("int ");
-                getVar(0).prettyPrint(out, ind);
-                for (int i = 1; i < getNumVar(); i++){
+                getArguments(0).prettyPrint(out, ind);
+                for (int i = 1; i < getNumArguments(); i++){
                     out.print(", int ");
-                    getVar(i).prettyPrint(out, ind);
+                    getArguments(i).prettyPrint(out, ind);
                 }
             }
             out.print(")");
@@ -47,6 +47,11 @@ aspect PrettyPrint {
 		out.print(" = ");
 		getExpr().prettyPrint(out, ind);
 		out.println(";");
+	}
+	
+	
+    public void VarDecl.prettyPrint(PrintStream out, String ind){
+        out.print(getID());
 	}
 
 	public void IdDecl.prettyPrint(PrintStream out, String ind){

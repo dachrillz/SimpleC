@@ -72,6 +72,7 @@ aspect Visitor {
 		public Object visit(IdDeclAndUse node, Object data);
 		public Object visit(Block node, Object data);
 		public Object visit(Function node, Object data);
+		public Object visit(VarDecl node, Object data);
 		//public Object visit(Expr node, Object data);
 	}
 
@@ -80,6 +81,11 @@ aspect Visitor {
 	//}
 	
 	public Object Function.accept(Visitor visitor, Object data){
+		return visitor.visit(this, data);
+	}
+	
+	
+	public Object VarDecl.accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
 

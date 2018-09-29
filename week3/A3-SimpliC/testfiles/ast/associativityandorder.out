@@ -1,6 +1,7 @@
 Program
   List
-    Function ID="a"
+    Function
+      VarDecl ID="a"
       List
       Block
         List
@@ -12,7 +13,8 @@ Program
               Numeral NUMERAL="5"
           Return
             Numeral NUMERAL="0"
-    Function ID="b"
+    Function
+      VarDecl ID="b"
       List
       Block
         List
@@ -24,7 +26,8 @@ Program
               Numeral NUMERAL="1"
           Return
             Numeral NUMERAL="0"
-    Function ID="c"
+    Function
+      VarDecl ID="c"
       List
       Block
         List
@@ -36,7 +39,8 @@ Program
                 Numeral NUMERAL="5"
           Return
             Numeral NUMERAL="0"
-    Function ID="d"
+    Function
+      VarDecl ID="d"
       List
       Block
         List
@@ -60,7 +64,8 @@ Program
                 Numeral NUMERAL="3"
           Return
             Numeral NUMERAL="0"
-    Function ID="e"
+    Function
+      VarDecl ID="e"
       List
       Block
         List
@@ -78,7 +83,8 @@ Program
               Numeral NUMERAL="3"
           Return
             Numeral NUMERAL="0"
-    Function ID="f"
+    Function
+      VarDecl ID="f"
       List
       Block
         List

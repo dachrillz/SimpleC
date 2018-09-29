@@ -1,6 +1,7 @@
 Program
   List
-    Function ID="simple"
+    Function
+      VarDecl ID="simple"
       List
       Block
         List
@@ -14,7 +15,8 @@ Program
               Numeral NUMERAL="2"
           Return
             Numeral NUMERAL="0"
-    Function ID="order"
+    Function
+      VarDecl ID="order"
       List
       Block
         List
@@ -32,7 +34,8 @@ Program
                 Numeral NUMERAL="1"
           Return
             Numeral NUMERAL="0"
-    Function ID="alloperators"
+    Function
+      VarDecl ID="alloperators"
       List
       Block
         List
@@ -62,7 +65,8 @@ Program
               Var ID="a"
           Return
             Numeral NUMERAL="0"
-    Function ID="several"
+    Function
+      VarDecl ID="several"
       List
       Block
         List

@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:12
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:13
  * @astdecl IfElse : Statement ::= Condition:Expr Then:Block Else:Block;
  * @production IfElse : {@link Statement} ::= <span class="component">Condition:{@link Expr}</span> <span class="component">Then:{@link Block}</span> <span class="component">Else:{@link Block}</span>;
 
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class IfElse extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:237
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:242
    */
   public void prettyPrint(PrintStream out, String ind) {
 		
@@ -34,14 +34,14 @@ public class IfElse extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:102
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:108
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:138
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:150
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
         getCondition().checkNames(err, symbols);

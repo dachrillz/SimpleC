@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:10
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:11
  * @astdecl IdUse : Statement ::= <ID:String> Expr;
  * @production IdUse : {@link Statement} ::= <span class="component">&lt;ID:String&gt;</span> <span class="component">{@link Expr}</span>;
 
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class IdUse extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:205
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:210
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print(ind);
@@ -26,14 +26,14 @@ public class IdUse extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:187
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:193
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:97
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:109
    */
   public void checkNames(PrintStream err, SymbolTable symbols) {
 		if (!symbols.lookup(getID())) {

@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class Program extends ASTNode<ASTNode> implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:175
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:181
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
@@ -27,6 +27,8 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    */
   public void checkNames(PrintStream err) {
 		SymbolTable symbols = new SymbolTable();
+		symbols.declare("read"); //These two are reserved right?
+		symbols.declare("print");
 		checkNames(err, symbols);
 	}
   /**

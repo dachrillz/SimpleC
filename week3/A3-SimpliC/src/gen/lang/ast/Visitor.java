@@ -99,4 +99,7 @@ public interface Visitor {
 
 		 
 		public Object visit(Function node, Object data);
+
+		 
+		public Object visit(VarDecl node, Object data);
 }

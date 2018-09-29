@@ -1,9 +1,10 @@
 Program
   List
-    Function ID="gcd1"
+    Function
+      VarDecl ID="gcd1"
       List
-        Var ID="a"
-        Var ID="b"
+        VarDecl ID="a"
+        VarDecl ID="b"
       Block
         List
           While
@@ -30,10 +31,11 @@ Program
                           Var ID="a"
           Return
             Var ID="a"
-    Function ID="gcd2"
+    Function
+      VarDecl ID="gcd2"
       List
-        Var ID="a"
-        Var ID="b"
+        VarDecl ID="a"
+        VarDecl ID="b"
       Block
         List
           If
@@ -51,7 +53,8 @@ Program
                 Mod
                   Var ID="a"
                   Var ID="b"
-    Function ID="main"
+    Function
+      VarDecl ID="main"
       List
       Block
         List

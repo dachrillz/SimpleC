@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:30
+ * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/lang.ast:31
  * @astdecl Numeral : Expr ::= <NUMERAL:String>;
  * @production Numeral : {@link Expr} ::= <span class="component">&lt;NUMERAL:String&gt;</span>;
 
@@ -15,14 +15,14 @@ import java.util.HashSet;
 public class Numeral extends Expr implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:197
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:202
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print(getNUMERAL());
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:126
+   * @declaredat /home/chrille/compilers/week3/A3-SimpliC/src/jastadd/Visitor.jrag:132
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);

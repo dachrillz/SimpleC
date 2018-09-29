@@ -1,7 +1,6 @@
 Program
   List
-    Function
-      VarDecl ID="a"
+    Function ID="main"
       List
       Block
         List
