@@ -1,0 +1,9 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Return
+            Var ID="a"

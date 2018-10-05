@@ -1,0 +1,99 @@
+Program
+  List
+    Function
+      IdDecl ID="simple"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            LT
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="2"
+          Assignment
+            IdUse ID="b"
+            LT
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="order"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            LT
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="5"
+              Numeral NUMERAL="4"
+          Assignment
+            IdUse ID="a"
+            LT
+              Numeral NUMERAL="5"
+              Plus
+                Numeral NUMERAL="4"
+                Numeral NUMERAL="1"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="alloperators"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            LT
+              Var ID="b"
+              Var ID="c"
+          Assignment
+            IdUse ID="b"
+            GT
+              Numeral NUMERAL="5"
+              Var ID="d"
+          Assignment
+            IdUse ID="c"
+            NEQ
+              Var ID="a"
+              Numeral NUMERAL="5"
+          Assignment
+            IdUse ID="d"
+            EQ
+              Var ID="g"
+              Numeral NUMERAL="2"
+          Assignment
+            IdUse ID="e"
+            GTE
+              Numeral NUMERAL="2"
+              Numeral NUMERAL="2"
+          Assignment
+            IdUse ID="f"
+            LTE
+              Numeral NUMERAL="5"
+              Var ID="a"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="several"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            GTE
+              GT
+                EQ
+                  NEQ
+                    LTE
+                      LT
+                        Var ID="a"
+                        Var ID="a"
+                      Var ID="a"
+                    Var ID="a"
+                  Var ID="a"
+                Var ID="a"
+              Var ID="a"
+          Return
+            Numeral NUMERAL="0"

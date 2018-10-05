@@ -1,0 +1,18 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+      Block
+        List
+          While
+            Plus
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+            Block
+              List
+                Assignment
+                  IdUse ID="a"
+                  Numeral NUMERAL="5"
+          Return
+            Numeral NUMERAL="0"

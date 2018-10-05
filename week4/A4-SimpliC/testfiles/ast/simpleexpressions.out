@@ -1,0 +1,17 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Mul
+              Numeral NUMERAL="5"
+              Var ID="b"
+          Assignment
+            IdUse ID="a"
+            Mul
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"

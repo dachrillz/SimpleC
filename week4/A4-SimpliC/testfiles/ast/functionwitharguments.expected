@@ -1,0 +1,12 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+        IdDecl ID="b"
+        IdDecl ID="c"
+        IdDecl ID="d"
+      Block
+        List
+          Return
+            Numeral NUMERAL="0"

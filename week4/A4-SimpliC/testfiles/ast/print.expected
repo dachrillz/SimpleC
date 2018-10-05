@@ -1,0 +1,23 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+      Block
+        List
+          ExpressionStatement
+            FuncCall Name="print"
+              List
+                FuncCall Name="gcd1"
+                  List
+                    Var ID="a"
+                    Var ID="b"
+          ExpressionStatement
+            FuncCall Name="print"
+              List
+                FuncCall Name="gcd2"
+                  List
+                    Var ID="a"
+                    Var ID="b"
+          Return
+            Numeral NUMERAL="0"

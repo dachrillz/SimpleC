@@ -1,0 +1,111 @@
+Program
+  List
+    Function
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Plus
+              Plus
+                Numeral NUMERAL="5"
+                Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="b"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Plus
+              Mul
+                Numeral NUMERAL="5"
+                Numeral NUMERAL="5"
+              Numeral NUMERAL="1"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="c"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Plus
+              Numeral NUMERAL="1"
+              Mul
+                Numeral NUMERAL="5"
+                Numeral NUMERAL="5"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="d"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Plus
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="2"
+              Numeral NUMERAL="3"
+          Assignment
+            IdUse ID="b"
+            Plus
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="2"
+              Numeral NUMERAL="3"
+          Assignment
+            IdUse ID="c"
+            Plus
+              Numeral NUMERAL="2"
+              Plus
+                Numeral NUMERAL="2"
+                Numeral NUMERAL="3"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="e"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Plus
+              Numeral NUMERAL="1"
+              Mul
+                Numeral NUMERAL="2"
+                Numeral NUMERAL="3"
+          Assignment
+            IdUse ID="b"
+            Mul
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="2"
+              Numeral NUMERAL="3"
+          Return
+            Numeral NUMERAL="0"
+    Function
+      IdDecl ID="f"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            Minus
+              Plus
+                Numeral NUMERAL="1"
+                Numeral NUMERAL="2"
+              Div
+                Mul
+                  Numeral NUMERAL="3"
+                  Numeral NUMERAL="10"
+                Numeral NUMERAL="5"
+          Return
+            Numeral NUMERAL="0"
