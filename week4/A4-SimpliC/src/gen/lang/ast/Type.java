@@ -205,10 +205,10 @@ protected java.util.Set compatibleType_Type_visited;
   /**
    * @attribute syn
    * @aspect TypeAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:138
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:139
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:138")
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:139")
   public boolean compatibleType(Type t) {
     Object _parameters = t;
     if (compatibleType_Type_visited == null) compatibleType_Type_visited = new java.util.HashSet(4);

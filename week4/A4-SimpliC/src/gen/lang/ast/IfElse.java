@@ -79,22 +79,23 @@ public class IfElse extends Statement implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    compatibleTypes_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:33
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:37
    */
   public IfElse clone() throws CloneNotSupportedException {
     IfElse node = (IfElse) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:42
    */
   public IfElse copy() {
     try {
@@ -114,7 +115,7 @@ public class IfElse extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:61
    */
   @Deprecated
   public IfElse fullCopy() {
@@ -125,7 +126,7 @@ public class IfElse extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:71
    */
   public IfElse treeCopyNoTransform() {
     IfElse tree = (IfElse) copy();
@@ -146,7 +147,7 @@ public class IfElse extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:91
    */
   public IfElse treeCopy() {
     IfElse tree = (IfElse) copy();
@@ -162,7 +163,7 @@ public class IfElse extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:105
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -244,5 +245,89 @@ public class IfElse extends Statement implements Cloneable {
    */
   public Block getElseNoTransform() {
     return (Block) getChildNoTransform(2);
+  }
+/** @apilevel internal */
+protected boolean compatibleTypes_visited = false;
+  /** @apilevel internal */
+  private void compatibleTypes_reset() {
+    compatibleTypes_computed = false;
+    compatibleTypes_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean compatibleTypes_computed = false;
+
+  /** @apilevel internal */
+  protected boolean compatibleTypes_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:156
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:156")
+  public boolean compatibleTypes() {
+    ASTState state = state();
+    if (compatibleTypes_computed) {
+      return compatibleTypes_value;
+    }
+    if (compatibleTypes_visited) {
+      throw new RuntimeException("Circular definition of attribute IfElse.compatibleTypes().");
+    }
+    compatibleTypes_visited = true;
+    state().enterLazyAttribute();
+    compatibleTypes_value = compatibleTypes_compute();
+    compatibleTypes_computed = true;
+    state().leaveLazyAttribute();
+    compatibleTypes_visited = false;
+    return compatibleTypes_value;
+  }
+  /** @apilevel internal */
+  private boolean compatibleTypes_compute() {
+  	    return getCondition().expectedType().compatibleType(getCondition().type());
+  	}
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:165
+   * @apilevel internal
+   */
+  public Type Define_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    if (_callerNode == getConditionNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:169
+      return booleanType();
+    }
+    else {
+      return getParent().Define_expectedType(this, _callerNode);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:165
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute expectedType
+   */
+  protected boolean canDefine_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:66
+    if (!compatibleTypes()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (!compatibleTypes()) {
+      collection.add(error("Must have boolean expression in IfElse. Got: " + getCondition().type()));
+    }
   }
 }

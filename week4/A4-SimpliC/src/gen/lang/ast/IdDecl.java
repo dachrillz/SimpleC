@@ -71,25 +71,28 @@ public class IdDecl extends Expr implements Cloneable {
   public void flushAttrCache() {
     super.flushAttrCache();
     type_reset();
+    isVariableAndFunction_reset();
     isUnknown_reset();
     isMultiDeclared_reset();
+    isVariable_reset();
+    isFunction_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:39
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:40
+   * @declaredat ASTNode:43
    */
   public IdDecl clone() throws CloneNotSupportedException {
     IdDecl node = (IdDecl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:45
+   * @declaredat ASTNode:48
    */
   public IdDecl copy() {
     try {
@@ -109,7 +112,7 @@ public class IdDecl extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:64
+   * @declaredat ASTNode:67
    */
   @Deprecated
   public IdDecl fullCopy() {
@@ -120,7 +123,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:74
+   * @declaredat ASTNode:77
    */
   public IdDecl treeCopyNoTransform() {
     IdDecl tree = (IdDecl) copy();
@@ -141,7 +144,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:94
+   * @declaredat ASTNode:97
    */
   public IdDecl treeCopy() {
     IdDecl tree = (IdDecl) copy();
@@ -157,7 +160,7 @@ public class IdDecl extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:108
+   * @declaredat ASTNode:111
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdDecl) node).tokenString_ID);    
@@ -239,6 +242,42 @@ protected boolean type_visited = false;
     return type_value;
   }
 /** @apilevel internal */
+protected boolean isVariableAndFunction_visited = false;
+  /** @apilevel internal */
+  private void isVariableAndFunction_reset() {
+    isVariableAndFunction_computed = false;
+    isVariableAndFunction_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isVariableAndFunction_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isVariableAndFunction_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:187
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:187")
+  public boolean isVariableAndFunction() {
+    ASTState state = state();
+    if (isVariableAndFunction_computed) {
+      return isVariableAndFunction_value;
+    }
+    if (isVariableAndFunction_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isVariableAndFunction().");
+    }
+    isVariableAndFunction_visited = true;
+    state().enterLazyAttribute();
+    isVariableAndFunction_value = functionDeclaration(getID()).isFunction() && this.isVariable();
+    isVariableAndFunction_computed = true;
+    state().leaveLazyAttribute();
+    isVariableAndFunction_visited = false;
+    return isVariableAndFunction_value;
+  }
+/** @apilevel internal */
 protected boolean isUnknown_visited = false;
   /** @apilevel internal */
   private void isUnknown_reset() {
@@ -290,10 +329,10 @@ protected boolean isMultiDeclared_visited = false;
   /**
    * @attribute syn
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:101
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:102
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:101")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:102")
   public boolean isMultiDeclared() {
     ASTState state = state();
     if (isMultiDeclared_computed) {
@@ -324,11 +363,83 @@ protected boolean isMultiDeclared_visited = false;
       }
   /**
    * @attribute inh
-   * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:48
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:174
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:48")
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:174")
+  public boolean isVariable() {
+    ASTState state = state();
+    if (isVariable_computed) {
+      return isVariable_value;
+    }
+    if (isVariable_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isVariable().");
+    }
+    isVariable_visited = true;
+    state().enterLazyAttribute();
+    isVariable_value = getParent().Define_isVariable(this, null);
+    isVariable_computed = true;
+    state().leaveLazyAttribute();
+    isVariable_visited = false;
+    return isVariable_value;
+  }
+/** @apilevel internal */
+protected boolean isVariable_visited = false;
+  /** @apilevel internal */
+  private void isVariable_reset() {
+    isVariable_computed = false;
+    isVariable_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isVariable_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isVariable_value;
+
+  /**
+   * @attribute inh
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175")
+  public boolean isFunction() {
+    ASTState state = state();
+    if (isFunction_computed) {
+      return isFunction_value;
+    }
+    if (isFunction_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isFunction().");
+    }
+    isFunction_visited = true;
+    state().enterLazyAttribute();
+    isFunction_value = getParent().Define_isFunction(this, null);
+    isFunction_computed = true;
+    state().leaveLazyAttribute();
+    isFunction_visited = false;
+    return isFunction_value;
+  }
+/** @apilevel internal */
+protected boolean isFunction_visited = false;
+  /** @apilevel internal */
+  private void isFunction_reset() {
+    isFunction_computed = false;
+    isFunction_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isFunction_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isFunction_value;
+
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:49
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:49")
   public IdDecl lookup(String name) {
     Object _parameters = name;
     if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
@@ -358,4 +469,27 @@ protected java.util.Set lookup_String_visited;
   /** @apilevel internal */
   protected java.util.Map lookup_String_values;
 
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:75
+    if (isVariableAndFunction()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (isVariableAndFunction()) {
+      collection.add(error("The variable '" + getID() + "' is both a function and a variable."));
+    }
+  }
 }

@@ -71,24 +71,25 @@ public class IdUse extends Expr implements Cloneable {
   public void flushAttrCache() {
     super.flushAttrCache();
     type_reset();
+    isFunction_reset();
     decl_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:35
+   * @declaredat ASTNode:36
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:39
+   * @declaredat ASTNode:40
    */
   public IdUse clone() throws CloneNotSupportedException {
     IdUse node = (IdUse) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:44
+   * @declaredat ASTNode:45
    */
   public IdUse copy() {
     try {
@@ -108,7 +109,7 @@ public class IdUse extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:63
+   * @declaredat ASTNode:64
    */
   @Deprecated
   public IdUse fullCopy() {
@@ -119,7 +120,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:73
+   * @declaredat ASTNode:74
    */
   public IdUse treeCopyNoTransform() {
     IdUse tree = (IdUse) copy();
@@ -140,7 +141,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:93
+   * @declaredat ASTNode:94
    */
   public IdUse treeCopy() {
     IdUse tree = (IdUse) copy();
@@ -156,7 +157,7 @@ public class IdUse extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:107
+   * @declaredat ASTNode:108
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdUse) node).tokenString_ID);    
@@ -238,6 +239,42 @@ protected boolean type_visited = false;
     return type_value;
   }
 /** @apilevel internal */
+protected boolean isFunction_visited = false;
+  /** @apilevel internal */
+  private void isFunction_reset() {
+    isFunction_computed = false;
+    isFunction_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isFunction_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isFunction_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:184
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:184")
+  public boolean isFunction() {
+    ASTState state = state();
+    if (isFunction_computed) {
+      return isFunction_value;
+    }
+    if (isFunction_visited) {
+      throw new RuntimeException("Circular definition of attribute IdUse.isFunction().");
+    }
+    isFunction_visited = true;
+    state().enterLazyAttribute();
+    isFunction_value = false;
+    isFunction_computed = true;
+    state().leaveLazyAttribute();
+    isFunction_visited = false;
+    return isFunction_value;
+  }
+/** @apilevel internal */
 protected boolean decl_visited = false;
   /** @apilevel internal */
   private void decl_reset() {
@@ -278,10 +315,10 @@ protected boolean decl_visited = false;
   /**
    * @attribute inh
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4")
   public IdDecl lookup(String name) {
     Object _parameters = name;
     if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);

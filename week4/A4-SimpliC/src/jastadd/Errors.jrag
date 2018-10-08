@@ -56,4 +56,24 @@ aspect ErrorContributions {
         when getExpr().type() != intType()
         to Program.errors() for program();
         
+        	
+	//If, IfElse, while
+	While contributes error("Must have boolean expression in While. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+
+	IfElse contributes error("Must have boolean expression in IfElse. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+	If contributes error("Must have boolean expression in If. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+    //Check if a variable is both a function and a variable
+    IdDecl contributes error("The variable '" + getID() + "' is both a function and a variable.")
+        when isVariableAndFunction()
+        to Program.errors() for program();
+        
 }

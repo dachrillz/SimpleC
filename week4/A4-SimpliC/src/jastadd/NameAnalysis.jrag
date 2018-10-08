@@ -1,5 +1,6 @@
 aspect NameAnalysis {
 	syn IdDecl IdUse.decl() = lookup(getID());
+
 	inh IdDecl IdUse.lookup(String name);
 
 	eq Program.getFunction(int i).lookup(String name) = unknownDecl();

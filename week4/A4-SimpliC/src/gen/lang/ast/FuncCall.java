@@ -341,12 +341,33 @@ protected boolean type_visited = false;
     return type_value;
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
+   * @apilevel internal
+   */
+  public boolean Define_isFunction(ASTNode _callerNode, ASTNode _childNode) {
+    if (_callerNode == getIdUseNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:185
+      return true;
+    }
+    else {
+      return getParent().Define_isFunction(this, _callerNode);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute isFunction
+   */
+  protected boolean canDefine_isFunction(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal
    */
   public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
     if (_callerNode == getIdUseNoTransform()) {
-      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:133
       {
               return functionDeclaration(name);
           }
@@ -356,7 +377,7 @@ protected boolean type_visited = false;
     }
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute lookup
    */

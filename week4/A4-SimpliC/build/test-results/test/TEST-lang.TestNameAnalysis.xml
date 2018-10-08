@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestNameAnalysis" tests="16" skipped="0" failures="0" errors="0" timestamp="2018-10-08T15:14:03" hostname="chrille-X540LA" time="0.033">
+<testsuite name="lang.TestNameAnalysis" tests="16" skipped="0" failures="0" errors="0" timestamp="2018-10-08T16:49:59" hostname="chrille-X540LA" time="0.028">
   <properties/>
-  <testcase name="runTest[callingfunctionOK.in]" classname="lang.TestNameAnalysis" time="0.002"/>
-  <testcase name="runTest[notdeclared.in]" classname="lang.TestNameAnalysis" time="0.003"/>
-  <testcase name="runTest[complex.in]" classname="lang.TestNameAnalysis" time="0.002"/>
-  <testcase name="runTest[functionmulti.in]" classname="lang.TestNameAnalysis" time="0.002"/>
+  <testcase name="runTest[callingfunctionOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[notdeclared.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[complex.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[functionmulti.in]" classname="lang.TestNameAnalysis" time="0.001"/>
   <testcase name="runTest[ifOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
-  <testcase name="runTest[undeclaredinfunction.in]" classname="lang.TestNameAnalysis" time="0.002"/>
-  <testcase name="runTest[ifundefined.in]" classname="lang.TestNameAnalysis" time="0.002"/>
+  <testcase name="runTest[undeclaredinfunction.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[ifundefined.in]" classname="lang.TestNameAnalysis" time="0.001"/>
   <testcase name="runTest[ifinOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
-  <testcase name="runTest[error2.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[error2.in]" classname="lang.TestNameAnalysis" time="0.002"/>
   <testcase name="runTest[doubledeclare.in]" classname="lang.TestNameAnalysis" time="0.002"/>
   <testcase name="runTest[simpleassignmentOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
   <testcase name="runTest[example.in]" classname="lang.TestNameAnalysis" time="0.003"/>
-  <testcase name="runTest[simplefunctionOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
+  <testcase name="runTest[simplefunctionOK.in]" classname="lang.TestNameAnalysis" time="0.0"/>
   <testcase name="runTest[testpredefinedredeclare.in]" classname="lang.TestNameAnalysis" time="0.001"/>
-  <testcase name="runTest[functionswithargumentsOK.in]" classname="lang.TestNameAnalysis" time="0.001"/>
-  <testcase name="runTest[simpleundeclared.in]" classname="lang.TestNameAnalysis" time="0.002"/>
+  <testcase name="runTest[functionswithargumentsOK.in]" classname="lang.TestNameAnalysis" time="0.002"/>
+  <testcase name="runTest[simpleundeclared.in]" classname="lang.TestNameAnalysis" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

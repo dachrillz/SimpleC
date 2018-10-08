@@ -456,10 +456,10 @@ protected boolean predefinedFunctions_visited = false;
   /**
    * @attribute syn
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:140
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:141
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN, isNTA=true)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:140")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:141")
   public List<Function> predefinedFunctions() {
     ASTState state = state();
     if (predefinedFunctions_computed) {
@@ -541,6 +541,38 @@ protected boolean predefinedFunctions_visited = false;
     return true;
   }
   /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:174
+   * @apilevel internal
+   */
+  public boolean Define_isVariable(ASTNode _callerNode, ASTNode _childNode) {
+    int childIndex = this.getIndexOfChild(_callerNode);
+    return false;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:174
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute isVariable
+   */
+  protected boolean canDefine_isVariable(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
+   * @apilevel internal
+   */
+  public boolean Define_isFunction(ASTNode _callerNode, ASTNode _childNode) {
+    int childIndex = this.getIndexOfChild(_callerNode);
+    return false;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute isFunction
+   */
+  protected boolean canDefine_isFunction(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /**
    * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:4
    * @apilevel internal
    */
@@ -557,12 +589,12 @@ protected boolean predefinedFunctions_visited = false;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal
    */
   public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
     if (_callerNode == getFunctionListNoTransform()) {
-      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:5
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:6
       int i = _callerNode.getIndexOfChild(_childNode);
       return unknownDecl();
     }
@@ -571,7 +603,7 @@ protected boolean predefinedFunctions_visited = false;
     }
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute lookup
    */
@@ -579,12 +611,12 @@ protected boolean predefinedFunctions_visited = false;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
    * @apilevel internal
    */
   public boolean Define_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
     if (_callerNode == getFunctionListNoTransform()) {
-      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:58
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:59
       int i = _callerNode.getIndexOfChild(_childNode);
       {
               for(Function func : predefinedFunctions()){
@@ -609,7 +641,7 @@ protected boolean predefinedFunctions_visited = false;
     }
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute isMulti
    */
@@ -617,7 +649,7 @@ protected boolean predefinedFunctions_visited = false;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:131
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
    * @apilevel internal
    */
   public IdDecl Define_functionDeclaration(ASTNode _callerNode, ASTNode _childNode, String name) {
@@ -638,7 +670,7 @@ protected boolean predefinedFunctions_visited = false;
         }
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:131
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute functionDeclaration
    */

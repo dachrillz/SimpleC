@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestTypeAnalysis" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-10-08T15:14:03" hostname="chrille-X540LA" time="0.016">
+<testsuite name="lang.TestTypeAnalysis" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-10-08T16:49:59" hostname="chrille-X540LA" time="0.016">
   <properties/>
-  <testcase name="runTest[wrongreturntype.in]" classname="lang.TestTypeAnalysis" time="0.005"/>
+  <testcase name="runTest[testnamespace.in]" classname="lang.TestTypeAnalysis" time="0.005"/>
+  <testcase name="runTest[wrongreturntype.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
   <testcase name="runTest[declarationerror.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
-  <testcase name="runTest[OKreturntype.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
-  <testcase name="runTest[booleaninarithemtik.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
+  <testcase name="runTest[OKreturntype.in]" classname="lang.TestTypeAnalysis" time="0.001"/>
+  <testcase name="runTest[testifwhileifelse.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
+  <testcase name="runTest[booleaninarithemtik.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

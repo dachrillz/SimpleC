@@ -135,6 +135,7 @@ aspect TypeAnalysis{
       
     
     //Compatible types
+    //We use this instead of isequals
 	syn boolean Type.compatibleType(Type t){
 		return this.equals(t);
 	}
@@ -148,9 +149,44 @@ aspect TypeAnalysis{
 		return true;
 	}
 	
+	//if, ifelse, while
+	syn boolean If.compatibleTypes(){
+	    return getCondition().expectedType().compatibleType(getCondition().type());
+	}
+	syn boolean IfElse.compatibleTypes(){
+	    return getCondition().expectedType().compatibleType(getCondition().type());
+	}
+	syn boolean While.compatibleTypes(){
+	    return getCondition().expectedType().compatibleType(getCondition().type());
+	}
+	
+	
 	//expected types
 	inh Type Expr.expectedType();
 	eq Assignment.getExpr().expectedType() = intType();
 	eq Decl.getExpr().expectedType() = intType();
+	eq If.getCondition().expectedType() = booleanType();
+	eq IfElse.getCondition().expectedType() = booleanType();
+    eq While.getCondition().expectedType() = booleanType();
+    
+    
+    //check if variable/function
+    inh boolean IdDecl.isVariable();
+    inh boolean IdDecl.isFunction();
+    
+    //variable attributes
+	eq Decl.getIdDecl().isVariable() = true;
+	eq Program.getChild().isVariable() = false;
+	
+	//function attributes
+	eq Function.getName().isFunction() = true;
+	eq Program.getChild().isFunction() = false;
+    syn boolean IdUse.isFunction() = false;
+	eq FuncCall.getIdUse().isFunction() = true;
+	
+	syn boolean IdDecl.isVariableAndFunction() = functionDeclaration(getID()).isFunction() && this.isVariable();
+	
+    
+
 	
 }
