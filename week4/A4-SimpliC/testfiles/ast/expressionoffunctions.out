@@ -1,11 +1,13 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="a"
       List
       Block
         List
           Decl
+            IntType
             IdDecl ID="diff"
             Opt
               Minus

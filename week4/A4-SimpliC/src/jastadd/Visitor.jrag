@@ -70,12 +70,23 @@ aspect Visitor {
 		public Object visit(Block node, Object data);
 		public Object visit(Function node, Object data);
 		public Object visit(Decl node, Object data);
+		public Object visit(IntType node, Object data);
+		public Object visit(BooleanType node, Object data);
+				
 		//public Object visit(Expr node, Object data);
 	}
 
 	//public Object Expr.accept(Visitor visitor, Object data){
 	//	return visitor.visit(this, data);
 	//}
+	
+	public Object IntType.accept(Visitor visitor, Object data){
+		return visitor.visit(this, data);
+	}
+	
+	public Object BooleanType.accept(Visitor visitor, Object data){
+		return visitor.visit(this, data);
+	}
 	
 	public Object Function.accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);

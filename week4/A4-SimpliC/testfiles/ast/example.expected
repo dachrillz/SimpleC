@@ -1,6 +1,7 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="gcd1"
       List
         IdDecl ID="a"
@@ -34,6 +35,7 @@ Program
           Return
             IdUse ID="a"
     Function
+      IntType
       IdDecl ID="gcd2"
       List
         IdDecl ID="a"
@@ -57,14 +59,17 @@ Program
                   IdUse ID="a"
                   IdUse ID="b"
     Function
+      IntType
       IdDecl ID="main"
       List
       Block
         List
           Decl
+            IntType
             IdDecl ID="a"
             Opt
           Decl
+            IntType
             IdDecl ID="b"
             Opt
           Assignment
@@ -78,6 +83,7 @@ Program
               IdUse ID="read"
               List
           Decl
+            IntType
             IdDecl ID="diff"
             Opt
               Minus

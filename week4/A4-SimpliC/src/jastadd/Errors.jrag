@@ -42,4 +42,18 @@ aspect ErrorContributions {
     Function contributes error("Symbol '" + getName().getID() + "' is already declared")
         when getName().isMultiDeclared()
         to Program.errors() for program();
+
+    //Type Errors
+    Decl contributes error(getIdDecl().getID() + " is not compatible with IDType: " + getIdDecl().type() + " and ExprType: " + getExpr().type())
+        when !compatibleTypes()
+        to Program.errors() for program();
+    
+    Assignment contributes error(getIdUse().getID() + " is not compatible with IDType: " + getIdUse().type() + " and ExprType: " + getExpr().type())
+        when !compatibleTypes()
+        to Program.errors() for program();
+        
+    Return contributes error("The return value is of the type: " + getExpr().type() + " , but was expected to be " + intType())
+        when getExpr().type() != intType()
+        to Program.errors() for program();
+        
 }

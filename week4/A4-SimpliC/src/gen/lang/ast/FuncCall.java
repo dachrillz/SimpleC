@@ -32,7 +32,7 @@ public class FuncCall extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:117
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:128
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -77,22 +77,23 @@ public class FuncCall extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    type_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:33
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:37
    */
   public FuncCall clone() throws CloneNotSupportedException {
     FuncCall node = (FuncCall) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:42
    */
   public FuncCall copy() {
     try {
@@ -112,7 +113,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:61
    */
   @Deprecated
   public FuncCall fullCopy() {
@@ -123,7 +124,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:71
    */
   public FuncCall treeCopyNoTransform() {
     FuncCall tree = (FuncCall) copy();
@@ -144,7 +145,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:91
    */
   public FuncCall treeCopy() {
     FuncCall tree = (FuncCall) copy();
@@ -160,7 +161,7 @@ public class FuncCall extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:105
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -301,13 +302,51 @@ public class FuncCall extends Expr implements Cloneable {
   public List<Expr> getArgssNoTransform() {
     return getArgsListNoTransform();
   }
+/** @apilevel internal */
+protected boolean type_visited = false;
+  /** @apilevel internal */
+  private void type_reset() {
+    type_computed = false;
+    
+    type_value = null;
+    type_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean type_computed = false;
+
+  /** @apilevel internal */
+  protected Type type_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:15
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:11")
+  public Type type() {
+    ASTState state = state();
+    if (type_computed) {
+      return type_value;
+    }
+    if (type_visited) {
+      throw new RuntimeException("Circular definition of attribute Expr.type().");
+    }
+    type_visited = true;
+    state().enterLazyAttribute();
+    type_value = getIdUse().type();
+    type_computed = true;
+    state().leaveLazyAttribute();
+    type_visited = false;
+    return type_value;
+  }
   /**
    * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
    * @apilevel internal
    */
   public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
     if (_callerNode == getIdUseNoTransform()) {
-      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:133
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
       {
               return functionDeclaration(name);
           }

@@ -96,7 +96,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:161
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:172
    */
   public Object accept(Visitor visitor, Object data) {
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
@@ -380,18 +380,21 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @declaredat ASTNode:296
    */
   public void flushAttrCache() {
+    intType_reset();
+    booleanType_reset();
+    unknownType_reset();
     unknownDecl_reset();
     isMulti_String_reset();
     functionDeclaration_String_reset();
     program_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:303
+   * @declaredat ASTNode:306
    */
   public void flushCollectionCache() {
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:306
+   * @declaredat ASTNode:309
    */
   public ASTNode<T> clone() throws CloneNotSupportedException {
     ASTNode node = (ASTNode) super.clone();
@@ -399,7 +402,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:312
+   * @declaredat ASTNode:315
    */
   public ASTNode<T> copy() {
     try {
@@ -419,7 +422,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:331
+   * @declaredat ASTNode:334
    */
   @Deprecated
   public ASTNode<T> fullCopy() {
@@ -430,7 +433,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:341
+   * @declaredat ASTNode:344
    */
   public ASTNode<T> treeCopyNoTransform() {
     ASTNode tree = (ASTNode) copy();
@@ -451,7 +454,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:361
+   * @declaredat ASTNode:364
    */
   public ASTNode<T> treeCopy() {
     ASTNode tree = (ASTNode) copy();
@@ -469,7 +472,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   /**
    * Performs a full traversal of the tree using getChild to trigger rewrites
    * @apilevel low-level
-   * @declaredat ASTNode:378
+   * @declaredat ASTNode:381
    */
   public void doFullTraversal() {
     for (int i = 0; i < getNumChild(); i++) {
@@ -477,7 +480,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     }
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:384
+   * @declaredat ASTNode:387
    */
   protected boolean is$Equal(ASTNode n1, ASTNode n2) {
     if (n1 == null && n2 == null) return true;
@@ -485,7 +488,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return n1.is$Equal(n2);
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:390
+   * @declaredat ASTNode:393
    */
   protected boolean is$Equal(ASTNode node) {
     if (getClass() != node.getClass()) {
@@ -517,6 +520,120 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   /** @apilevel internal */
   protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
   }
+
+  /**
+   * @attribute inh
+   * @aspect IntType
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:5
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="IntType", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:5")
+  public IntType intType() {
+    ASTState state = state();
+    if (intType_computed) {
+      return intType_value;
+    }
+    if (intType_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.intType().");
+    }
+    intType_visited = true;
+    state().enterLazyAttribute();
+    intType_value = getParent().Define_intType(this, null);
+    intType_computed = true;
+    state().leaveLazyAttribute();
+    intType_visited = false;
+    return intType_value;
+  }
+/** @apilevel internal */
+protected boolean intType_visited = false;
+  /** @apilevel internal */
+  private void intType_reset() {
+    intType_computed = false;
+    
+    intType_value = null;
+    intType_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean intType_computed = false;
+
+  /** @apilevel internal */
+  protected IntType intType_value;
+
+  /**
+   * @attribute inh
+   * @aspect BooleanType
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:17
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="BooleanType", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:17")
+  public BooleanType booleanType() {
+    ASTState state = state();
+    if (booleanType_computed) {
+      return booleanType_value;
+    }
+    if (booleanType_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.booleanType().");
+    }
+    booleanType_visited = true;
+    state().enterLazyAttribute();
+    booleanType_value = getParent().Define_booleanType(this, null);
+    booleanType_computed = true;
+    state().leaveLazyAttribute();
+    booleanType_visited = false;
+    return booleanType_value;
+  }
+/** @apilevel internal */
+protected boolean booleanType_visited = false;
+  /** @apilevel internal */
+  private void booleanType_reset() {
+    booleanType_computed = false;
+    
+    booleanType_value = null;
+    booleanType_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean booleanType_computed = false;
+
+  /** @apilevel internal */
+  protected BooleanType booleanType_value;
+
+  /**
+   * @attribute inh
+   * @aspect UnknownType
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:29
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="UnknownType", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:29")
+  public UnknownType unknownType() {
+    ASTState state = state();
+    if (unknownType_computed) {
+      return unknownType_value;
+    }
+    if (unknownType_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.unknownType().");
+    }
+    unknownType_visited = true;
+    state().enterLazyAttribute();
+    unknownType_value = getParent().Define_unknownType(this, null);
+    unknownType_computed = true;
+    state().leaveLazyAttribute();
+    unknownType_visited = false;
+    return unknownType_value;
+  }
+/** @apilevel internal */
+protected boolean unknownType_visited = false;
+  /** @apilevel internal */
+  private void unknownType_reset() {
+    unknownType_computed = false;
+    
+    unknownType_value = null;
+    unknownType_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean unknownType_computed = false;
+
+  /** @apilevel internal */
+  protected UnknownType unknownType_value;
 
   /**
    * @attribute inh
@@ -559,10 +676,10 @@ protected boolean unknownDecl_visited = false;
   /**
    * @attribute inh
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55")
   public boolean isMulti(String name) {
     Object _parameters = name;
     if (isMulti_String_visited == null) isMulti_String_visited = new java.util.HashSet(4);
@@ -595,10 +712,10 @@ protected java.util.Set isMulti_String_visited;
   /**
    * @attribute inh
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:131
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:131")
   public IdDecl functionDeclaration(String name) {
     Object _parameters = name;
     if (functionDeclaration_String_visited == null) functionDeclaration_String_visited = new java.util.HashSet(4);
@@ -667,6 +784,66 @@ protected boolean program_visited = false;
   protected Program program_value;
 
   /** @apilevel internal */
+  public IntType Define_intType(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_intType(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_intType(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:6
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute intType
+   */
+  protected boolean canDefine_intType(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public BooleanType Define_booleanType(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_booleanType(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_booleanType(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:18
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute booleanType
+   */
+  protected boolean canDefine_booleanType(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public UnknownType Define_unknownType(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_unknownType(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_unknownType(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/types.jrag:30
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute unknownType
+   */
+  protected boolean canDefine_unknownType(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
   public UnknownDecl Define_unknownDecl(ASTNode _callerNode, ASTNode _childNode) {
     ASTNode self = this;
     ASTNode parent = getParent();
@@ -699,7 +876,7 @@ protected boolean program_visited = false;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:133
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute lookup
    */
@@ -719,7 +896,7 @@ protected boolean program_visited = false;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:83
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:82
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute isMulti
    */
@@ -739,7 +916,7 @@ protected boolean program_visited = false;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:117
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:116
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute functionDeclaration
    */
@@ -764,6 +941,26 @@ protected boolean program_visited = false;
    * @return {@code true} if this node has an equation for the inherited attribute program
    */
   protected boolean canDefine_program(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public Type Define_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_expectedType(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_expectedType(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:153
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute expectedType
+   */
+  protected boolean canDefine_expectedType(ASTNode _callerNode, ASTNode _childNode) {
     return false;
   }
 public ASTNode rewrittenNode() { throw new Error("rewrittenNode is undefined for ASTNode"); }

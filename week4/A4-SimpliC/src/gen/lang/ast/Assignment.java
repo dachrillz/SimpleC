@@ -63,22 +63,23 @@ public class Assignment extends Statement implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    compatibleTypes_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:31
+   * @declaredat ASTNode:32
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:35
+   * @declaredat ASTNode:36
    */
   public Assignment clone() throws CloneNotSupportedException {
     Assignment node = (Assignment) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:40
+   * @declaredat ASTNode:41
    */
   public Assignment copy() {
     try {
@@ -98,7 +99,7 @@ public class Assignment extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:59
+   * @declaredat ASTNode:60
    */
   @Deprecated
   public Assignment fullCopy() {
@@ -109,7 +110,7 @@ public class Assignment extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:69
+   * @declaredat ASTNode:70
    */
   public Assignment treeCopyNoTransform() {
     Assignment tree = (Assignment) copy();
@@ -130,7 +131,7 @@ public class Assignment extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:89
+   * @declaredat ASTNode:90
    */
   public Assignment treeCopy() {
     Assignment tree = (Assignment) copy();
@@ -146,7 +147,7 @@ public class Assignment extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:103
+   * @declaredat ASTNode:104
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -202,5 +203,85 @@ public class Assignment extends Statement implements Cloneable {
    */
   public Expr getExprNoTransform() {
     return (Expr) getChildNoTransform(1);
+  }
+/** @apilevel internal */
+protected boolean compatibleTypes_visited = false;
+  /** @apilevel internal */
+  private void compatibleTypes_reset() {
+    compatibleTypes_computed = false;
+    compatibleTypes_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean compatibleTypes_computed = false;
+
+  /** @apilevel internal */
+  protected boolean compatibleTypes_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:142
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:142")
+  public boolean compatibleTypes() {
+    ASTState state = state();
+    if (compatibleTypes_computed) {
+      return compatibleTypes_value;
+    }
+    if (compatibleTypes_visited) {
+      throw new RuntimeException("Circular definition of attribute Assignment.compatibleTypes().");
+    }
+    compatibleTypes_visited = true;
+    state().enterLazyAttribute();
+    compatibleTypes_value = getExpr().expectedType().compatibleType(getExpr().type());
+    compatibleTypes_computed = true;
+    state().leaveLazyAttribute();
+    compatibleTypes_visited = false;
+    return compatibleTypes_value;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:152
+   * @apilevel internal
+   */
+  public Type Define_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    if (_callerNode == getExprNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:153
+      return intType();
+    }
+    else {
+      return getParent().Define_expectedType(this, _callerNode);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:152
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute expectedType
+   */
+  protected boolean canDefine_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:51
+    if (!compatibleTypes()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (!compatibleTypes()) {
+      collection.add(error(getIdUse().getID() + " is not compatible with IDType: " + getIdUse().type() + " and ExprType: " + getExpr().type()));
+    }
   }
 }

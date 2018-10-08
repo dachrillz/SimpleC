@@ -8,8 +8,8 @@ import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:2
- * @astdecl Function : ASTNode ::= Name:IdDecl Arguments:IdDecl* Block;
- * @production Function : {@link ASTNode} ::= <span class="component">Name:{@link IdDecl}</span> <span class="component">Arguments:{@link IdDecl}*</span> <span class="component">{@link Block}</span>;
+ * @astdecl Function : ASTNode ::= Type Name:IdDecl Arguments:IdDecl* Block;
+ * @production Function : {@link ASTNode} ::= <span class="component">{@link Type}</span> <span class="component">Name:{@link IdDecl}</span> <span class="component">Arguments:{@link IdDecl}*</span> <span class="component">{@link Block}</span>;
 
  */
 public class Function extends ASTNode<ASTNode> implements Cloneable {
@@ -38,7 +38,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:80
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:91
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -57,30 +57,31 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @declaredat ASTNode:10
    */
   public void init$Children() {
-    children = new ASTNode[3];
-    setChild(new List(), 1);
+    children = new ASTNode[4];
+    setChild(new List(), 2);
   }
   /**
    * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"Name", "Arguments", "Block"},
-    type = {"IdDecl", "List<IdDecl>", "Block"},
-    kind = {"Child", "List", "Child"}
+    name = {"Type", "Name", "Arguments", "Block"},
+    type = {"Type", "IdDecl", "List<IdDecl>", "Block"},
+    kind = {"Child", "Child", "List", "Child"}
   )
-  public Function(IdDecl p0, List<IdDecl> p1, Block p2) {
+  public Function(Type p0, IdDecl p1, List<IdDecl> p2, Block p3) {
     setChild(p0, 0);
     setChild(p1, 1);
     setChild(p2, 2);
+    setChild(p3, 3);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:25
+   * @declaredat ASTNode:26
    */
   protected int numChildren() {
-    return 3;
+    return 4;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:29
+   * @declaredat ASTNode:30
    */
   public void flushAttrCache() {
     super.flushAttrCache();
@@ -88,20 +89,20 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:35
+   * @declaredat ASTNode:36
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:39
+   * @declaredat ASTNode:40
    */
   public Function clone() throws CloneNotSupportedException {
     Function node = (Function) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:44
+   * @declaredat ASTNode:45
    */
   public Function copy() {
     try {
@@ -121,7 +122,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:63
+   * @declaredat ASTNode:64
    */
   @Deprecated
   public Function fullCopy() {
@@ -132,7 +133,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:73
+   * @declaredat ASTNode:74
    */
   public Function treeCopyNoTransform() {
     Function tree = (Function) copy();
@@ -153,7 +154,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:93
+   * @declaredat ASTNode:94
    */
   public Function treeCopy() {
     Function tree = (Function) copy();
@@ -169,10 +170,36 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:107
+   * @declaredat ASTNode:108
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
+  }
+  /**
+   * Replaces the Type child.
+   * @param node The new node to replace the Type child.
+   * @apilevel high-level
+   */
+  public void setType(Type node) {
+    setChild(node, 0);
+  }
+  /**
+   * Retrieves the Type child.
+   * @return The current node used as the Type child.
+   * @apilevel high-level
+   */
+  @ASTNodeAnnotation.Child(name="Type")
+  public Type getType() {
+    return (Type) getChild(0);
+  }
+  /**
+   * Retrieves the Type child.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The current node used as the Type child.
+   * @apilevel low-level
+   */
+  public Type getTypeNoTransform() {
+    return (Type) getChildNoTransform(0);
   }
   /**
    * Replaces the Name child.
@@ -180,7 +207,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel high-level
    */
   public void setName(IdDecl node) {
-    setChild(node, 0);
+    setChild(node, 1);
   }
   /**
    * Retrieves the Name child.
@@ -189,7 +216,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    */
   @ASTNodeAnnotation.Child(name="Name")
   public IdDecl getName() {
-    return (IdDecl) getChild(0);
+    return (IdDecl) getChild(1);
   }
   /**
    * Retrieves the Name child.
@@ -198,7 +225,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel low-level
    */
   public IdDecl getNameNoTransform() {
-    return (IdDecl) getChildNoTransform(0);
+    return (IdDecl) getChildNoTransform(1);
   }
   /**
    * Replaces the Arguments list.
@@ -206,7 +233,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel high-level
    */
   public void setArgumentsList(List<IdDecl> list) {
-    setChild(list, 1);
+    setChild(list, 2);
   }
   /**
    * Retrieves the number of children in the Arguments list.
@@ -274,7 +301,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    */
   @ASTNodeAnnotation.ListChild(name="Arguments")
   public List<IdDecl> getArgumentsList() {
-    List<IdDecl> list = (List<IdDecl>) getChild(1);
+    List<IdDecl> list = (List<IdDecl>) getChild(2);
     return list;
   }
   /**
@@ -284,7 +311,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel low-level
    */
   public List<IdDecl> getArgumentsListNoTransform() {
-    return (List<IdDecl>) getChildNoTransform(1);
+    return (List<IdDecl>) getChildNoTransform(2);
   }
   /**
    * @return the element at index {@code i} in the Arguments list without
@@ -316,7 +343,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel high-level
    */
   public void setBlock(Block node) {
-    setChild(node, 2);
+    setChild(node, 3);
   }
   /**
    * Retrieves the Block child.
@@ -325,7 +352,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    */
   @ASTNodeAnnotation.Child(name="Block")
   public Block getBlock() {
-    return (Block) getChild(2);
+    return (Block) getChild(3);
   }
   /**
    * Retrieves the Block child.
@@ -334,7 +361,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @apilevel low-level
    */
   public Block getBlockNoTransform() {
-    return (Block) getChildNoTransform(2);
+    return (Block) getChildNoTransform(3);
   }
 /** @apilevel internal */
 protected java.util.Set localLookup_String_visited;
@@ -374,7 +401,6 @@ protected java.util.Set localLookup_String_visited;
   }
   /** @apilevel internal */
   private IdDecl localLookup_compute(String name) {
-          MyDebugger.print(name + " please fire!");
           for(IdDecl id : getArgumentss()){ //omg did the extra s take a long time to find...
               if(id.getID().equals(name)){
                   return id;
@@ -443,12 +469,12 @@ protected java.util.Set lookup_String_visited;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55
    * @apilevel internal
    */
   public boolean Define_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
     if (_callerNode == getBlockNoTransform()) {
-      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:74
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:73
       {
               for(IdDecl id : getArgumentss()){
                   if(id.getID().equals(name)){
@@ -463,7 +489,7 @@ protected java.util.Set lookup_String_visited;
     }
   }
   /**
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:55
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute isMulti
    */

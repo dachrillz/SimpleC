@@ -1,6 +1,7 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="a"
       List
       Block
@@ -15,6 +16,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="b"
       List
       Block
@@ -29,6 +31,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="c"
       List
       Block
@@ -43,6 +46,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="d"
       List
       Block
@@ -71,6 +75,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="e"
       List
       Block
@@ -92,6 +97,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="f"
       List
       Block

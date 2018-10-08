@@ -1,11 +1,11 @@
 Program ::= Function*;
-Function ::= Name:IdDecl Arguments:IdDecl* Block;
+Function ::= Type Name:IdDecl Arguments:IdDecl* Block;
 
 Block ::= Statement*;
 
 abstract Statement;
 ExpressionStatement : Statement ::= Expr;
-Decl : Statement ::= IdDecl [Expr];
+Decl : Statement ::= Type IdDecl [Expr];
 Assignment : Statement ::= IdUse Expr;
 While : Statement ::= Condition:Expr Do:Block;
 IfElse    : Statement ::= Condition:Expr Then:Block Else:Block;
@@ -33,6 +33,12 @@ IdDecl  : Expr ::= <ID>;
 IdUse : Expr ::= <ID>;
 
 UnknownDecl : IdDecl;
+
+//types
+abstract Type;
+IntType : Type;
+BooleanType : Type;
+UnknownType : Type;
 
 
 

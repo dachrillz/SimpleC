@@ -22,7 +22,7 @@ public class IdUse extends Expr implements Cloneable {
         }
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:182
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:193
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
@@ -70,24 +70,25 @@ public class IdUse extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    type_reset();
     decl_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:34
+   * @declaredat ASTNode:35
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:38
+   * @declaredat ASTNode:39
    */
   public IdUse clone() throws CloneNotSupportedException {
     IdUse node = (IdUse) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:43
+   * @declaredat ASTNode:44
    */
   public IdUse copy() {
     try {
@@ -107,7 +108,7 @@ public class IdUse extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:62
+   * @declaredat ASTNode:63
    */
   @Deprecated
   public IdUse fullCopy() {
@@ -118,7 +119,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:72
+   * @declaredat ASTNode:73
    */
   public IdUse treeCopyNoTransform() {
     IdUse tree = (IdUse) copy();
@@ -139,7 +140,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:92
+   * @declaredat ASTNode:93
    */
   public IdUse treeCopy() {
     IdUse tree = (IdUse) copy();
@@ -155,7 +156,7 @@ public class IdUse extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:106
+   * @declaredat ASTNode:107
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdUse) node).tokenString_ID);    
@@ -197,6 +198,44 @@ public class IdUse extends Expr implements Cloneable {
   @ASTNodeAnnotation.Token(name="ID")
   public String getID() {
     return tokenString_ID != null ? tokenString_ID : "";
+  }
+/** @apilevel internal */
+protected boolean type_visited = false;
+  /** @apilevel internal */
+  private void type_reset() {
+    type_computed = false;
+    
+    type_value = null;
+    type_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean type_computed = false;
+
+  /** @apilevel internal */
+  protected Type type_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:13
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:11")
+  public Type type() {
+    ASTState state = state();
+    if (type_computed) {
+      return type_value;
+    }
+    if (type_visited) {
+      throw new RuntimeException("Circular definition of attribute Expr.type().");
+    }
+    type_visited = true;
+    state().enterLazyAttribute();
+    type_value = decl().type();
+    type_computed = true;
+    state().leaveLazyAttribute();
+    type_visited = false;
+    return type_value;
   }
 /** @apilevel internal */
 protected boolean decl_visited = false;

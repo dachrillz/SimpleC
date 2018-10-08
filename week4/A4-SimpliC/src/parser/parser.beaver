@@ -52,7 +52,7 @@
 %typeof argumentcall = "Expr";
 %typeof argumentcalls = "List";
 %typeof block = "Block";
-
+%typeof type = "Type";
 
 %nonassoc LT, GT, GTE, LTE, EQ, NEQ;
 
@@ -64,8 +64,8 @@ programlist = function.a {: return new List().add(a); :}
 		| programlist.a function.b {: return a.add(b); :}
 		;
 
-function = INT iddecl.id LPAREN functionarguments.arg RPAREN block.sl {: return new Function(id, arg, sl); :} 
-            | INT iddecl.id LPAREN RPAREN block.sl {: return new Function(id, new List(), sl); :} 
+function = type.t iddecl.id LPAREN functionarguments.arg RPAREN block.sl {: return new Function(t, id, arg, sl); :} 
+            | type.t iddecl.id LPAREN RPAREN block.sl {: return new Function(t, id, new List(), sl); :} 
             ;
 
 
@@ -78,9 +78,9 @@ functionargument = INT iddecl.a {: return a; :};
 
 block = LBRACE statementlist.a RBRACE {: return new Block(a); :} ;
 
-statement = INT iddecl.a SEMICOLON 						 				{: return new Decl(a, new Opt()); 				:}
-			| INT iddecl.a EQUALS expr.b SEMICOLON						{: return new Decl(a,new Opt(b));	    :}
-			| iduse.a EQUALS expr.b SEMICOLON			 				{: return new Assignment(a, b);				:}
+statement = type.t iddecl.a SEMICOLON 						 				{: return new Decl(t, a, new Opt()); 		:}
+			| type.t iddecl.a EQUALS expr.b SEMICOLON						{: return new Decl(t, a,new Opt(b));	    :}
+			| iduse.a EQUALS expr.b SEMICOLON			 				{: return new Assignment(a, b);				    :}
 			| WHILE LPAREN expr.a RPAREN block.b                    {: return new While(a,b);				:}
 			| IF LPAREN expr.a RPAREN block.b                       {: return new If(a,b);				    :}
 			| IF LPAREN expr.a RPAREN block.b ELSE block.c          {: return new IfElse(a,b,c);			:}
@@ -125,6 +125,9 @@ op = ID.id 				{: return new IdUse(id);          :}
 
 iddecl = ID.id {: 	return new IdDecl(id);            	:} ;
 iduse = ID.id {: 	return new IdUse(id); 				:} ;
+
+type =  INT.a     {: return new IntType();     :}
+        ;
 
 functioncall = iduse.a LPAREN argumentcalls.args RPAREN {: return new FuncCall(a, args);   :} 
                 | iduse.a LPAREN RPAREN {: return new FuncCall(a, new List());   :};

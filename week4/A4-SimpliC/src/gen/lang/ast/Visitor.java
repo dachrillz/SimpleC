@@ -96,4 +96,10 @@ public interface Visitor {
 
 		 
 		public Object visit(Decl node, Object data);
+
+		 
+		public Object visit(IntType node, Object data);
+
+		 
+		public Object visit(BooleanType node, Object data);
 }

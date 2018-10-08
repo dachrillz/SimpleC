@@ -27,7 +27,7 @@ public class While extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:97
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:108
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);

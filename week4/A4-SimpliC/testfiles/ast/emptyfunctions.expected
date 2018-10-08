@@ -1,6 +1,7 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="a"
       List
       Block
@@ -8,6 +9,7 @@ Program
           Return
             Numeral NUMERAL="0"
     Function
+      IntType
       IdDecl ID="b"
       List
       Block

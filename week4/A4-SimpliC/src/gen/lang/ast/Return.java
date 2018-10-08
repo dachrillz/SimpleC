@@ -24,7 +24,7 @@ public class Return extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:109
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:120
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -180,5 +180,28 @@ public class Return extends Statement implements Cloneable {
    */
   public Expr getExprNoTransform() {
     return (Expr) getChildNoTransform(0);
+  }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:55
+    if (getExpr().type() != intType()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (getExpr().type() != intType()) {
+      collection.add(error("The return value is of the type: " + getExpr().type() + " , but was expected to be " + intType()));
+    }
   }
 }

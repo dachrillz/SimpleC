@@ -27,7 +27,7 @@ public class If extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:105
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:116
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);

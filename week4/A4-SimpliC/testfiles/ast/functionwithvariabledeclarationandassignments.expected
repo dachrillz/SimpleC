@@ -1,14 +1,17 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="a"
       List
       Block
         List
           Decl
+            IntType
             IdDecl ID="x"
             Opt
           Decl
+            IntType
             IdDecl ID="y"
             Opt
           Assignment

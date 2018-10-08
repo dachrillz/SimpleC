@@ -11,7 +11,6 @@ aspect NameAnalysis {
     }
 
     syn IdDecl Function.localLookup(String name){
-        MyDebugger.print(name + " please fire!");
         for(IdDecl id : getArgumentss()){ //omg did the extra s take a long time to find...
             if(id.getID().equals(name)){
                 return id;
@@ -142,10 +141,10 @@ aspect NameAnalysis {
         List<Function> list = new List<Function>();
 
         // Create objects of type FunctionDecl and add them to the list
-        Function read = new Function(new IdDecl("read"), new List(), new Block());
+        Function read = new Function(new IntType(), new IdDecl("read"), new List(), new Block());
         List<IdDecl> printArguments = new List<IdDecl>();
         printArguments.add(new IdDecl("printarg"));
-        Function print = new Function(new IdDecl("print"), printArguments, new Block());
+        Function print = new Function(new IntType(), new IdDecl("print"), printArguments, new Block());
 
         list.add(read);
         list.add(print);

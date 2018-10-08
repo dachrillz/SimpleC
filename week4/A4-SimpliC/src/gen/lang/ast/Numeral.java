@@ -22,7 +22,7 @@ public class Numeral extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:121
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:132
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -70,22 +70,23 @@ public class Numeral extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    type_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:33
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:37
    */
   public Numeral clone() throws CloneNotSupportedException {
     Numeral node = (Numeral) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:42
    */
   public Numeral copy() {
     try {
@@ -105,7 +106,7 @@ public class Numeral extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:61
    */
   @Deprecated
   public Numeral fullCopy() {
@@ -116,7 +117,7 @@ public class Numeral extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:71
    */
   public Numeral treeCopyNoTransform() {
     Numeral tree = (Numeral) copy();
@@ -137,7 +138,7 @@ public class Numeral extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:91
    */
   public Numeral treeCopy() {
     Numeral tree = (Numeral) copy();
@@ -153,7 +154,7 @@ public class Numeral extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:105
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_NUMERAL == ((Numeral) node).tokenString_NUMERAL);    
@@ -195,5 +196,43 @@ public class Numeral extends Expr implements Cloneable {
   @ASTNodeAnnotation.Token(name="NUMERAL")
   public String getNUMERAL() {
     return tokenString_NUMERAL != null ? tokenString_NUMERAL : "";
+  }
+/** @apilevel internal */
+protected boolean type_visited = false;
+  /** @apilevel internal */
+  private void type_reset() {
+    type_computed = false;
+    
+    type_value = null;
+    type_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean type_computed = false;
+
+  /** @apilevel internal */
+  protected Type type_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:12
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:11")
+  public Type type() {
+    ASTState state = state();
+    if (type_computed) {
+      return type_value;
+    }
+    if (type_visited) {
+      throw new RuntimeException("Circular definition of attribute Expr.type().");
+    }
+    type_visited = true;
+    state().enterLazyAttribute();
+    type_value = intType();
+    type_computed = true;
+    state().leaveLazyAttribute();
+    type_visited = false;
+    return type_value;
   }
 }

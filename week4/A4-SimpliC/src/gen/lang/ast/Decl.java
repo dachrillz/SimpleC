@@ -8,8 +8,8 @@ import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:8
- * @astdecl Decl : Statement ::= IdDecl [Expr];
- * @production Decl : {@link Statement} ::= <span class="component">{@link IdDecl}</span> <span class="component">[{@link Expr}]</span>;
+ * @astdecl Decl : Statement ::= Type IdDecl [Expr];
+ * @production Decl : {@link Statement} ::= <span class="component">{@link Type}</span> <span class="component">{@link IdDecl}</span> <span class="component">[{@link Expr}]</span>;
 
  */
 public class Decl extends Statement implements Cloneable {
@@ -28,7 +28,7 @@ public class Decl extends Statement implements Cloneable {
         }
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:89
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:100
    */
   public Object accept(Visitor visitor, Object data){
 	    return visitor.visit(this, data);
@@ -47,50 +47,52 @@ public class Decl extends Statement implements Cloneable {
    * @declaredat ASTNode:10
    */
   public void init$Children() {
-    children = new ASTNode[2];
-    setChild(new Opt(), 1);
+    children = new ASTNode[3];
+    setChild(new Opt(), 2);
   }
   /**
    * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"IdDecl", "Expr"},
-    type = {"IdDecl", "Opt<Expr>"},
-    kind = {"Child", "Opt"}
+    name = {"Type", "IdDecl", "Expr"},
+    type = {"Type", "IdDecl", "Opt<Expr>"},
+    kind = {"Child", "Child", "Opt"}
   )
-  public Decl(IdDecl p0, Opt<Expr> p1) {
+  public Decl(Type p0, IdDecl p1, Opt<Expr> p2) {
     setChild(p0, 0);
     setChild(p1, 1);
+    setChild(p2, 2);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:24
+   * @declaredat ASTNode:25
    */
   protected int numChildren() {
-    return 2;
+    return 3;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:28
+   * @declaredat ASTNode:29
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    compatibleTypes_reset();
     lookup_String_reset();
     isMulti_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:34
+   * @declaredat ASTNode:36
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:38
+   * @declaredat ASTNode:40
    */
   public Decl clone() throws CloneNotSupportedException {
     Decl node = (Decl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:43
+   * @declaredat ASTNode:45
    */
   public Decl copy() {
     try {
@@ -110,7 +112,7 @@ public class Decl extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:62
+   * @declaredat ASTNode:64
    */
   @Deprecated
   public Decl fullCopy() {
@@ -121,7 +123,7 @@ public class Decl extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:72
+   * @declaredat ASTNode:74
    */
   public Decl treeCopyNoTransform() {
     Decl tree = (Decl) copy();
@@ -142,7 +144,7 @@ public class Decl extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:92
+   * @declaredat ASTNode:94
    */
   public Decl treeCopy() {
     Decl tree = (Decl) copy();
@@ -158,10 +160,36 @@ public class Decl extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:106
+   * @declaredat ASTNode:108
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
+  }
+  /**
+   * Replaces the Type child.
+   * @param node The new node to replace the Type child.
+   * @apilevel high-level
+   */
+  public void setType(Type node) {
+    setChild(node, 0);
+  }
+  /**
+   * Retrieves the Type child.
+   * @return The current node used as the Type child.
+   * @apilevel high-level
+   */
+  @ASTNodeAnnotation.Child(name="Type")
+  public Type getType() {
+    return (Type) getChild(0);
+  }
+  /**
+   * Retrieves the Type child.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The current node used as the Type child.
+   * @apilevel low-level
+   */
+  public Type getTypeNoTransform() {
+    return (Type) getChildNoTransform(0);
   }
   /**
    * Replaces the IdDecl child.
@@ -169,7 +197,7 @@ public class Decl extends Statement implements Cloneable {
    * @apilevel high-level
    */
   public void setIdDecl(IdDecl node) {
-    setChild(node, 0);
+    setChild(node, 1);
   }
   /**
    * Retrieves the IdDecl child.
@@ -178,7 +206,7 @@ public class Decl extends Statement implements Cloneable {
    */
   @ASTNodeAnnotation.Child(name="IdDecl")
   public IdDecl getIdDecl() {
-    return (IdDecl) getChild(0);
+    return (IdDecl) getChild(1);
   }
   /**
    * Retrieves the IdDecl child.
@@ -187,7 +215,7 @@ public class Decl extends Statement implements Cloneable {
    * @apilevel low-level
    */
   public IdDecl getIdDeclNoTransform() {
-    return (IdDecl) getChildNoTransform(0);
+    return (IdDecl) getChildNoTransform(1);
   }
   /**
    * Replaces the optional node for the Expr child. This is the <code>Opt</code>
@@ -196,7 +224,7 @@ public class Decl extends Statement implements Cloneable {
    * @apilevel low-level
    */
   public void setExprOpt(Opt<Expr> opt) {
-    setChild(opt, 1);
+    setChild(opt, 2);
   }
   /**
    * Replaces the (optional) Expr child.
@@ -229,7 +257,7 @@ public class Decl extends Statement implements Cloneable {
    */
   @ASTNodeAnnotation.OptChild(name="Expr")
   public Opt<Expr> getExprOpt() {
-    return (Opt<Expr>) getChild(1);
+    return (Opt<Expr>) getChild(2);
   }
   /**
    * Retrieves the optional node for child Expr. This is the <code>Opt</code> node containing the child Expr, not the actual child!
@@ -238,8 +266,51 @@ public class Decl extends Statement implements Cloneable {
    * @apilevel low-level
    */
   public Opt<Expr> getExprOptNoTransform() {
-    return (Opt<Expr>) getChildNoTransform(1);
+    return (Opt<Expr>) getChildNoTransform(2);
   }
+/** @apilevel internal */
+protected boolean compatibleTypes_visited = false;
+  /** @apilevel internal */
+  private void compatibleTypes_reset() {
+    compatibleTypes_computed = false;
+    compatibleTypes_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean compatibleTypes_computed = false;
+
+  /** @apilevel internal */
+  protected boolean compatibleTypes_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:144
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:144")
+  public boolean compatibleTypes() {
+    ASTState state = state();
+    if (compatibleTypes_computed) {
+      return compatibleTypes_value;
+    }
+    if (compatibleTypes_visited) {
+      throw new RuntimeException("Circular definition of attribute Decl.compatibleTypes().");
+    }
+    compatibleTypes_visited = true;
+    state().enterLazyAttribute();
+    compatibleTypes_value = compatibleTypes_compute();
+    compatibleTypes_computed = true;
+    state().leaveLazyAttribute();
+    compatibleTypes_visited = false;
+    return compatibleTypes_value;
+  }
+  /** @apilevel internal */
+  private boolean compatibleTypes_compute() {
+  		if(hasExpr()) {
+  			return getExpr().expectedType().compatibleType(getExpr().type());
+  		}
+  		return true;
+  	}
 /** @apilevel internal */
 protected java.util.Set lookup_String_visited;
   /** @apilevel internal */
@@ -253,10 +324,10 @@ protected java.util.Set lookup_String_visited;
   /**
    * @attribute syn
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:44
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:43
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:44")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:43")
   public IdDecl lookup(String name) {
     Object _parameters = name;
     if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
@@ -294,10 +365,10 @@ protected java.util.Set isMulti_String_visited;
   /**
    * @attribute syn
    * @aspect NameAnalysis
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:98
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:97
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:98")
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:97")
   public boolean isMulti(String name) {
     Object _parameters = name;
     if (isMulti_String_visited == null) isMulti_String_visited = new java.util.HashSet(4);
@@ -321,10 +392,43 @@ protected java.util.Set isMulti_String_visited;
   private boolean isMulti_compute(String name) {
           return getIdDecl().getID().equals(name);
       }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:152
+   * @apilevel internal
+   */
+  public Type Define_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    if (_callerNode == getExprOptNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:154
+      return intType();
+    }
+    else {
+      return getParent().Define_expectedType(this, _callerNode);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:152
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute expectedType
+   */
+  protected boolean canDefine_expectedType(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
   /** @apilevel internal */
   protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
     // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:38
     if (getIdDecl().isMultiDeclared()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:47
+    if (!compatibleTypes()) {
       {
         Program target = (Program) (program());
         java.util.Set<ASTNode> contributors = _map.get(target);
@@ -342,6 +446,9 @@ protected java.util.Set isMulti_String_visited;
     super.contributeTo_Program_errors(collection);
     if (getIdDecl().isMultiDeclared()) {
       collection.add(error("symbol '" + getIdDecl().getID() + "' is already declared"));
+    }
+    if (!compatibleTypes()) {
+      collection.add(error(getIdDecl().getID() + " is not compatible with IDType: " + getIdDecl().type() + " and ExprType: " + getExpr().type()));
     }
   }
 }

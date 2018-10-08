@@ -1,0 +1,96 @@
+
+//There are three types in SimpliC: integer, boolean, unknown type.  
+//Variables, parameters and the return type of a function can only be of integer type.  
+// Arithmetic expressions are of type integer
+//Boolean expressions are of type boolean.  
+//The statements if and while require the condition to be of type boolean. 
+//The unknown type is assigned to variable uses that refer to unknown names.  
+
+aspect TypeAnalysis{
+
+	syn Type Expr.type();
+	eq Num.type() = intType();
+	eq IdUse.type() = decl().type();
+	syn Type IdDecl.type() = intType();
+	eq FuncCall.type() = getIdUse().type();
+	
+	//arithmetic expressions (wish i made them binop before this lol)
+	/*
+    Mul : Expr ::= Left:Expr Right:Expr;
+    Div : Expr ::= Left:Expr Right:Expr;
+    Plus : Expr ::= Left:Expr Right:Expr;
+    Mod : Expr ::= Left:Expr Right:Expr;
+    Minus : Expr ::= Left:Expr Right:Expr;
+	*/
+	eq Mul.type(){
+		Type left = getLeft().type();
+		Type right = getLeft().type();
+		if(left.compatibleType(right)){
+			return left;
+		}
+		return unknownType();
+	}
+	eq Div.type(){
+		Type left = getLeft().type();
+		Type right = getLeft().type();
+		if(left.compatibleType(right)){
+			return left;
+		}
+		return unknownType();
+	}
+	eq Plus.type(){
+		Type left = getLeft().type();
+		Type right = getLeft().type();
+		if(left.compatibleType(right)){
+			return left;
+		}
+		return unknownType();
+	}
+	eq Mod.type(){
+		Type left = getLeft().type();
+		Type right = getLeft().type();
+		if(left.compatibleType(right)){
+			return left;
+		}
+		return unknownType();
+	}
+	eq Minus.type(){
+		Type left = getLeft().type();
+		Type right = getLeft().type();
+		if(left.compatibleType(right)){
+			return left;
+		}
+		return unknownType();
+	}
+	
+	/*
+	//These guys
+	LT : Expr ::= Left:Expr Right:Expr;
+    GT : Expr ::= Left:Expr Right:Expr;
+    GTE : Expr ::= Left:Expr Right:Expr;
+    LTE : Expr ::= Left:Expr Right:Expr;
+    EQ : Expr ::= Left:Expr Right:Expr;
+    NEQ : Expr ::= Left:Expr Right:Expr;
+    */
+    
+    
+    //Compatible types
+	syn boolean Type.compatibleTypes(Type t){
+		return this.equals(t);
+	}
+	
+	syn boolean Assignment.compatibleTypes() = getExpr().expectedType().compatibleType(getExpr().type());
+	
+	syn boolean Decl.compatibleTypes() {
+		if(hasExpr()) {
+			return getExpr().expectedType().compatibleType(getExpr().type());
+		}
+		return true;
+	}
+	
+	//expected types
+	inh Type Expr.expectedType();
+	eq Assignment.getExpr().expectedType() = intType();
+	eq Decl.getExpr().expectedType() = intType();
+	
+}

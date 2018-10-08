@@ -24,7 +24,7 @@ public class GT extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:153
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:164
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -68,22 +68,23 @@ public class GT extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    type_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:31
+   * @declaredat ASTNode:32
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:35
+   * @declaredat ASTNode:36
    */
   public GT clone() throws CloneNotSupportedException {
     GT node = (GT) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:40
+   * @declaredat ASTNode:41
    */
   public GT copy() {
     try {
@@ -103,7 +104,7 @@ public class GT extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:59
+   * @declaredat ASTNode:60
    */
   @Deprecated
   public GT fullCopy() {
@@ -114,7 +115,7 @@ public class GT extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:69
+   * @declaredat ASTNode:70
    */
   public GT treeCopyNoTransform() {
     GT tree = (GT) copy();
@@ -135,7 +136,7 @@ public class GT extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:89
+   * @declaredat ASTNode:90
    */
   public GT treeCopy() {
     GT tree = (GT) copy();
@@ -151,7 +152,7 @@ public class GT extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:103
+   * @declaredat ASTNode:104
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -208,4 +209,53 @@ public class GT extends Expr implements Cloneable {
   public Expr getRightNoTransform() {
     return (Expr) getChildNoTransform(1);
   }
+/** @apilevel internal */
+protected boolean type_visited = false;
+  /** @apilevel internal */
+  private void type_reset() {
+    type_computed = false;
+    
+    type_value = null;
+    type_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean type_computed = false;
+
+  /** @apilevel internal */
+  protected Type type_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:85
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:11")
+  public Type type() {
+    ASTState state = state();
+    if (type_computed) {
+      return type_value;
+    }
+    if (type_visited) {
+      throw new RuntimeException("Circular definition of attribute Expr.type().");
+    }
+    type_visited = true;
+    state().enterLazyAttribute();
+    type_value = type_compute();
+    type_computed = true;
+    state().leaveLazyAttribute();
+    type_visited = false;
+    return type_value;
+  }
+  /** @apilevel internal */
+  private Type type_compute() {
+          Type left = getLeft().type();
+          Type right = getRight().type();
+          
+          if(left.compatibleType(right)){
+              return booleanType();
+          }
+          return unknownType();
+      
+      }
 }

@@ -51,7 +51,15 @@ public abstract class TraversingVisitor implements lang.ast.Visitor {
 		}
 		return data;
 	}
+
+	public Object visit(IntType node, Object data){
+		return visitChildren(node, data);
+	}
 	
+	public Object visit(BooleanType node, Object data){
+		return visitChildren(node, data);
+	}
+
 	public Object visit(FuncCall node, Object data) {
 		return visitChildren(node, data);
 	}

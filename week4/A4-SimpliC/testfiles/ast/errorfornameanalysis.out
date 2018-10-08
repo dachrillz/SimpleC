@@ -1,11 +1,13 @@
 Program
   List
     Function
+      IntType
       IdDecl ID="main"
       List
       Block
         List
           Decl
+            IntType
             IdDecl ID="a"
             Opt
           Assignment
@@ -14,6 +16,7 @@ Program
               Numeral NUMERAL="1"
               IdUse ID="b"
           Decl
+            IntType
             IdDecl ID="b"
             Opt
               Numeral NUMERAL="1"
