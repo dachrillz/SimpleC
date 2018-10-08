@@ -16,4 +16,4 @@ Program
             Numeral NUMERAL="5"
           Assignment
             IdUse ID="y"
-            Var ID="x"
+            IdUse ID="x"

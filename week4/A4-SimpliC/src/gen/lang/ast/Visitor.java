@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * Visitor interface for Calc language. Each concrete node type must
  * have a visit method.
@@ -47,9 +49,6 @@ public interface Visitor {
 
 		 
 		public Object visit(Numeral node, Object data);
-
-		 
-		public Object visit(Var node, Object data);
 
 		 
 		public Object visit(FuncCall node, Object data);

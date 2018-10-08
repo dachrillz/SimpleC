@@ -3,9 +3,11 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:33
+ * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:32
  * @astdecl IdDecl : Expr ::= <ID:String>;
  * @production IdDecl : {@link Expr} ::= <span class="component">&lt;ID:String&gt;</span>;
 
@@ -20,7 +22,7 @@ public class IdDecl extends Expr implements Cloneable {
     }
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:184
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:179
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
@@ -68,22 +70,25 @@ public class IdDecl extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    isUnknown_reset();
+    isMultiDeclared_reset();
+    lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:35
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:39
    */
   public IdDecl clone() throws CloneNotSupportedException {
     IdDecl node = (IdDecl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:44
    */
   public IdDecl copy() {
     try {
@@ -103,7 +108,7 @@ public class IdDecl extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:63
    */
   @Deprecated
   public IdDecl fullCopy() {
@@ -114,7 +119,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:73
    */
   public IdDecl treeCopyNoTransform() {
     IdDecl tree = (IdDecl) copy();
@@ -135,7 +140,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:93
    */
   public IdDecl treeCopy() {
     IdDecl tree = (IdDecl) copy();
@@ -151,7 +156,7 @@ public class IdDecl extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:107
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdDecl) node).tokenString_ID);    
@@ -194,4 +199,124 @@ public class IdDecl extends Expr implements Cloneable {
   public String getID() {
     return tokenString_ID != null ? tokenString_ID : "";
   }
+/** @apilevel internal */
+protected boolean isUnknown_visited = false;
+  /** @apilevel internal */
+  private void isUnknown_reset() {
+    isUnknown_computed = false;
+    isUnknown_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isUnknown_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isUnknown_value;
+
+  /**
+   * @attribute syn
+   * @aspect UnknownDecl
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:7
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="UnknownDecl", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:7")
+  public boolean isUnknown() {
+    ASTState state = state();
+    if (isUnknown_computed) {
+      return isUnknown_value;
+    }
+    if (isUnknown_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isUnknown().");
+    }
+    isUnknown_visited = true;
+    state().enterLazyAttribute();
+    isUnknown_value = false;
+    isUnknown_computed = true;
+    state().leaveLazyAttribute();
+    isUnknown_visited = false;
+    return isUnknown_value;
+  }
+/** @apilevel internal */
+protected boolean isMultiDeclared_visited = false;
+  /** @apilevel internal */
+  private void isMultiDeclared_reset() {
+    isMultiDeclared_computed = false;
+    isMultiDeclared_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isMultiDeclared_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isMultiDeclared_value;
+
+  /**
+   * @attribute syn
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:102
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:102")
+  public boolean isMultiDeclared() {
+    ASTState state = state();
+    if (isMultiDeclared_computed) {
+      return isMultiDeclared_value;
+    }
+    if (isMultiDeclared_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isMultiDeclared().");
+    }
+    isMultiDeclared_visited = true;
+    state().enterLazyAttribute();
+    isMultiDeclared_value = isMultiDeclared_compute();
+    isMultiDeclared_computed = true;
+    state().leaveLazyAttribute();
+    isMultiDeclared_visited = false;
+    return isMultiDeclared_value;
+  }
+  /** @apilevel internal */
+  private boolean isMultiDeclared_compute() {
+          return isMulti(getID());
+          /*
+          {
+              return true;
+          }
+          else{
+              return false;
+          }
+          */
+      }
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:49
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:49")
+  public IdDecl lookup(String name) {
+    Object _parameters = name;
+    if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
+    if (lookup_String_values == null) lookup_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (lookup_String_values.containsKey(_parameters)) {
+      return (IdDecl) lookup_String_values.get(_parameters);
+    }
+    if (lookup_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.lookup(String).");
+    }
+    lookup_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl lookup_String_value = getParent().Define_lookup(this, null, name);
+    lookup_String_values.put(_parameters, lookup_String_value);
+    state().leaveLazyAttribute();
+    lookup_String_visited.remove(_parameters);
+    return lookup_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set lookup_String_visited;
+  /** @apilevel internal */
+  private void lookup_String_reset() {
+    lookup_String_values = null;
+    lookup_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map lookup_String_values;
+
 }

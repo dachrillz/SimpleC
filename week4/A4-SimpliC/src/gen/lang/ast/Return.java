@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:13
@@ -13,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Return extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:205
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:201
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print(ind + "return ");
@@ -22,7 +24,7 @@ public class Return extends Statement implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:110
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:109
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);

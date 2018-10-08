@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:8
@@ -13,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Decl extends Statement implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:245
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:241
    */
   public void prettyPrint(PrintStream out, String ind) {
         out.print(ind+"int ");
@@ -26,7 +28,7 @@ public class Decl extends Statement implements Cloneable {
         }
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:90
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:89
    */
   public Object accept(Visitor visitor, Object data){
 	    return visitor.visit(this, data);
@@ -71,22 +73,24 @@ public class Decl extends Statement implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    lookup_String_reset();
+    isMulti_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:34
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:38
    */
   public Decl clone() throws CloneNotSupportedException {
     Decl node = (Decl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:43
    */
   public Decl copy() {
     try {
@@ -106,7 +110,7 @@ public class Decl extends Statement implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:62
    */
   @Deprecated
   public Decl fullCopy() {
@@ -117,7 +121,7 @@ public class Decl extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:72
    */
   public Decl treeCopyNoTransform() {
     Decl tree = (Decl) copy();
@@ -138,7 +142,7 @@ public class Decl extends Statement implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:92
    */
   public Decl treeCopy() {
     Decl tree = (Decl) copy();
@@ -154,7 +158,7 @@ public class Decl extends Statement implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:106
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -235,5 +239,109 @@ public class Decl extends Statement implements Cloneable {
    */
   public Opt<Expr> getExprOptNoTransform() {
     return (Opt<Expr>) getChildNoTransform(1);
+  }
+/** @apilevel internal */
+protected java.util.Set lookup_String_visited;
+  /** @apilevel internal */
+  private void lookup_String_reset() {
+    lookup_String_values = null;
+    lookup_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map lookup_String_values;
+
+  /**
+   * @attribute syn
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:44
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:44")
+  public IdDecl lookup(String name) {
+    Object _parameters = name;
+    if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
+    if (lookup_String_values == null) lookup_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (lookup_String_values.containsKey(_parameters)) {
+      return (IdDecl) lookup_String_values.get(_parameters);
+    }
+    if (lookup_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute Decl.lookup(String).");
+    }
+    lookup_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl lookup_String_value = lookup_compute(name);
+    lookup_String_values.put(_parameters, lookup_String_value);
+    state().leaveLazyAttribute();
+    lookup_String_visited.remove(_parameters);
+    return lookup_String_value;
+  }
+  /** @apilevel internal */
+  private IdDecl lookup_compute(String name) {
+         IdDecl id = getIdDecl();
+         return id.getID().equals(name) ? id : null;
+      }
+/** @apilevel internal */
+protected java.util.Set isMulti_String_visited;
+  /** @apilevel internal */
+  private void isMulti_String_reset() {
+    isMulti_String_values = null;
+    isMulti_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map isMulti_String_values;
+
+  /**
+   * @attribute syn
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:98
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:98")
+  public boolean isMulti(String name) {
+    Object _parameters = name;
+    if (isMulti_String_visited == null) isMulti_String_visited = new java.util.HashSet(4);
+    if (isMulti_String_values == null) isMulti_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (isMulti_String_values.containsKey(_parameters)) {
+      return (Boolean) isMulti_String_values.get(_parameters);
+    }
+    if (isMulti_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute Decl.isMulti(String).");
+    }
+    isMulti_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    boolean isMulti_String_value = isMulti_compute(name);
+    isMulti_String_values.put(_parameters, isMulti_String_value);
+    state().leaveLazyAttribute();
+    isMulti_String_visited.remove(_parameters);
+    return isMulti_String_value;
+  }
+  /** @apilevel internal */
+  private boolean isMulti_compute(String name) {
+          return getIdDecl().getID().equals(name);
+      }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:38
+    if (getIdDecl().isMultiDeclared()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (getIdDecl().isMultiDeclared()) {
+      collection.add(error("symbol '" + getIdDecl().getID() + "' is already declared"));
+    }
   }
 }

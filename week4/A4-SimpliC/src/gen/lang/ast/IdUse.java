@@ -3,9 +3,11 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:34
+ * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:33
  * @astdecl IdUse : Expr ::= <ID:String>;
  * @production IdUse : {@link Expr} ::= <span class="component">&lt;ID:String&gt;</span>;
 
@@ -13,14 +15,14 @@ import java.lang.reflect.InvocationTargetException;
 public class IdUse extends Expr implements Cloneable {
   /**
    * @aspect PrettyPrint
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:201
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:197
    */
   public void prettyPrint(PrintStream out, String ind) {
            out.print(getID()); 
         }
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:187
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:182
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
@@ -68,22 +70,24 @@ public class IdUse extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    decl_reset();
+    lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:34
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:38
    */
   public IdUse clone() throws CloneNotSupportedException {
     IdUse node = (IdUse) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:43
    */
   public IdUse copy() {
     try {
@@ -103,7 +107,7 @@ public class IdUse extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:62
    */
   @Deprecated
   public IdUse fullCopy() {
@@ -114,7 +118,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:72
    */
   public IdUse treeCopyNoTransform() {
     IdUse tree = (IdUse) copy();
@@ -135,7 +139,7 @@ public class IdUse extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:92
    */
   public IdUse treeCopy() {
     IdUse tree = (IdUse) copy();
@@ -151,7 +155,7 @@ public class IdUse extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:106
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdUse) node).tokenString_ID);    
@@ -193,5 +197,102 @@ public class IdUse extends Expr implements Cloneable {
   @ASTNodeAnnotation.Token(name="ID")
   public String getID() {
     return tokenString_ID != null ? tokenString_ID : "";
+  }
+/** @apilevel internal */
+protected boolean decl_visited = false;
+  /** @apilevel internal */
+  private void decl_reset() {
+    decl_computed = false;
+    
+    decl_value = null;
+    decl_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean decl_computed = false;
+
+  /** @apilevel internal */
+  protected IdDecl decl_value;
+
+  /**
+   * @attribute syn
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:2
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:2")
+  public IdDecl decl() {
+    ASTState state = state();
+    if (decl_computed) {
+      return decl_value;
+    }
+    if (decl_visited) {
+      throw new RuntimeException("Circular definition of attribute IdUse.decl().");
+    }
+    decl_visited = true;
+    state().enterLazyAttribute();
+    decl_value = lookup(getID());
+    decl_computed = true;
+    state().leaveLazyAttribute();
+    decl_visited = false;
+    return decl_value;
+  }
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3")
+  public IdDecl lookup(String name) {
+    Object _parameters = name;
+    if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
+    if (lookup_String_values == null) lookup_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (lookup_String_values.containsKey(_parameters)) {
+      return (IdDecl) lookup_String_values.get(_parameters);
+    }
+    if (lookup_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute IdUse.lookup(String).");
+    }
+    lookup_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl lookup_String_value = getParent().Define_lookup(this, null, name);
+    lookup_String_values.put(_parameters, lookup_String_value);
+    state().leaveLazyAttribute();
+    lookup_String_visited.remove(_parameters);
+    return lookup_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set lookup_String_visited;
+  /** @apilevel internal */
+  private void lookup_String_reset() {
+    lookup_String_values = null;
+    lookup_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map lookup_String_values;
+
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:34
+    if (decl().isUnknown()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (decl().isUnknown()) {
+      collection.add(error("symbol '" + getID() + "' is not declared"));
+    }
   }
 }

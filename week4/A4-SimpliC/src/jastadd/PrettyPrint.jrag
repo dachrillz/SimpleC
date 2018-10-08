@@ -59,7 +59,7 @@ aspect PrettyPrint {
 	}
 
 	public void FuncCall.prettyPrint(PrintStream out, String ind){
-		out.print(getName());
+		getIdUse().prettyPrint(out,ind);
 		out.print("(");
 		if (hasArgs()){
 			getArgs(0).prettyPrint(out,ind);
@@ -192,10 +192,6 @@ aspect PrettyPrint {
 
 	public void Numeral.prettyPrint(PrintStream out, String ind) {
 		out.print(getNUMERAL());
-	}
-
-	public void Var.prettyPrint(PrintStream out, String ind){
-		out.print(getID());
 	}
 
     public void IdUse.prettyPrint(PrintStream out, String ind) {

@@ -6,18 +6,22 @@ Program
       Block
         List
           ExpressionStatement
-            FuncCall Name="print"
+            FuncCall
+              IdUse ID="print"
               List
-                FuncCall Name="gcd1"
+                FuncCall
+                  IdUse ID="gcd1"
                   List
-                    Var ID="a"
-                    Var ID="b"
+                    IdUse ID="a"
+                    IdUse ID="b"
           ExpressionStatement
-            FuncCall Name="print"
+            FuncCall
+              IdUse ID="print"
               List
-                FuncCall Name="gcd2"
+                FuncCall
+                  IdUse ID="gcd2"
                   List
-                    Var ID="a"
-                    Var ID="b"
+                    IdUse ID="a"
+                    IdUse ID="b"
           Return
             Numeral NUMERAL="0"

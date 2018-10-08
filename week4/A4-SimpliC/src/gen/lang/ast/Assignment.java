@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:9

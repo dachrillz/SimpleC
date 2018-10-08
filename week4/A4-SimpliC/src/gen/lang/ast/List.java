@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @astdecl List : ASTNode;
@@ -12,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 public class List<T extends ASTNode> extends ASTNode<T> implements Cloneable, Iterable<T> {
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:169
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:164
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);

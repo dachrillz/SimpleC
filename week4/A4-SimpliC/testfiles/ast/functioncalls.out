@@ -7,24 +7,29 @@ Program
         List
           Assignment
             IdUse ID="a"
-            FuncCall Name="c"
+            FuncCall
+              IdUse ID="c"
               List
           Assignment
             IdUse ID="b"
-            FuncCall Name="d"
+            FuncCall
+              IdUse ID="d"
               List
           Assignment
             IdUse ID="e"
-            FuncCall Name="f"
+            FuncCall
+              IdUse ID="f"
               List
                 Plus
                   Numeral NUMERAL="1"
                   Numeral NUMERAL="1"
           Assignment
             IdUse ID="g"
-            FuncCall Name="h"
+            FuncCall
+              IdUse ID="h"
               List
-                FuncCall Name="b"
+                FuncCall
+                  IdUse ID="b"
                   List
           Return
             Numeral NUMERAL="0"

@@ -23,9 +23,9 @@ public class LangParser extends Parser {
 		static public final short EQ = 10;
 		static public final short NEQ = 11;
 		static public final short SEMICOLON = 12;
-		static public final short PLUS = 13;
-		static public final short MINUS = 14;
-		static public final short INT = 15;
+		static public final short INT = 13;
+		static public final short PLUS = 14;
+		static public final short MINUS = 15;
 		static public final short MUL = 16;
 		static public final short DIV = 17;
 		static public final short MOD = 18;
@@ -51,9 +51,9 @@ public class LangParser extends Parser {
 			"EQ",
 			"NEQ",
 			"SEMICOLON",
+			"INT",
 			"PLUS",
 			"MINUS",
-			"INT",
 			"MUL",
 			"DIV",
 			"MOD",
@@ -68,30 +68,30 @@ public class LangParser extends Parser {
 	}
 
 	static final ParsingTables PARSING_TABLES = new ParsingTables(
-		"U9pDLabi74KKVLNZYKcSP6pY46TmWWTls4b8SDYta9Yin80XO23aH3W0GaX1W9GB4K8WBXo" +
-		"GG5oGk73Wn24I23Xmu00I1wIOn6HVd3rUCcF7PdNnglfFJ$Lq3y4IHFJJx$Vh$r$Llwgwgp" +
-		"#Wnz5Y3g4MLUPG7AWJxHHIkDkSYWDfDA09oym9pC0iSo8Ep1Jj938SusGSk5V6E8ur7EDu7" +
-		"5Whsc6iPyJXEB19j07CmcOp40SU4sqGZpEFmJZG9taSunXFccDn0A8T12zpC8xGUi1578WZ" +
-		"j1vr4KVZ2AtxNCI#E4Bh4Mh678c3knfmmhwoJy0BSJrMc24yONusGr7W6Yms5xXIC1UYS9x" +
-		"pBhFpKJZFEUSv5uNpd7MUir4upnddEHE5yvnsdjDHEC#acQJ7tN6JdGUMudRq8EVcD8bxCC" +
-		"VyQVqEVvZVQVFYJ87UWYamxb7hHHOrU0JBpNwYm97tKme1C9Uj1x0Lwx0Q3s6s6OOsmyGUs" +
-		"gzYt0Isc0dUWInzpLXEsx1W0ZUwZ2O4b$2KkKJqevfH$QX78phHXPjnAtrsjbFEJtZvTfXn" +
-		"UiQ9AMPwfts66KEh6UCzIr$mp751dlQyoTCo9hX8$IBlMLg3sBnWbFPHCnhu7KQeZ$2UfJM" +
-		"87Gr0ouXTey3lOeePpiTS15UmHjwiC0ztYS#tUdFpzAjnGoJgFjoVq7TZWitN7uoqUhtnh$" +
-		"NqLPxUxUaRFFtXK5yKQaj2RMMetH9gjucsGFWwxjSTRXsppFXAS9lvoUn5kxsRNyqlvhVW3" +
-		"WMDsJo3qpofg$dUpkGfLqFB7EvT0$y0TLnzpPnJYH6vC49nRaaHJM54hi8O3TCOu$8H2wWd" +
-		"HJI74PdBpgN26COK8tYwclz717StQIvA8Z9$qplBzxwHizNSWQGnk5B9pw#SsHNp08gU5Fz" +
-		"ZHkQn28lTLsNr35hGofXv$EBdyxzWhuMHEENUWYeNbo4KpnlRLiLPKugzCtoc$ISMsugdaO" +
-		"rTmdMpEw2OOP29Z1hf6porrBVPzTNy4ijdbd6pBMKToJUOhSkqJJBj52v$Pe95Ul$RiQKCN" +
-		"UwX9xfVMdo#DRvdWTxs3$ecsQAzegrApvgUFbsjoFQDSkjPNDV$cBL3si7NWQTtmTM5h1d0" +
-		"cbMzIAvpVmUQsVw8p2zBxG1qFVaDobRAXxIlP3zMCkfZoYVqjv0$fmpGDqMsLMijsTOgEVf" +
-		"hAAm8z6xQhFu5xLtahydTb2t1kwu$ezXgxbdoDnJMVEfByhVa1jfVfVuT#MsApUDJobUq$K" +
-		"0$lt3z8zcEsqzUHTbCFttQLfMiQDLRv0wscQTUm$OUjjTIPqMkUwYleCrMxQneDUUW#wYlf" +
-		"cqdkPVCSVGsCgicFKZPJftp1IjTpKeDpvE7oA#HXyalqq$Hh9RKzxlSmQDsSAfvMVifiRqV" +
-		"C6gbRTTvlTN5Nb$ITRkdLmc$At63qkuJVaNuFHctfzXNshkziNAUljEB#S3l8$xNXTyKVgS" +
-		"yfYn#Mrdx6SctoxCz9xPkuOrbVLwAZujUuUt2BvJvxRMC9xCzewtOocK69OrsjjlvXJJJra" +
-		"HkTPAcL0bRgQPev#jm$mJDCo1LGHI$zfI8ufUUyaJn#qzH54#1akGeBPH6FhEH$auvnTl8I" +
-		"$y2oCud40==");
+		"U9pLbbjiLKKKXjVUfwUrm87MIc#sM5hQqaAz5C5BlN4HGK054GHz9D7462CFHarK7dmH7$H" +
+		"5NqnCV3SnySbeH5zyC4QDoiK2XHOeK2vjwOK20kCtwymvdTcqDWOIurbPyw$vrpzhpvwzzv" +
+		"mHIQNDd#QW54ZA70nD7lJYj6oL4jChHQXxGvDIRIkbJkuqHwHGffaZeKcnrpiciwXyB3Hfr" +
+		"ZPReqUMKwCdD5dfzRfa5Ogkq6IDrpiWqsITEH2QFEFrziicvh4$DDdizVPHOulP5vg8rpig" +
+		"$CpHqBACkvTkLNI75Z27LN4uj83PgugzeGNC8LKS2YrWpgZYJC9EIxdCCQSJTahPKmdhKxO" +
+		"lOIULFPcm4ygUIDXnPO#7nhGiEsR6c9zj7v9sgPT6kKFkaoUa6gP1vab6chFvhDB62MMJL6" +
+		"dlQPBFoiCo7MOylz0CoIOpH5ij7LfHP3vU3PFjsPf3pepCbBNcBCnPsiTacJmbCrHIOCx3d" +
+		"SUkw8YppaPXHiseSbSqZn6FvcTHOVEg2UR5W9lG$I4RPG7jBL8ZRR985iizPiHSnaVCCFbX" +
+		"sYQPQyUP4VgNBOUFE1jsTWxk73O83j9Mo$ts$YmlBPQJLishnja0$03M3$RJDibTUXtBxrP" +
+		"kj#PLapNgYgwRVoytmytCCxUvTVFkICe2$QtoG7RT0uslU2J8B0roA#JHAKQlbiSdKFZnau" +
+		"5#VP3RuELcUt6j5z$knNTxyH8lljTqcavvZZUjKrSiDd#nfh$JowrX3eLCJfNCtJ0qL$Lzs" +
+		"6CkcWkklQHlxIKoaSHyQGtizeLIn7jPp0uudJS$nNET9ILIoZEkfyeCTCtiS4bTfQUBgLPn" +
+		"ZM9keAYdSb8H$SiQKoigw2SLym95Pe9vr4zLGtU9lCBm#$ygk4Eh#4zPDqkHY2Z5YQIQ7QA" +
+		"6xsqEUqaTppcZRAFco$XMPqkvtajLGfdhDPABUITR9gaKyPM2g5fnnnhzvUepcmprSpFohv" +
+		"h9rv5WX5U7A3#2U7mMEMqmBpjRdN6QUOLh4p4FdN5YPJAshlDSpVmyd3QFLBQOSTV9S8sfn" +
+		"lZNcMfCybwklT$m7GYVIUpMtTU4YkiRFP7YdofEdhkUs3w31jgqhjXy##R80hldXUlktgxA" +
+		"yFdTQ7JlLAoMLilj3Hbop#yGVRCvqqJluP$GBSQRY5$0Tn6NWZ#Bn5NWM$Wo$7tu9TbJJVG" +
+		"nleuy9u$eC$mrU4ucyPTW6VWDoFzU$1tUWVz0dt$7#4TmCKXjMOblrdc9l8Y$WI#b5gUpQ8" +
+		"Xu9xhVSCvdqVVW7h0Gdld6dU3d#BV4NV3CD#u1Qy1Ua3Dbr4x#5$eNGCxTyHTm6y0#V1NnJ" +
+		"$1WpFNYhSIBu7u5jz3dL1M$HBm2RZku4QHk$2fenxDsyJjsGmDJv5y1Bu9lWlPVb$M8lyAl" +
+		"ucCxzAWIVy2jThkr7tGuaCr9IHPrdTjixFZoyJWkyEBjJl#HmzMEht7ukiECot#T6vjqkoP" +
+		"U$AbtZRSzlj$ZttMuq#67azLs#RP4lyFTMxl7hNNSSeTh4cEsXNrPxt2RmvSJUVjhumkC#1" +
+		"Qjsw#pKCy$pVIR#Juuh$7Fd#9VnteQBt1elGYFDTU2leMuZdXYZ$Z#KyuZTeEKvn5xH0gFs" +
+		"2d6lHwlnckvPYtvLk9Mi0bS#3VSZIPD");
 
 	static public class SyntaxError extends RuntimeException { public SyntaxError(String msg) {super(msg);}}
 	// Disable syntax error recovery
@@ -364,7 +364,7 @@ public class LangParser extends Parser {
 			case 35: // op = ID.id
 			{
 					final Symbol id = _symbols[offset + 1];
-					 return new Var(id);
+					 return new IdUse(id);
 			}
 			case 36: // op = NUMERAL.a
 			{
@@ -386,16 +386,18 @@ public class LangParser extends Parser {
 					final Symbol id = _symbols[offset + 1];
 					 	return new IdUse(id);
 			}
-			case 40: // functioncall = ID.a LPAREN argumentcalls.args RPAREN
+			case 40: // functioncall = iduse.a LPAREN argumentcalls.args RPAREN
 			{
-					final Symbol a = _symbols[offset + 1];
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final IdUse a = (IdUse) _symbol_a.value;
 					final Symbol _symbol_args = _symbols[offset + 3];
 					final List args = (List) _symbol_args.value;
 					 return new FuncCall(a, args);
 			}
-			case 41: // functioncall = ID.a LPAREN RPAREN
+			case 41: // functioncall = iduse.a LPAREN RPAREN
 			{
-					final Symbol a = _symbols[offset + 1];
+					final Symbol _symbol_a = _symbols[offset + 1];
+					final IdUse a = (IdUse) _symbol_a.value;
 					 return new FuncCall(a, new List());
 			}
 			case 42: // argumentcalls = argumentcall.a

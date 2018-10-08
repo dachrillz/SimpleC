@@ -46,22 +46,22 @@ Program
           Assignment
             IdUse ID="a"
             LT
-              Var ID="b"
-              Var ID="c"
+              IdUse ID="b"
+              IdUse ID="c"
           Assignment
             IdUse ID="b"
             GT
               Numeral NUMERAL="5"
-              Var ID="d"
+              IdUse ID="d"
           Assignment
             IdUse ID="c"
             NEQ
-              Var ID="a"
+              IdUse ID="a"
               Numeral NUMERAL="5"
           Assignment
             IdUse ID="d"
             EQ
-              Var ID="g"
+              IdUse ID="g"
               Numeral NUMERAL="2"
           Assignment
             IdUse ID="e"
@@ -72,7 +72,7 @@ Program
             IdUse ID="f"
             LTE
               Numeral NUMERAL="5"
-              Var ID="a"
+              IdUse ID="a"
           Return
             Numeral NUMERAL="0"
     Function
@@ -88,12 +88,12 @@ Program
                   NEQ
                     LTE
                       LT
-                        Var ID="a"
-                        Var ID="a"
-                      Var ID="a"
-                    Var ID="a"
-                  Var ID="a"
-                Var ID="a"
-              Var ID="a"
+                        IdUse ID="a"
+                        IdUse ID="a"
+                      IdUse ID="a"
+                    IdUse ID="a"
+                  IdUse ID="a"
+                IdUse ID="a"
+              IdUse ID="a"
           Return
             Numeral NUMERAL="0"

@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @astdecl ASTNode;
@@ -94,10 +96,17 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:166
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:161
    */
   public Object accept(Visitor visitor, Object data) {
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
+	}
+  /**
+   * @aspect Errors
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:22
+   */
+  protected ErrorMessage error(String message) {
+		return new ErrorMessage(message, getLine(getStart()));
 	}
   /**
    * @declaredat ASTNode:1
@@ -371,14 +380,18 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @declaredat ASTNode:296
    */
   public void flushAttrCache() {
+    unknownDecl_reset();
+    isMulti_String_reset();
+    functionDeclaration_String_reset();
+    program_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:299
+   * @declaredat ASTNode:303
    */
   public void flushCollectionCache() {
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:302
+   * @declaredat ASTNode:306
    */
   public ASTNode<T> clone() throws CloneNotSupportedException {
     ASTNode node = (ASTNode) super.clone();
@@ -386,7 +399,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:308
+   * @declaredat ASTNode:312
    */
   public ASTNode<T> copy() {
     try {
@@ -406,7 +419,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:327
+   * @declaredat ASTNode:331
    */
   @Deprecated
   public ASTNode<T> fullCopy() {
@@ -417,7 +430,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:337
+   * @declaredat ASTNode:341
    */
   public ASTNode<T> treeCopyNoTransform() {
     ASTNode tree = (ASTNode) copy();
@@ -438,7 +451,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:357
+   * @declaredat ASTNode:361
    */
   public ASTNode<T> treeCopy() {
     ASTNode tree = (ASTNode) copy();
@@ -456,7 +469,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   /**
    * Performs a full traversal of the tree using getChild to trigger rewrites
    * @apilevel low-level
-   * @declaredat ASTNode:374
+   * @declaredat ASTNode:378
    */
   public void doFullTraversal() {
     for (int i = 0; i < getNumChild(); i++) {
@@ -464,7 +477,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     }
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:380
+   * @declaredat ASTNode:384
    */
   protected boolean is$Equal(ASTNode n1, ASTNode n2) {
     if (n1 == null && n2 == null) return true;
@@ -472,7 +485,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return n1.is$Equal(n2);
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:386
+   * @declaredat ASTNode:390
    */
   protected boolean is$Equal(ASTNode node) {
     if (getClass() != node.getClass()) {
@@ -490,6 +503,268 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
       }
     }
     return true;
+  }
+  /**
+   * @aspect <NoAspect>
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:26
+   */
+    /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    for (int i = 0; i < getNumChild(); i++) {
+      getChild(i).collect_contributors_Program_errors(_root, _map);
+    }
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+  }
+
+  /**
+   * @attribute inh
+   * @aspect UnknownDecl
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:4
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="UnknownDecl", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:4")
+  public UnknownDecl unknownDecl() {
+    ASTState state = state();
+    if (unknownDecl_computed) {
+      return unknownDecl_value;
+    }
+    if (unknownDecl_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.unknownDecl().");
+    }
+    unknownDecl_visited = true;
+    state().enterLazyAttribute();
+    unknownDecl_value = getParent().Define_unknownDecl(this, null);
+    unknownDecl_computed = true;
+    state().leaveLazyAttribute();
+    unknownDecl_visited = false;
+    return unknownDecl_value;
+  }
+/** @apilevel internal */
+protected boolean unknownDecl_visited = false;
+  /** @apilevel internal */
+  private void unknownDecl_reset() {
+    unknownDecl_computed = false;
+    
+    unknownDecl_value = null;
+    unknownDecl_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean unknownDecl_computed = false;
+
+  /** @apilevel internal */
+  protected UnknownDecl unknownDecl_value;
+
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56")
+  public boolean isMulti(String name) {
+    Object _parameters = name;
+    if (isMulti_String_visited == null) isMulti_String_visited = new java.util.HashSet(4);
+    if (isMulti_String_values == null) isMulti_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (isMulti_String_values.containsKey(_parameters)) {
+      return (Boolean) isMulti_String_values.get(_parameters);
+    }
+    if (isMulti_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.isMulti(String).");
+    }
+    isMulti_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    boolean isMulti_String_value = getParent().Define_isMulti(this, null, name);
+    isMulti_String_values.put(_parameters, isMulti_String_value);
+    state().leaveLazyAttribute();
+    isMulti_String_visited.remove(_parameters);
+    return isMulti_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set isMulti_String_visited;
+  /** @apilevel internal */
+  private void isMulti_String_reset() {
+    isMulti_String_values = null;
+    isMulti_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map isMulti_String_values;
+
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:132")
+  public IdDecl functionDeclaration(String name) {
+    Object _parameters = name;
+    if (functionDeclaration_String_visited == null) functionDeclaration_String_visited = new java.util.HashSet(4);
+    if (functionDeclaration_String_values == null) functionDeclaration_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (functionDeclaration_String_values.containsKey(_parameters)) {
+      return (IdDecl) functionDeclaration_String_values.get(_parameters);
+    }
+    if (functionDeclaration_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.functionDeclaration(String).");
+    }
+    functionDeclaration_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl functionDeclaration_String_value = getParent().Define_functionDeclaration(this, null, name);
+    functionDeclaration_String_values.put(_parameters, functionDeclaration_String_value);
+    state().leaveLazyAttribute();
+    functionDeclaration_String_visited.remove(_parameters);
+    return functionDeclaration_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set functionDeclaration_String_visited;
+  /** @apilevel internal */
+  private void functionDeclaration_String_reset() {
+    functionDeclaration_String_values = null;
+    functionDeclaration_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map functionDeclaration_String_values;
+
+  /**
+   * @attribute inh
+   * @aspect Errors
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:28
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="Errors", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:28")
+  public Program program() {
+    ASTState state = state();
+    if (program_computed) {
+      return program_value;
+    }
+    if (program_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.program().");
+    }
+    program_visited = true;
+    state().enterLazyAttribute();
+    program_value = getParent().Define_program(this, null);
+    program_computed = true;
+    state().leaveLazyAttribute();
+    program_visited = false;
+    return program_value;
+  }
+/** @apilevel internal */
+protected boolean program_visited = false;
+  /** @apilevel internal */
+  private void program_reset() {
+    program_computed = false;
+    
+    program_value = null;
+    program_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean program_computed = false;
+
+  /** @apilevel internal */
+  protected Program program_value;
+
+  /** @apilevel internal */
+  public UnknownDecl Define_unknownDecl(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_unknownDecl(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_unknownDecl(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:5
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute unknownDecl
+   */
+  protected boolean canDefine_unknownDecl(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_lookup(self, _callerNode, name)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_lookup(self, _callerNode, name);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:133
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute lookup
+   */
+  protected boolean canDefine_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return false;
+  }
+  /** @apilevel internal */
+  public boolean Define_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_isMulti(self, _callerNode, name)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_isMulti(self, _callerNode, name);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:83
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute isMulti
+   */
+  protected boolean canDefine_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return false;
+  }
+  /** @apilevel internal */
+  public IdDecl Define_functionDeclaration(ASTNode _callerNode, ASTNode _childNode, String name) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_functionDeclaration(self, _callerNode, name)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_functionDeclaration(self, _callerNode, name);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:117
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute functionDeclaration
+   */
+  protected boolean canDefine_functionDeclaration(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return false;
+  }
+  /** @apilevel internal */
+  public Program Define_program(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_program(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_program(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:29
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute program
+   */
+  protected boolean canDefine_program(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
   }
 public ASTNode rewrittenNode() { throw new Error("rewrittenNode is undefined for ASTNode"); }
 }

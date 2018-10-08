@@ -3,6 +3,8 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:2
@@ -36,7 +38,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:81
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:80
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -82,22 +84,24 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    localLookup_String_reset();
+    lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:33
+   * @declaredat ASTNode:35
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:37
+   * @declaredat ASTNode:39
    */
   public Function clone() throws CloneNotSupportedException {
     Function node = (Function) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:42
+   * @declaredat ASTNode:44
    */
   public Function copy() {
     try {
@@ -117,7 +121,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:61
+   * @declaredat ASTNode:63
    */
   @Deprecated
   public Function fullCopy() {
@@ -128,7 +132,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:71
+   * @declaredat ASTNode:73
    */
   public Function treeCopyNoTransform() {
     Function tree = (Function) copy();
@@ -149,7 +153,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:91
+   * @declaredat ASTNode:93
    */
   public Function treeCopy() {
     Function tree = (Function) copy();
@@ -165,7 +169,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:105
+   * @declaredat ASTNode:107
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -331,5 +335,162 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
    */
   public Block getBlockNoTransform() {
     return (Block) getChildNoTransform(2);
+  }
+/** @apilevel internal */
+protected java.util.Set localLookup_String_visited;
+  /** @apilevel internal */
+  private void localLookup_String_reset() {
+    localLookup_String_values = null;
+    localLookup_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map localLookup_String_values;
+
+  /**
+   * @attribute syn
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:13
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:13")
+  public IdDecl localLookup(String name) {
+    Object _parameters = name;
+    if (localLookup_String_visited == null) localLookup_String_visited = new java.util.HashSet(4);
+    if (localLookup_String_values == null) localLookup_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (localLookup_String_values.containsKey(_parameters)) {
+      return (IdDecl) localLookup_String_values.get(_parameters);
+    }
+    if (localLookup_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute Function.localLookup(String).");
+    }
+    localLookup_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl localLookup_String_value = localLookup_compute(name);
+    localLookup_String_values.put(_parameters, localLookup_String_value);
+    state().leaveLazyAttribute();
+    localLookup_String_visited.remove(_parameters);
+    return localLookup_String_value;
+  }
+  /** @apilevel internal */
+  private IdDecl localLookup_compute(String name) {
+          MyDebugger.print(name + " please fire!");
+          for(IdDecl id : getArgumentss()){ //omg did the extra s take a long time to find...
+              if(id.getID().equals(name)){
+                  return id;
+              }
+          }
+          return unknownDecl();
+      }
+  /**
+   * @attribute inh
+   * @aspect NameAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:6
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="NameAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:6")
+  public IdDecl lookup(String name) {
+    Object _parameters = name;
+    if (lookup_String_visited == null) lookup_String_visited = new java.util.HashSet(4);
+    if (lookup_String_values == null) lookup_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (lookup_String_values.containsKey(_parameters)) {
+      return (IdDecl) lookup_String_values.get(_parameters);
+    }
+    if (lookup_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute Function.lookup(String).");
+    }
+    lookup_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    IdDecl lookup_String_value = getParent().Define_lookup(this, null, name);
+    lookup_String_values.put(_parameters, lookup_String_value);
+    state().leaveLazyAttribute();
+    lookup_String_visited.remove(_parameters);
+    return lookup_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set lookup_String_visited;
+  /** @apilevel internal */
+  private void lookup_String_reset() {
+    lookup_String_values = null;
+    lookup_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map lookup_String_values;
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @apilevel internal
+   */
+  public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    if (_callerNode == getBlockNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:8
+      {
+              IdDecl loc = localLookup(name);
+              return loc.isUnknown() ? lookup(name) : loc;
+          }
+    }
+    else {
+      return getParent().Define_lookup(this, _callerNode, name);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute lookup
+   */
+  protected boolean canDefine_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return true;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   * @apilevel internal
+   */
+  public boolean Define_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
+    if (_callerNode == getBlockNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:74
+      {
+              for(IdDecl id : getArgumentss()){
+                  if(id.getID().equals(name)){
+                      return true;
+                  }
+              }
+              return false;
+          }
+    }
+    else {
+      return getParent().Define_isMulti(this, _callerNode, name);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:56
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute isMulti
+   */
+  protected boolean canDefine_isMulti(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return true;
+  }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:42
+    if (getName().isMultiDeclared()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (getName().isMultiDeclared()) {
+      collection.add(error("Symbol '" + getName().getID() + "' is already declared"));
+    }
   }
 }

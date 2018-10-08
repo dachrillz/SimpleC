@@ -13,13 +13,13 @@ Program
           Assignment
             IdUse ID="y"
             Minus
-              Var ID="x"
+              IdUse ID="x"
               Numeral NUMERAL="2"
           Assignment
             IdUse ID="q"
             Mul
               Numeral NUMERAL="5"
-              Var ID="a"
+              IdUse ID="a"
           Assignment
             IdUse ID="c"
             Minus

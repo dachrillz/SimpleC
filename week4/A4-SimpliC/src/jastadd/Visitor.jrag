@@ -54,7 +54,6 @@ aspect Visitor {
 		public Object visit(Plus node, Object data);
 		public Object visit(Mod node, Object data);
 		public Object visit(Numeral node, Object data);
-		public Object visit(Var node, Object data);
 		public Object visit(FuncCall node, Object data);
 
 		public Object visit(CallStatement node, Object data);
@@ -116,10 +115,6 @@ aspect Visitor {
 	}
 
 	public Object FuncCall.accept(Visitor visitor, Object data){
-		return visitor.visit(this, data);
-	}
-
-	public Object Var.accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
 

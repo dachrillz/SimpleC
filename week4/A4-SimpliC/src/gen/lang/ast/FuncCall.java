@@ -3,11 +3,13 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:31
- * @astdecl FuncCall : Expr ::= <Name:String> Args:Expr*;
- * @production FuncCall : {@link Expr} ::= <span class="component">&lt;Name:String&gt;</span> <span class="component">Args:{@link Expr}*</span>;
+ * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:30
+ * @astdecl FuncCall : Expr ::= IdUse Args:Expr*;
+ * @production FuncCall : {@link Expr} ::= <span class="component">{@link IdUse}</span> <span class="component">Args:{@link Expr}*</span>;
 
  */
 public class FuncCall extends Expr implements Cloneable {
@@ -16,7 +18,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/PrettyPrint.jrag:61
    */
   public void prettyPrint(PrintStream out, String ind){
-		out.print(getName());
+		getIdUse().prettyPrint(out,ind);
 		out.print("(");
 		if (hasArgs()){
 			getArgs(0).prettyPrint(out,ind);
@@ -30,7 +32,7 @@ public class FuncCall extends Expr implements Cloneable {
 	}
   /**
    * @aspect Visitor
-   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:118
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Visitor.jrag:117
    */
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
@@ -49,55 +51,48 @@ public class FuncCall extends Expr implements Cloneable {
    * @declaredat ASTNode:10
    */
   public void init$Children() {
-    children = new ASTNode[1];
-    setChild(new List(), 0);
+    children = new ASTNode[2];
+    setChild(new List(), 1);
   }
   /**
    * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"Name", "Args"},
-    type = {"String", "List<Expr>"},
-    kind = {"Token", "List"}
+    name = {"IdUse", "Args"},
+    type = {"IdUse", "List<Expr>"},
+    kind = {"Child", "List"}
   )
-  public FuncCall(String p0, List<Expr> p1) {
-    setName(p0);
-    setChild(p1, 0);
-  }
-  /**
-   * @declaredat ASTNode:23
-   */
-  public FuncCall(beaver.Symbol p0, List<Expr> p1) {
-    setName(p0);
-    setChild(p1, 0);
+  public FuncCall(IdUse p0, List<Expr> p1) {
+    setChild(p0, 0);
+    setChild(p1, 1);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:28
+   * @declaredat ASTNode:24
    */
   protected int numChildren() {
-    return 1;
+    return 2;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:28
    */
   public void flushAttrCache() {
     super.flushAttrCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:32
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:40
+   * @declaredat ASTNode:36
    */
   public FuncCall clone() throws CloneNotSupportedException {
     FuncCall node = (FuncCall) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:45
+   * @declaredat ASTNode:41
    */
   public FuncCall copy() {
     try {
@@ -117,7 +112,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:64
+   * @declaredat ASTNode:60
    */
   @Deprecated
   public FuncCall fullCopy() {
@@ -128,7 +123,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:74
+   * @declaredat ASTNode:70
    */
   public FuncCall treeCopyNoTransform() {
     FuncCall tree = (FuncCall) copy();
@@ -149,7 +144,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:94
+   * @declaredat ASTNode:90
    */
   public FuncCall treeCopy() {
     FuncCall tree = (FuncCall) copy();
@@ -165,48 +160,36 @@ public class FuncCall extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:108
+   * @declaredat ASTNode:104
    */
   protected boolean is$Equal(ASTNode node) {
-    return super.is$Equal(node) && (tokenString_Name == ((FuncCall) node).tokenString_Name);    
+    return super.is$Equal(node);    
   }
   /**
-   * Replaces the lexeme Name.
-   * @param value The new value for the lexeme Name.
+   * Replaces the IdUse child.
+   * @param node The new node to replace the IdUse child.
    * @apilevel high-level
    */
-  public void setName(String value) {
-    tokenString_Name = value;
-  }
-  /** @apilevel internal 
-   */
-  protected String tokenString_Name;
-  /**
-   */
-  public int Namestart;
-  /**
-   */
-  public int Nameend;
-  /**
-   * JastAdd-internal setter for lexeme Name using the Beaver parser.
-   * @param symbol Symbol containing the new value for the lexeme Name
-   * @apilevel internal
-   */
-  public void setName(beaver.Symbol symbol) {
-    if (symbol.value != null && !(symbol.value instanceof String))
-    throw new UnsupportedOperationException("setName is only valid for String lexemes");
-    tokenString_Name = (String)symbol.value;
-    Namestart = symbol.getStart();
-    Nameend = symbol.getEnd();
+  public void setIdUse(IdUse node) {
+    setChild(node, 0);
   }
   /**
-   * Retrieves the value for the lexeme Name.
-   * @return The value for the lexeme Name.
+   * Retrieves the IdUse child.
+   * @return The current node used as the IdUse child.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Token(name="Name")
-  public String getName() {
-    return tokenString_Name != null ? tokenString_Name : "";
+  @ASTNodeAnnotation.Child(name="IdUse")
+  public IdUse getIdUse() {
+    return (IdUse) getChild(0);
+  }
+  /**
+   * Retrieves the IdUse child.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The current node used as the IdUse child.
+   * @apilevel low-level
+   */
+  public IdUse getIdUseNoTransform() {
+    return (IdUse) getChildNoTransform(0);
   }
   /**
    * Replaces the Args list.
@@ -214,7 +197,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @apilevel high-level
    */
   public void setArgsList(List<Expr> list) {
-    setChild(list, 0);
+    setChild(list, 1);
   }
   /**
    * Retrieves the number of children in the Args list.
@@ -282,7 +265,7 @@ public class FuncCall extends Expr implements Cloneable {
    */
   @ASTNodeAnnotation.ListChild(name="Args")
   public List<Expr> getArgsList() {
-    List<Expr> list = (List<Expr>) getChild(0);
+    List<Expr> list = (List<Expr>) getChild(1);
     return list;
   }
   /**
@@ -292,7 +275,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @apilevel low-level
    */
   public List<Expr> getArgsListNoTransform() {
-    return (List<Expr>) getChildNoTransform(0);
+    return (List<Expr>) getChildNoTransform(1);
   }
   /**
    * @return the element at index {@code i} in the Args list without
@@ -317,5 +300,28 @@ public class FuncCall extends Expr implements Cloneable {
    */
   public List<Expr> getArgssNoTransform() {
     return getArgsListNoTransform();
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @apilevel internal
+   */
+  public IdDecl Define_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    if (_callerNode == getIdUseNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:133
+      {
+              return functionDeclaration(name);
+          }
+    }
+    else {
+      return getParent().Define_lookup(this, _callerNode, name);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:3
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute lookup
+   */
+  protected boolean canDefine_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return true;
   }
 }

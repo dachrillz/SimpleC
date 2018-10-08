@@ -6,4 +6,4 @@ Program
       Block
         List
           Return
-            Var ID="a"
+            IdUse ID="a"

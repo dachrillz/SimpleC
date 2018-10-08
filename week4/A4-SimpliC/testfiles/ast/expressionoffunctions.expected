@@ -9,13 +9,15 @@ Program
             IdDecl ID="diff"
             Opt
               Minus
-                FuncCall Name="gcd1"
+                FuncCall
+                  IdUse ID="gcd1"
                   List
-                    Var ID="a"
-                    Var ID="b"
-                FuncCall Name="gcd2"
+                    IdUse ID="a"
+                    IdUse ID="b"
+                FuncCall
+                  IdUse ID="gcd2"
                   List
-                    Var ID="a"
-                    Var ID="b"
+                    IdUse ID="a"
+                    IdUse ID="b"
           Return
-            Var ID="diff"
+            IdUse ID="diff"

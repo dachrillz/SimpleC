@@ -3,9 +3,11 @@ package lang.ast;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * @ast node
- * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:36
+ * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/lang.ast:35
  * @astdecl UnknownDecl : IdDecl ::= <ID:String>;
  * @production UnknownDecl : {@link IdDecl};
 
@@ -54,22 +56,23 @@ public class UnknownDecl extends IdDecl implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    isUnknown_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:33
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:37
    */
   public UnknownDecl clone() throws CloneNotSupportedException {
     UnknownDecl node = (UnknownDecl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:42
    */
   public UnknownDecl copy() {
     try {
@@ -89,7 +92,7 @@ public class UnknownDecl extends IdDecl implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:61
    */
   @Deprecated
   public UnknownDecl fullCopy() {
@@ -100,7 +103,7 @@ public class UnknownDecl extends IdDecl implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:71
    */
   public UnknownDecl treeCopyNoTransform() {
     UnknownDecl tree = (UnknownDecl) copy();
@@ -121,7 +124,7 @@ public class UnknownDecl extends IdDecl implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:91
    */
   public UnknownDecl treeCopy() {
     UnknownDecl tree = (UnknownDecl) copy();
@@ -137,7 +140,7 @@ public class UnknownDecl extends IdDecl implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:104
+   * @declaredat ASTNode:105
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((UnknownDecl) node).tokenString_ID);    
@@ -170,5 +173,41 @@ public class UnknownDecl extends IdDecl implements Cloneable {
   @ASTNodeAnnotation.Token(name="ID")
   public String getID() {
     return tokenString_ID != null ? tokenString_ID : "";
+  }
+/** @apilevel internal */
+protected boolean isUnknown_visited = false;
+  /** @apilevel internal */
+  private void isUnknown_reset() {
+    isUnknown_computed = false;
+    isUnknown_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean isUnknown_computed = false;
+
+  /** @apilevel internal */
+  protected boolean isUnknown_value;
+
+  /**
+   * @attribute syn
+   * @aspect UnknownDecl
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:8
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="UnknownDecl", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/UnknownDecl.jrag:7")
+  public boolean isUnknown() {
+    ASTState state = state();
+    if (isUnknown_computed) {
+      return isUnknown_value;
+    }
+    if (isUnknown_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.isUnknown().");
+    }
+    isUnknown_visited = true;
+    state().enterLazyAttribute();
+    isUnknown_value = true;
+    isUnknown_computed = true;
+    state().leaveLazyAttribute();
+    isUnknown_visited = false;
+    return isUnknown_value;
   }
 }

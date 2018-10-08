@@ -1,0 +1,21 @@
+Program
+  List
+    Function
+      IdDecl ID="main"
+      List
+      Block
+        List
+          Decl
+            IdDecl ID="a"
+            Opt
+          Assignment
+            IdUse ID="a"
+            Plus
+              Numeral NUMERAL="1"
+              IdUse ID="b"
+          Decl
+            IdDecl ID="b"
+            Opt
+              Numeral NUMERAL="1"
+          Return
+            IdUse ID="a"

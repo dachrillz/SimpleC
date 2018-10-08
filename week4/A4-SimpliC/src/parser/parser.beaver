@@ -118,7 +118,7 @@ factor = 		LPAREN expr.a RPAREN 				{: return a;				:}
 		;
 
 
-op = ID.id 				{: return new Var(id);          :} 
+op = ID.id 				{: return new IdUse(id);          :} 
 	| NUMERAL.a				{: return new Numeral(a); 	:}
 	| functioncall.a        {: return a;				:}
 	;
@@ -126,8 +126,8 @@ op = ID.id 				{: return new Var(id);          :}
 iddecl = ID.id {: 	return new IdDecl(id);            	:} ;
 iduse = ID.id {: 	return new IdUse(id); 				:} ;
 
-functioncall = ID.a LPAREN argumentcalls.args RPAREN {: return new FuncCall(a, args);   :} 
-                | ID.a LPAREN RPAREN {: return new FuncCall(a, new List());   :};
+functioncall = iduse.a LPAREN argumentcalls.args RPAREN {: return new FuncCall(a, args);   :} 
+                | iduse.a LPAREN RPAREN {: return new FuncCall(a, new List());   :};
 
 
 argumentcalls = argumentcall.a 		 			   	  {: return new List().add(a); :}

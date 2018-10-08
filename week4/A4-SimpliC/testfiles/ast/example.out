@@ -9,30 +9,30 @@ Program
         List
           While
             NEQ
-              Var ID="a"
-              Var ID="b"
+              IdUse ID="a"
+              IdUse ID="b"
             Block
               List
                 IfElse
                   GT
-                    Var ID="a"
-                    Var ID="b"
+                    IdUse ID="a"
+                    IdUse ID="b"
                   Block
                     List
                       Assignment
                         IdUse ID="a"
                         Minus
-                          Var ID="a"
-                          Var ID="b"
+                          IdUse ID="a"
+                          IdUse ID="b"
                   Block
                     List
                       Assignment
                         IdUse ID="b"
                         Minus
-                          Var ID="b"
-                          Var ID="a"
+                          IdUse ID="b"
+                          IdUse ID="a"
           Return
-            Var ID="a"
+            IdUse ID="a"
     Function
       IdDecl ID="gcd2"
       List
@@ -42,19 +42,20 @@ Program
         List
           If
             EQ
-              Var ID="b"
+              IdUse ID="b"
               Numeral NUMERAL="0"
             Block
               List
                 Return
-                  Var ID="a"
+                  IdUse ID="a"
           Return
-            FuncCall Name="gcd2"
+            FuncCall
+              IdUse ID="gcd2"
               List
-                Var ID="b"
+                IdUse ID="b"
                 Mod
-                  Var ID="a"
-                  Var ID="b"
+                  IdUse ID="a"
+                  IdUse ID="b"
     Function
       IdDecl ID="main"
       List
@@ -68,23 +69,27 @@ Program
             Opt
           Assignment
             IdUse ID="a"
-            FuncCall Name="read"
+            FuncCall
+              IdUse ID="read"
               List
           Assignment
             IdUse ID="b"
-            FuncCall Name="read"
+            FuncCall
+              IdUse ID="read"
               List
           Decl
             IdDecl ID="diff"
             Opt
               Minus
-                FuncCall Name="gcd1"
+                FuncCall
+                  IdUse ID="gcd1"
                   List
-                    Var ID="a"
-                    Var ID="b"
-                FuncCall Name="gcd2"
+                    IdUse ID="a"
+                    IdUse ID="b"
+                FuncCall
+                  IdUse ID="gcd2"
                   List
-                    Var ID="a"
-                    Var ID="b"
+                    IdUse ID="a"
+                    IdUse ID="b"
           Return
             Numeral NUMERAL="0"

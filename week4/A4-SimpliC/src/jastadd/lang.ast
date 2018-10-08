@@ -27,8 +27,7 @@ Plus : Expr ::= Left:Expr Right:Expr;
 Mod : Expr ::= Left:Expr Right:Expr;
 Minus : Expr ::= Left:Expr Right:Expr;
 Numeral : Expr ::= <NUMERAL>;
-Var     : Expr ::= <ID>;
-FuncCall: Expr ::= <Name> Args:Expr*;
+FuncCall: Expr ::= IdUse Args:Expr*;
 
 IdDecl  : Expr ::= <ID>;
 IdUse : Expr ::= <ID>;
