@@ -186,7 +186,19 @@ aspect TypeAnalysis{
 	
 	syn boolean IdDecl.isVariableAndFunction() = functionDeclaration(getID()).isFunction() && this.isVariable();
 	
-    
-
+	//check correct amount of parameters
+	inh Function IdDecl.function();
+	eq Function.getName().function() = this;
 	
+	syn boolean FuncCall.hasAllParameters() = getIdUse().decl().equalsParameters(this);
+	
+	syn boolean IdDecl.equalsParameters(FuncCall call){
+	    if(function().getNumArguments() == call.getNumArgs()){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+		
 }

@@ -466,6 +466,27 @@ protected java.util.Set lookup_String_visited;
     return true;
   }
   /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:190
+   * @apilevel internal
+   */
+  public Function Define_function(ASTNode _callerNode, ASTNode _childNode) {
+    if (_callerNode == getNameNoTransform()) {
+      // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:191
+      return this;
+    }
+    else {
+      return getParent().Define_function(this, _callerNode);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:190
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute function
+   */
+  protected boolean canDefine_function(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /**
    * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal
    */

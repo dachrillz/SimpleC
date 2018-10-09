@@ -72,27 +72,29 @@ public class IdDecl extends Expr implements Cloneable {
     super.flushAttrCache();
     type_reset();
     isVariableAndFunction_reset();
+    equalsParameters_FuncCall_reset();
     isUnknown_reset();
     isMultiDeclared_reset();
     isVariable_reset();
     isFunction_reset();
+    function_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:39
+   * @declaredat ASTNode:41
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:43
+   * @declaredat ASTNode:45
    */
   public IdDecl clone() throws CloneNotSupportedException {
     IdDecl node = (IdDecl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:48
+   * @declaredat ASTNode:50
    */
   public IdDecl copy() {
     try {
@@ -112,7 +114,7 @@ public class IdDecl extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:67
+   * @declaredat ASTNode:69
    */
   @Deprecated
   public IdDecl fullCopy() {
@@ -123,7 +125,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:77
+   * @declaredat ASTNode:79
    */
   public IdDecl treeCopyNoTransform() {
     IdDecl tree = (IdDecl) copy();
@@ -144,7 +146,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:97
+   * @declaredat ASTNode:99
    */
   public IdDecl treeCopy() {
     IdDecl tree = (IdDecl) copy();
@@ -160,7 +162,7 @@ public class IdDecl extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:111
+   * @declaredat ASTNode:113
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdDecl) node).tokenString_ID);    
@@ -277,6 +279,51 @@ protected boolean isVariableAndFunction_visited = false;
     isVariableAndFunction_visited = false;
     return isVariableAndFunction_value;
   }
+/** @apilevel internal */
+protected java.util.Set equalsParameters_FuncCall_visited;
+  /** @apilevel internal */
+  private void equalsParameters_FuncCall_reset() {
+    equalsParameters_FuncCall_values = null;
+    equalsParameters_FuncCall_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map equalsParameters_FuncCall_values;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:195
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:195")
+  public boolean equalsParameters(FuncCall call) {
+    Object _parameters = call;
+    if (equalsParameters_FuncCall_visited == null) equalsParameters_FuncCall_visited = new java.util.HashSet(4);
+    if (equalsParameters_FuncCall_values == null) equalsParameters_FuncCall_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (equalsParameters_FuncCall_values.containsKey(_parameters)) {
+      return (Boolean) equalsParameters_FuncCall_values.get(_parameters);
+    }
+    if (equalsParameters_FuncCall_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.equalsParameters(FuncCall).");
+    }
+    equalsParameters_FuncCall_visited.add(_parameters);
+    state().enterLazyAttribute();
+    boolean equalsParameters_FuncCall_value = equalsParameters_compute(call);
+    equalsParameters_FuncCall_values.put(_parameters, equalsParameters_FuncCall_value);
+    state().leaveLazyAttribute();
+    equalsParameters_FuncCall_visited.remove(_parameters);
+    return equalsParameters_FuncCall_value;
+  }
+  /** @apilevel internal */
+  private boolean equalsParameters_compute(FuncCall call) {
+  	    if(function().getNumArguments() == call.getNumArgs()){
+  	        return true;
+  	    }
+  	    else{
+  	        return false;
+  	    }
+  	}
 /** @apilevel internal */
 protected boolean isUnknown_visited = false;
   /** @apilevel internal */
@@ -432,6 +479,44 @@ protected boolean isFunction_visited = false;
 
   /** @apilevel internal */
   protected boolean isFunction_value;
+
+  /**
+   * @attribute inh
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:190
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:190")
+  public Function function() {
+    ASTState state = state();
+    if (function_computed) {
+      return function_value;
+    }
+    if (function_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.function().");
+    }
+    function_visited = true;
+    state().enterLazyAttribute();
+    function_value = getParent().Define_function(this, null);
+    function_computed = true;
+    state().leaveLazyAttribute();
+    function_visited = false;
+    return function_value;
+  }
+/** @apilevel internal */
+protected boolean function_visited = false;
+  /** @apilevel internal */
+  private void function_reset() {
+    function_computed = false;
+    
+    function_value = null;
+    function_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean function_computed = false;
+
+  /** @apilevel internal */
+  protected Function function_value;
 
   /**
    * @attribute inh

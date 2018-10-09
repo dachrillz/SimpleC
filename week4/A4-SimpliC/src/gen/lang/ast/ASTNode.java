@@ -984,6 +984,26 @@ protected boolean program_visited = false;
     return false;
   }
   /** @apilevel internal */
+  public Function Define_function(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_function(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_function(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:191
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute function
+   */
+  protected boolean canDefine_function(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
   public Type Define_expectedType(ASTNode _callerNode, ASTNode _childNode) {
     ASTNode self = this;
     ASTNode parent = getParent();

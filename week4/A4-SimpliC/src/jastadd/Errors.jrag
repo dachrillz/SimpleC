@@ -76,4 +76,12 @@ aspect ErrorContributions {
         when isVariableAndFunction()
         to Program.errors() for program();
         
+    //Check if a function has correct amount of arguments
+    FuncCall contributes error("The function " + getIdUse().getID() + " takes " +
+                            getIdUse().decl().function().getNumArguments() +
+                            " number of  arguments, but " + getNumArgs() + " were given.")
+        when !getIdUse().decl().isUnknown() && !hasAllParameters()
+        to Program.errors() for program();
+    
+        
 }

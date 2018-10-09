@@ -78,22 +78,23 @@ public class FuncCall extends Expr implements Cloneable {
   public void flushAttrCache() {
     super.flushAttrCache();
     type_reset();
+    hasAllParameters_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:33
+   * @declaredat ASTNode:34
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:37
+   * @declaredat ASTNode:38
    */
   public FuncCall clone() throws CloneNotSupportedException {
     FuncCall node = (FuncCall) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:42
+   * @declaredat ASTNode:43
    */
   public FuncCall copy() {
     try {
@@ -113,7 +114,7 @@ public class FuncCall extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:61
+   * @declaredat ASTNode:62
    */
   @Deprecated
   public FuncCall fullCopy() {
@@ -124,7 +125,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:71
+   * @declaredat ASTNode:72
    */
   public FuncCall treeCopyNoTransform() {
     FuncCall tree = (FuncCall) copy();
@@ -145,7 +146,7 @@ public class FuncCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:91
+   * @declaredat ASTNode:92
    */
   public FuncCall treeCopy() {
     FuncCall tree = (FuncCall) copy();
@@ -161,7 +162,7 @@ public class FuncCall extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:105
+   * @declaredat ASTNode:106
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -340,6 +341,42 @@ protected boolean type_visited = false;
     type_visited = false;
     return type_value;
   }
+/** @apilevel internal */
+protected boolean hasAllParameters_visited = false;
+  /** @apilevel internal */
+  private void hasAllParameters_reset() {
+    hasAllParameters_computed = false;
+    hasAllParameters_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean hasAllParameters_computed = false;
+
+  /** @apilevel internal */
+  protected boolean hasAllParameters_value;
+
+  /**
+   * @attribute syn
+   * @aspect TypeAnalysis
+   * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:193
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="TypeAnalysis", declaredAt="/home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:193")
+  public boolean hasAllParameters() {
+    ASTState state = state();
+    if (hasAllParameters_computed) {
+      return hasAllParameters_value;
+    }
+    if (hasAllParameters_visited) {
+      throw new RuntimeException("Circular definition of attribute FuncCall.hasAllParameters().");
+    }
+    hasAllParameters_visited = true;
+    state().enterLazyAttribute();
+    hasAllParameters_value = getIdUse().decl().equalsParameters(this);
+    hasAllParameters_computed = true;
+    state().leaveLazyAttribute();
+    hasAllParameters_visited = false;
+    return hasAllParameters_value;
+  }
   /**
    * @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/TypeAnalysis.jrag:175
    * @apilevel internal
@@ -383,5 +420,30 @@ protected boolean type_visited = false;
    */
   protected boolean canDefine_lookup(ASTNode _callerNode, ASTNode _childNode, String name) {
     return true;
+  }
+  /** @apilevel internal */
+  protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week4/A4-SimpliC/src/jastadd/Errors.jrag:80
+    if (!getIdUse().decl().isUnknown() && !hasAllParameters()) {
+      {
+        Program target = (Program) (program());
+        java.util.Set<ASTNode> contributors = _map.get(target);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) target, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+    super.contributeTo_Program_errors(collection);
+    if (!getIdUse().decl().isUnknown() && !hasAllParameters()) {
+      collection.add(error("The function " + getIdUse().getID() + " takes " +
+                                  getIdUse().decl().function().getNumArguments() +
+                                  " number of  arguments, but " + getNumArgs() + " were given."));
+    }
   }
 }
