@@ -1,0 +1,35 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="x"
+            Plus
+              Numeral NUMERAL="1"
+              Numeral NUMERAL="2"
+          Assignment
+            IdUse ID="y"
+            Minus
+              IdUse ID="x"
+              Numeral NUMERAL="2"
+          Assignment
+            IdUse ID="q"
+            Mul
+              Numeral NUMERAL="5"
+              IdUse ID="a"
+          Assignment
+            IdUse ID="c"
+            Minus
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="1"
+          Assignment
+            IdUse ID="d"
+            Mod
+              Numeral NUMERAL="5"
+              Numeral NUMERAL="5"
+          Return
+            Numeral NUMERAL="0"

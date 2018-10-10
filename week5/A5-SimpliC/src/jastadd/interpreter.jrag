@@ -1,0 +1,133 @@
+aspect Interpreter{
+
+    public void Program.eval(){
+        System.out.println(main()); 
+        if(main() != null){
+            main().eval(new ActivationRecord());
+        }
+        else{
+        throw new RuntimeException("Main is not defined in program."); 
+        }
+    }
+
+    public int Function.eval(ActivationRecord actrec){
+        Block block = getBlock();
+        block.eval(actrec);
+        return 0;
+    }
+    
+    public void Block.eval(ActivationRecord actrec){
+        for(Statement statement : getStatementList()){
+            statement.eval(actrec);
+        }
+    }
+
+    //
+    // STATEMENT EVALUATIONS!
+    //
+
+    public void Statement.eval(ActivationRecord actrec){
+        throw new RuntimeException("Abstract Statement evaluation not implemented!"); 
+    }
+    
+    public void ExpressionStatement.eval(ActivationRecord actrec){
+        getExpr().eval(actrec);
+    }
+
+    public void Decl.eval(ActivationRecord actrec){
+        //Decl : Statement ::= Type IdDecl [Expr];
+        int temp = 0;
+        if(hasExpr()){
+            temp = getExpr().eval(actrec);
+        }
+        System.out.println(getIdDecl().getID() + " = " + temp);
+    }
+    
+    //
+    // EXPRESSION EVALUATIONS
+    //
+
+    public abstract int Expr.eval(ActivationRecord actrec);
+
+    //Arithmetic expressions
+
+    public int Mul.eval(ActivationRecord actrec){
+        return getLeft().eval(actrec) * getRight().eval(actrec);
+    }
+    public int Div.eval(ActivationRecord actrec){
+        return getLeft().eval(actrec) / getRight().eval(actrec);
+    }
+    public int Plus.eval(ActivationRecord actrec){
+        return getLeft().eval(actrec) + getRight().eval(actrec);
+    }
+    public int Minus.eval(ActivationRecord actrec){
+        return getLeft().eval(actrec) - getRight().eval(actrec);
+    }
+    public int Mod.eval(ActivationRecord actrec){
+        return getLeft().eval(actrec) % getRight().eval(actrec);
+    }
+
+    //Boolean expressions
+	public int GT.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) >  getRight().eval(actrec) ? 1 : 0;
+	}
+	public int LT.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) <  getRight().eval(actrec) ? 1 : 0;
+	}	
+	public int GTE.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) >= getRight().eval(actrec) ? 1 : 0;
+	}
+	public int LTE.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) <= getRight().eval(actrec) ? 1 : 0;
+	}
+	public int EQ.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) == getRight().eval(actrec) ? 1 : 0;
+	}
+	public int NEQ.eval(ActivationRecord actrec) {
+		return getLeft().eval(actrec) != getRight().eval(actrec) ? 1 : 0;
+    }
+    
+    //Other expressions
+
+    public int Numeral.eval(ActivationRecord actrec){
+	    return Integer.parseInt(getNUMERAL());
+    }
+
+    public int FuncCall.eval(ActivationRecord actrec){
+        if(getIdUse().getID().equals("print")){
+            for(Expr expr: getArgsList()){
+                int temp = expr.eval(actrec);
+                System.out.println(temp);
+            }
+        }
+        else if(getIdUse().getID().equals("read")){
+            throw new RuntimeException("read evaluation not implemented!"); 
+        }
+        else{
+            throw new RuntimeException("Function calls not implemented!"); 
+        }
+        return 0;
+    }
+    
+    public int IdUse.eval(ActivationRecord actrec){
+        throw new RuntimeException("Id Use evaluation not implemented!"); 
+    }
+
+    public int IdDecl.eval(ActivationRecord actrec){
+        throw new RuntimeException("IdDecl evaluation not implemented!"); 
+    }
+    public class ActivationRecord{
+    
+    }
+
+    //Get main function
+    syn Function Program.main() {
+        for (Function f : getFunctionList()){
+            if (f.getName().getID().equals("main")){
+                return (Function) f;
+            }
+        }
+        return null;
+    }
+
+}

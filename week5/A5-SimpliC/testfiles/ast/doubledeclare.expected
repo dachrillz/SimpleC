@@ -1,0 +1,20 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="main"
+      List
+      Block
+        List
+          Decl
+            IntType
+            IdDecl ID="a"
+            Opt
+              Numeral NUMERAL="45"
+          Decl
+            IntType
+            IdDecl ID="a"
+            Opt
+              Numeral NUMERAL="42"
+          Return
+            Numeral NUMERAL="0"

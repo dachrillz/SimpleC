@@ -1,0 +1,3 @@
+Error at line 3: Must have boolean expression in While. Got: int
+Error at line 7: Must have boolean expression in If. Got: int
+Error at line 11: Must have boolean expression in IfElse. Got: int

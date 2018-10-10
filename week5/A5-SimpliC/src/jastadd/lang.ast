@@ -1,0 +1,48 @@
+Program ::= Function*;
+Function ::= Type Name:IdDecl Arguments:IdDecl* Block;
+
+Block ::= Statement*;
+
+abstract Statement;
+ExpressionStatement : Statement ::= Expr;
+Decl : Statement ::= Type IdDecl [Expr];
+Assignment : Statement ::= IdUse Expr;
+While : Statement ::= Condition:Expr Do:Block;
+IfElse    : Statement ::= Condition:Expr Then:Block Else:Block;
+If    : Statement ::= Condition:Expr Then:Block;
+Return : Statement ::= Expr;
+CallStatement : Statement ::= FuncCall;
+
+abstract Expr;
+
+LT : Expr ::= Left:Expr Right:Expr;
+GT : Expr ::= Left:Expr Right:Expr;
+GTE : Expr ::= Left:Expr Right:Expr;
+LTE : Expr ::= Left:Expr Right:Expr;
+EQ : Expr ::= Left:Expr Right:Expr;
+NEQ : Expr ::= Left:Expr Right:Expr;
+Mul : Expr ::= Left:Expr Right:Expr;
+Div : Expr ::= Left:Expr Right:Expr;
+Plus : Expr ::= Left:Expr Right:Expr;
+Mod : Expr ::= Left:Expr Right:Expr;
+Minus : Expr ::= Left:Expr Right:Expr;
+Numeral : Expr ::= <NUMERAL>;
+FuncCall: Expr ::= IdUse Args:Expr*;
+
+IdDecl  : Expr ::= <ID>;
+IdUse : Expr ::= <ID>;
+
+UnknownDecl : IdDecl;
+
+//types
+abstract Type;
+IntType : Type;
+BooleanType : Type;
+UnknownType : Type;
+
+
+
+
+
+
+

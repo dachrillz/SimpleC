@@ -1,0 +1,25 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Decl
+            IntType
+            IdDecl ID="diff"
+            Opt
+              Minus
+                FuncCall
+                  IdUse ID="gcd1"
+                  List
+                    IdUse ID="a"
+                    IdUse ID="b"
+                FuncCall
+                  IdUse ID="gcd2"
+                  List
+                    IdUse ID="a"
+                    IdUse ID="b"
+          Return
+            IdUse ID="diff"
