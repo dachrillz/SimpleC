@@ -1,7 +1,8 @@
+import java.util.HashMap;
+
 aspect Interpreter{
 
     public void Program.eval(){
-        System.out.println(main()); 
         if(main() != null){
             main().eval(new ActivationRecord());
         }
@@ -12,35 +13,85 @@ aspect Interpreter{
 
     public int Function.eval(ActivationRecord actrec){
         Block block = getBlock();
-        block.eval(actrec);
-        return 0;
+        return block.eval(actrec).getInt();
     }
-    
-    public void Block.eval(ActivationRecord actrec){
+
+    public WrappedInteger Block.eval(ActivationRecord actrec){
+        WrappedInteger temp = new WrappedInteger(0, false);
         for(Statement statement : getStatementList()){
-            statement.eval(actrec);
+            temp = statement.eval(actrec);
+            if(statement instanceof Return || temp.getReturn()){
+                return new WrappedInteger(temp.getInt(), true);
+            } 
         }
+        return temp;
     }
 
     //
     // STATEMENT EVALUATIONS!
     //
 
-    public void Statement.eval(ActivationRecord actrec){
-        throw new RuntimeException("Abstract Statement evaluation not implemented!"); 
-    }
-    
-    public void ExpressionStatement.eval(ActivationRecord actrec){
-        getExpr().eval(actrec);
+    public abstract WrappedInteger Statement.eval(ActivationRecord actrec);
+
+    public WrappedInteger CallStatement.eval(ActivationRecord actrec){
+        int temp = getFuncCall().eval(actrec);
+        return new WrappedInteger(temp, false);
     }
 
-    public void Decl.eval(ActivationRecord actrec){
+    public WrappedInteger Return.eval(ActivationRecord actrec){
+        int temp = getExpr().eval(actrec);
+        return new WrappedInteger(temp, false);
+    }
+    
+    public WrappedInteger ExpressionStatement.eval(ActivationRecord actrec){
+        int temp = getExpr().eval(actrec);
+        return new WrappedInteger(temp, false); 
+    }
+
+    public WrappedInteger Decl.eval(ActivationRecord actrec){
         //Decl : Statement ::= Type IdDecl [Expr];
         int temp = 0;
         if(hasExpr()){
             temp = getExpr().eval(actrec);
         }
-        System.out.println(getIdDecl().getID() + " = " + temp);
+        //put into activation record
+        actrec.put(getIdDecl().getID(), temp);
+        
+        return new WrappedInteger(0, false);
+    }
+
+    public WrappedInteger Assignment.eval(ActivationRecord actrec){
+        actrec.put(getIdUse().getID(), getExpr().eval(actrec));
+
+        return new WrappedInteger(0, false);
+    }
+
+    public WrappedInteger While.eval(ActivationRecord actrec){
+        while(getCondition().eval(actrec) == 1){
+            WrappedInteger temp = getDo().eval(actrec); 
+            if(temp.getReturn()){
+                return temp; 
+            }
+        }
+        return new WrappedInteger(0,false); 
+    }
+    
+    public WrappedInteger If.eval(ActivationRecord actrec){
+        WrappedInteger temp;
+        if(getCondition().eval(actrec) == 1){
+            temp = getThen().eval(actrec);
+            return temp;
+        }
+        return new WrappedInteger(0,false);
+    }
+
+    public WrappedInteger IfElse.eval(ActivationRecord actrec){
+        if(getCondition().eval(actrec) == 1){
+           return getThen().eval(actrec); 
+        }
+        else{
+            return getElse().eval(actrec);
+        }
     }
     
     //
@@ -94,7 +145,25 @@ aspect Interpreter{
     }
 
     public int FuncCall.eval(ActivationRecord actrec){
-        if(getIdUse().getID().equals("print")){
+        //get function as Java class (so we can call eval)
+
+        String name = getIdUse().getID();
+        if(!(name.equals("print") || name.equals("read"))){
+            Function func = getFunctionAsJava(name);
+
+            //bind local variables
+            ActivationRecord actrecLocal = new ActivationRecord();
+            for(int i = 0; i < func.getNumArguments(); i++){
+            
+                int argsToPass = getArgs(i).eval(actrec);
+                actrecLocal.put(func.getArguments(i).getID(),argsToPass); 
+
+            }
+            int temp_ = func.eval(actrecLocal);
+            return temp_;
+        }
+
+        else if(getIdUse().getID().equals("print")){
             for(Expr expr: getArgsList()){
                 int temp = expr.eval(actrec);
                 System.out.println(temp);
@@ -103,21 +172,50 @@ aspect Interpreter{
         else if(getIdUse().getID().equals("read")){
             throw new RuntimeException("read evaluation not implemented!"); 
         }
-        else{
-            throw new RuntimeException("Function calls not implemented!"); 
-        }
         return 0;
     }
     
     public int IdUse.eval(ActivationRecord actrec){
-        throw new RuntimeException("Id Use evaluation not implemented!"); 
+        return actrec.get(getID());
     }
 
     public int IdDecl.eval(ActivationRecord actrec){
         throw new RuntimeException("IdDecl evaluation not implemented!"); 
     }
+
+
     public class ActivationRecord{
+        private HashMap<String,Integer> map;
+
+        public ActivationRecord(){
+            map = new HashMap<String,Integer>();
+        }
+
+        int get(String name){
+            return map.get(name);
+        }
+        void put(String name, int value){
+            map.put(name,value);
+        }
+    }
+
+    public class WrappedInteger{
+        
+        int a;
+        boolean ret;
     
+        public WrappedInteger(int a, boolean ret){
+            this.a = a;
+            this.ret = ret;
+        }
+
+        public int getInt(){
+            return this.a;
+        }
+
+        public boolean getReturn(){
+            return this.ret;
+        }
     }
 
     //Get main function
@@ -128,6 +226,19 @@ aspect Interpreter{
             }
         }
         return null;
+    }
+
+    //Actually get the function defined
+
+    inh Function ASTNode.getFunctionAsJava(String name);
+
+    eq Program.getChild().getFunctionAsJava(String name){
+        for(Function func : getFunctionList()){
+            if(func.getName().getID().equals(name)){
+                return func;
+            }
+        }
+        return null; //Should never happen as all function definition are checked in the static analysis.
     }
 
 }

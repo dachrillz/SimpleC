@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:2
@@ -45,12 +46,11 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:13
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:14
    */
   public int eval(ActivationRecord actrec){
         Block block = getBlock();
-        block.eval(actrec);
-        return 0;
+        return block.eval(actrec).getInt();
     }
   /**
    * @declaredat ASTNode:1

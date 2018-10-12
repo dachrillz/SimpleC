@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-10-10T16:24:43" hostname="chrille-X540LA" time="0.051">
+<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-10-12T08:15:11" hostname="chrille-X540LA" time="0.052">
   <properties/>
-  <testcase name="simpleexpressions" classname="lang.ParseTests" time="0.041"/>
-  <testcase name="emptyfunction" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="simpleexpressions" classname="lang.ParseTests" time="0.043"/>
+  <testcase name="emptyfunction" classname="lang.ParseTests" time="0.002"/>
   <testcase name="example" classname="lang.ParseTests" time="0.001"/>
   <testcase name="functionwithvariabledeclaration" classname="lang.ParseTests" time="0.002"/>
-  <testcase name="functionwithvariabledeclarations" classname="lang.ParseTests" time="0.001"/>
-  <testcase name="emptyfunctions" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="functionwithvariabledeclarations" classname="lang.ParseTests" time="0.0"/>
+  <testcase name="emptyfunctions" classname="lang.ParseTests" time="0.0"/>
   <testcase name="error" classname="lang.ParseTests" time="0.001"/>
   <testcase name="functionwithvariabledeclarationandassignments" classname="lang.ParseTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

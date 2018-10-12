@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:38

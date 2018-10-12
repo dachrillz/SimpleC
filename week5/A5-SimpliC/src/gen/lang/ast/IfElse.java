@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:11
@@ -39,6 +40,18 @@ public class IfElse extends Statement implements Cloneable {
   public Object accept(Visitor visitor, Object data){
 		return visitor.visit(this, data);
 	}
+  /**
+   * @aspect Interpreter
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:88
+   */
+  public WrappedInteger eval(ActivationRecord actrec){
+        if(getCondition().eval(actrec) == 1){
+           return getThen().eval(actrec); 
+        }
+        else{
+            return getElse().eval(actrec);
+        }
+    }
   /**
    * @declaredat ASTNode:1
    */

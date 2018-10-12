@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:4
@@ -35,10 +36,15 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
    * @aspect Interpreter
    * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:19
    */
-  public void eval(ActivationRecord actrec){
+  public WrappedInteger eval(ActivationRecord actrec){
+        WrappedInteger temp = new WrappedInteger(0, false);
         for(Statement statement : getStatementList()){
-            statement.eval(actrec);
+            temp = statement.eval(actrec);
+            if(statement instanceof Return || temp.getReturn()){
+                return new WrappedInteger(temp.getInt(), true);
+            } 
         }
+        return temp;
     }
   /**
    * @declaredat ASTNode:1

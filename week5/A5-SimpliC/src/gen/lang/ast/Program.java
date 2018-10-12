@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:1
@@ -22,10 +23,9 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:3
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:5
    */
   public void eval(){
-        System.out.println(main()); 
         if(main() != null){
             main().eval(new ActivationRecord());
         }
@@ -524,10 +524,10 @@ protected boolean main_visited = false;
   /**
    * @attribute syn
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:124
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:222
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:124")
+  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:222")
   public Function main() {
     ASTState state = state();
     if (main_computed) {
@@ -752,6 +752,29 @@ protected boolean main_visited = false;
    * @return {@code true} if this node has an equation for the inherited attribute program
    */
   protected boolean canDefine_program(ASTNode _callerNode, ASTNode _childNode) {
+    return true;
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233
+   * @apilevel internal
+   */
+  public Function Define_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
+    int childIndex = this.getIndexOfChild(_callerNode);
+    {
+            for(Function func : getFunctionList()){
+                if(func.getName().getID().equals(name)){
+                    return func;
+                }
+            }
+            return null; //Should never happen as all function definition are checked in the static analysis.
+        }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute getFunctionAsJava
+   */
+  protected boolean canDefine_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
     return true;
   }
 /** @apilevel internal */

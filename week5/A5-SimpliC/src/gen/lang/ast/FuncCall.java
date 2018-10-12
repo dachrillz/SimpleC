@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:30
@@ -39,10 +40,28 @@ public class FuncCall extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:96
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:147
    */
   public int eval(ActivationRecord actrec){
-        if(getIdUse().getID().equals("print")){
+        //get function as Java class (so we can call eval)
+
+        String name = getIdUse().getID();
+        if(!(name.equals("print") || name.equals("read"))){
+            Function func = getFunctionAsJava(name);
+
+            //bind local variables
+            ActivationRecord actrecLocal = new ActivationRecord();
+            for(int i = 0; i < func.getNumArguments(); i++){
+            
+                int argsToPass = getArgs(i).eval(actrec);
+                actrecLocal.put(func.getArguments(i).getID(),argsToPass); 
+
+            }
+            int temp_ = func.eval(actrecLocal);
+            return temp_;
+        }
+
+        else if(getIdUse().getID().equals("print")){
             for(Expr expr: getArgsList()){
                 int temp = expr.eval(actrec);
                 System.out.println(temp);
@@ -50,9 +69,6 @@ public class FuncCall extends Expr implements Cloneable {
         }
         else if(getIdUse().getID().equals("read")){
             throw new RuntimeException("read evaluation not implemented!"); 
-        }
-        else{
-            throw new RuntimeException("Function calls not implemented!"); 
         }
         return 0;
     }

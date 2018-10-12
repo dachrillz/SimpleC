@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:6
@@ -15,11 +16,9 @@ import java.util.TreeSet;
 public abstract class Statement extends ASTNode<ASTNode> implements Cloneable {
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:29
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:34
    */
-  public void eval(ActivationRecord actrec){
-        throw new RuntimeException("Abstract Statement evaluation not implemented!"); 
-    }
+  public abstract WrappedInteger eval(ActivationRecord actrec);
   /**
    * @declaredat ASTNode:1
    */

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestTypeAnalysis" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-10-09T16:39:43" hostname="chrille-X540LA" time="0.024">
+<testsuite name="lang.TestTypeAnalysis" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-10-11T12:26:54" hostname="chrille-X540LA" time="0.042">
   <properties/>
-  <testcase name="runTest[testnamespace.in]" classname="lang.TestTypeAnalysis" time="0.004"/>
-  <testcase name="runTest[wrongreturntype.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
-  <testcase name="runTest[declarationerror.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
-  <testcase name="runTest[OKreturntype.in]" classname="lang.TestTypeAnalysis" time="0.001"/>
-  <testcase name="runTest[testifwhileifelse.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
-  <testcase name="runTest[toofewarguments.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
-  <testcase name="runTest[toomanyarguments.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
+  <testcase name="runTest[testnamespace.in]" classname="lang.TestTypeAnalysis" time="0.006"/>
+  <testcase name="runTest[wrongreturntype.in]" classname="lang.TestTypeAnalysis" time="0.004"/>
+  <testcase name="runTest[declarationerror.in]" classname="lang.TestTypeAnalysis" time="0.004"/>
+  <testcase name="runTest[OKreturntype.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
+  <testcase name="runTest[testifwhileifelse.in]" classname="lang.TestTypeAnalysis" time="0.005"/>
+  <testcase name="runTest[toofewarguments.in]" classname="lang.TestTypeAnalysis" time="0.004"/>
+  <testcase name="runTest[toomanyarguments.in]" classname="lang.TestTypeAnalysis" time="0.002"/>
   <testcase name="runTest[booleaninarithemtik.in]" classname="lang.TestTypeAnalysis" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

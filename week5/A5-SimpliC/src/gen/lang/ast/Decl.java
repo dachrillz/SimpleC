@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:8
@@ -35,15 +36,18 @@ public class Decl extends Statement implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:37
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:51
    */
-  public void eval(ActivationRecord actrec){
+  public WrappedInteger eval(ActivationRecord actrec){
         //Decl : Statement ::= Type IdDecl [Expr];
         int temp = 0;
         if(hasExpr()){
             temp = getExpr().eval(actrec);
         }
-        System.out.println(getIdDecl().getID() + " = " + temp);
+        //put into activation record
+        actrec.put(getIdDecl().getID(), temp);
+        
+        return new WrappedInteger(0, false);
     }
   /**
    * @declaredat ASTNode:1

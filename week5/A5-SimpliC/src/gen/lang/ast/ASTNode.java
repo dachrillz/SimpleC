@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.HashMap;
 /**
  * @ast node
  * @astdecl ASTNode;
@@ -387,14 +388,15 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     isMulti_String_reset();
     functionDeclaration_String_reset();
     program_reset();
+    getFunctionAsJava_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:306
+   * @declaredat ASTNode:307
    */
   public void flushCollectionCache() {
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:309
+   * @declaredat ASTNode:310
    */
   public ASTNode<T> clone() throws CloneNotSupportedException {
     ASTNode node = (ASTNode) super.clone();
@@ -402,7 +404,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:315
+   * @declaredat ASTNode:316
    */
   public ASTNode<T> copy() {
     try {
@@ -422,7 +424,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:334
+   * @declaredat ASTNode:335
    */
   @Deprecated
   public ASTNode<T> fullCopy() {
@@ -433,7 +435,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:344
+   * @declaredat ASTNode:345
    */
   public ASTNode<T> treeCopyNoTransform() {
     ASTNode tree = (ASTNode) copy();
@@ -454,7 +456,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:364
+   * @declaredat ASTNode:365
    */
   public ASTNode<T> treeCopy() {
     ASTNode tree = (ASTNode) copy();
@@ -472,7 +474,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   /**
    * Performs a full traversal of the tree using getChild to trigger rewrites
    * @apilevel low-level
-   * @declaredat ASTNode:381
+   * @declaredat ASTNode:382
    */
   public void doFullTraversal() {
     for (int i = 0; i < getNumChild(); i++) {
@@ -480,7 +482,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     }
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:387
+   * @declaredat ASTNode:388
    */
   protected boolean is$Equal(ASTNode n1, ASTNode n2) {
     if (n1 == null && n2 == null) return true;
@@ -488,7 +490,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return n1.is$Equal(n2);
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:393
+   * @declaredat ASTNode:394
    */
   protected boolean is$Equal(ASTNode node) {
     if (getClass() != node.getClass()) {
@@ -783,6 +785,42 @@ protected boolean program_visited = false;
   /** @apilevel internal */
   protected Program program_value;
 
+  /**
+   * @attribute inh
+   * @aspect Interpreter
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233")
+  public Function getFunctionAsJava(String name) {
+    Object _parameters = name;
+    if (getFunctionAsJava_String_visited == null) getFunctionAsJava_String_visited = new java.util.HashSet(4);
+    if (getFunctionAsJava_String_values == null) getFunctionAsJava_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (getFunctionAsJava_String_values.containsKey(_parameters)) {
+      return (Function) getFunctionAsJava_String_values.get(_parameters);
+    }
+    if (getFunctionAsJava_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.getFunctionAsJava(String).");
+    }
+    getFunctionAsJava_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    Function getFunctionAsJava_String_value = getParent().Define_getFunctionAsJava(this, null, name);
+    getFunctionAsJava_String_values.put(_parameters, getFunctionAsJava_String_value);
+    state().leaveLazyAttribute();
+    getFunctionAsJava_String_visited.remove(_parameters);
+    return getFunctionAsJava_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set getFunctionAsJava_String_visited;
+  /** @apilevel internal */
+  private void getFunctionAsJava_String_reset() {
+    getFunctionAsJava_String_values = null;
+    getFunctionAsJava_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map getFunctionAsJava_String_values;
+
   /** @apilevel internal */
   public IntType Define_intType(ASTNode _callerNode, ASTNode _childNode) {
     ASTNode self = this;
@@ -981,6 +1019,26 @@ protected boolean program_visited = false;
    * @return {@code true} if this node has an equation for the inherited attribute program
    */
   protected boolean canDefine_program(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public Function Define_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_getFunctionAsJava(self, _callerNode, name)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_getFunctionAsJava(self, _callerNode, name);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:235
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute getFunctionAsJava
+   */
+  protected boolean canDefine_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
     return false;
   }
   /** @apilevel internal */
