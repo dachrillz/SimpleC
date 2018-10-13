@@ -10,11 +10,16 @@ import lang.ast.Program;
 import lang.ast.LangParser;
 import lang.ast.LangScanner;
 
+import lang.ast.Function;
+import lang.ast.IdDecl;
+import lang.ast.FuncHelper;
+
 /**
  * Computes the maximum statement nesting depth for a Calc program.
  */
 public class Compiler {
 		public static Object DrAST_root_node; // Enable debugging with DrAST.
+        public static final boolean printExtraStuff = true;
 	
 		public static void main(String[] args) {
 		try {
@@ -31,6 +36,23 @@ public class Compiler {
 			LangParser parser = new LangParser();
 			Program program = (Program) parser.parse(scanner);
             if(program.errors().isEmpty()){
+                if(printExtraStuff){
+                    System.out.println("Call Graph! ");
+                    for(Function f: program.getFunctionList()){
+                        for(FuncHelper fu : f.functionCalls()){
+                            System.out.println(f.getName().getID() + "-->" + fu);
+                        } 
+                    }
+                    System.out.println("\nReachable Functions! ");
+                    for(Function f : program.getFunctionList()){
+                        System.out.println(f.getName().getID() + "{");
+                        for(FuncHelper fu : f.functionCalls()){
+                            System.out.println(fu.getIdUse().getIdUse().getID() + ", ");
+                        }
+                        System.out.println("}");
+                    }
+                    System.out.println("\n");
+                }
                 program.eval();
             }
 			//program.prettyPrint(System.out);
