@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:4
@@ -34,7 +35,7 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:19
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:20
    */
   public WrappedInteger eval(ActivationRecord actrec){
         WrappedInteger temp = new WrappedInteger(0, false);
@@ -86,23 +87,24 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
   public void flushAttrCache() {
     super.flushAttrCache();
     localLookup_String_int_reset();
+    uniqueName_String_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:33
+   * @declaredat ASTNode:34
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:37
+   * @declaredat ASTNode:38
    */
   public Block clone() throws CloneNotSupportedException {
     Block node = (Block) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:42
+   * @declaredat ASTNode:43
    */
   public Block copy() {
     try {
@@ -122,7 +124,7 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:61
+   * @declaredat ASTNode:62
    */
   @Deprecated
   public Block fullCopy() {
@@ -133,7 +135,7 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:71
+   * @declaredat ASTNode:72
    */
   public Block treeCopyNoTransform() {
     Block tree = (Block) copy();
@@ -154,7 +156,7 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:91
+   * @declaredat ASTNode:92
    */
   public Block treeCopy() {
     Block tree = (Block) copy();
@@ -170,7 +172,7 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:105
+   * @declaredat ASTNode:106
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node);    
@@ -335,6 +337,42 @@ protected java.util.Set localLookup_String_int_visited;
       }
   /**
    * @attribute inh
+   * @aspect UniqueNames
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:6
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="UniqueNames", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:6")
+  public String uniqueName(String name) {
+    Object _parameters = name;
+    if (uniqueName_String_visited == null) uniqueName_String_visited = new java.util.HashSet(4);
+    if (uniqueName_String_values == null) uniqueName_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (uniqueName_String_values.containsKey(_parameters)) {
+      return (String) uniqueName_String_values.get(_parameters);
+    }
+    if (uniqueName_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute Block.uniqueName(String).");
+    }
+    uniqueName_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    String uniqueName_String_value = getParent().Define_uniqueName(this, null, name);
+    uniqueName_String_values.put(_parameters, uniqueName_String_value);
+    state().leaveLazyAttribute();
+    uniqueName_String_visited.remove(_parameters);
+    return uniqueName_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set uniqueName_String_visited;
+  /** @apilevel internal */
+  private void uniqueName_String_reset() {
+    uniqueName_String_values = null;
+    uniqueName_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map uniqueName_String_values;
+
+  /**
+   * @attribute inh
    * @aspect NameAnalysis
    * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/NameAnalysis.jrag:23
    */
@@ -369,6 +407,28 @@ protected java.util.Set lookup_String_visited;
   /** @apilevel internal */
   protected java.util.Map lookup_String_values;
 
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:10
+   * @apilevel internal
+   */
+  public String Define_uniqueName(ASTNode _callerNode, ASTNode _childNode, String name) {
+    if (_callerNode == getStatementListNoTransform()) {
+      // @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:8
+      int i = _callerNode.getIndexOfChild(_childNode);
+      return uniqueName(i + "_" + name);
+    }
+    else {
+      return getParent().Define_uniqueName(this, _callerNode, name);
+    }
+  }
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:10
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute uniqueName
+   */
+  protected boolean canDefine_uniqueName(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return true;
+  }
   /**
    * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/NameAnalysis.jrag:4
    * @apilevel internal

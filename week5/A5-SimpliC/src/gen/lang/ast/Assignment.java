@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:9
@@ -27,10 +28,12 @@ public class Assignment extends Statement implements Cloneable {
         }
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:63
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:64
    */
   public WrappedInteger eval(ActivationRecord actrec){
-        actrec.put(getIdUse().getID(), getExpr().eval(actrec));
+        IdDecl id = getIdUse().decl();
+        String temp = getIdUse().decl().uniqueID();
+        actrec.put(temp, getExpr().eval(actrec));
 
         return new WrappedInteger(0, false);
     }

@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 
 aspect Interpreter{
 
@@ -55,13 +56,15 @@ aspect Interpreter{
             temp = getExpr().eval(actrec);
         }
         //put into activation record
-        actrec.put(getIdDecl().getID(), temp);
+        actrec.put(getIdDecl().uniqueID(), temp);
         
         return new WrappedInteger(0, false);
     }
 
     public WrappedInteger Assignment.eval(ActivationRecord actrec){
-        actrec.put(getIdUse().getID(), getExpr().eval(actrec));
+        IdDecl id = getIdUse().decl();
+        String temp = getIdUse().decl().uniqueID();
+        actrec.put(temp, getExpr().eval(actrec));
 
         return new WrappedInteger(0, false);
     }
@@ -146,7 +149,6 @@ aspect Interpreter{
 
     public int FuncCall.eval(ActivationRecord actrec){
         //get function as Java class (so we can call eval)
-
         String name = getIdUse().getID();
         if(!(name.equals("print") || name.equals("read"))){
             Function func = getFunctionAsJava(name);
@@ -156,7 +158,7 @@ aspect Interpreter{
             for(int i = 0; i < func.getNumArguments(); i++){
             
                 int argsToPass = getArgs(i).eval(actrec);
-                actrecLocal.put(func.getArguments(i).getID(),argsToPass); 
+                actrecLocal.put(func.getArguments(i).uniqueName(func.getArguments(i).getID()),argsToPass); 
 
             }
             int temp_ = func.eval(actrecLocal);
@@ -170,13 +172,17 @@ aspect Interpreter{
             }
         }
         else if(getIdUse().getID().equals("read")){
-            throw new RuntimeException("read evaluation not implemented!"); 
+            Scanner scan = new Scanner(System.in);
+            System.out.print("=>> ");
+            int value = Integer.parseInt(scan.nextLine());
+            return value;
         }
         return 0;
     }
     
     public int IdUse.eval(ActivationRecord actrec){
-        return actrec.get(getID());
+        String temp = decl().uniqueID();
+        return actrec.get(temp);
     }
 
     public int IdDecl.eval(ActivationRecord actrec){

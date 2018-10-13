@@ -1,0 +1,35 @@
+aspect CallGraph{
+	public class FuncHelper implements Comparable<FuncHelper> {
+
+        protected FuncCall func;
+
+		public FuncHelper(FuncCall usedFunc) {
+            this.func = usedFunc;
+		}
+		public int compareTo(FuncHelper other) {
+            return func.getIdUse().getID().compareTo(other.func.getIdUse().getID());
+		}
+		public String toString() {
+		  return func.getIdUse().getID();
+		}
+
+		public FuncCall getIdUse(){
+		    return func;
+		}
+
+	}
+	protected FuncHelper ASTNode.funcHelper(FuncCall usedFunc) {
+		return new FuncHelper(usedFunc);
+	}
+
+
+    coll Set<FuncHelper> Function.functionCalls() [new TreeSet<FuncHelper>()] with add root Function;
+
+
+    inh Function ASTNode.enclosingFunction();
+    eq Function.getChild().enclosingFunction() = this;
+
+    FuncCall contributes funcHelper(this)
+        to Function.functionCalls() for enclosingFunction();
+
+}

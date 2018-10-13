@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:30
@@ -40,11 +41,10 @@ public class FuncCall extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:147
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:150
    */
   public int eval(ActivationRecord actrec){
         //get function as Java class (so we can call eval)
-
         String name = getIdUse().getID();
         if(!(name.equals("print") || name.equals("read"))){
             Function func = getFunctionAsJava(name);
@@ -54,7 +54,7 @@ public class FuncCall extends Expr implements Cloneable {
             for(int i = 0; i < func.getNumArguments(); i++){
             
                 int argsToPass = getArgs(i).eval(actrec);
-                actrecLocal.put(func.getArguments(i).getID(),argsToPass); 
+                actrecLocal.put(func.getArguments(i).uniqueName(func.getArguments(i).getID()),argsToPass); 
 
             }
             int temp_ = func.eval(actrecLocal);
@@ -68,7 +68,10 @@ public class FuncCall extends Expr implements Cloneable {
             }
         }
         else if(getIdUse().getID().equals("read")){
-            throw new RuntimeException("read evaluation not implemented!"); 
+            Scanner scan = new Scanner(System.in);
+            System.out.print("=>> ");
+            int value = Integer.parseInt(scan.nextLine());
+            return value;
         }
         return 0;
     }
@@ -457,6 +460,20 @@ protected boolean hasAllParameters_visited = false;
     return true;
   }
   /** @apilevel internal */
+  protected void collect_contributors_Function_functionCalls(Function _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:32
+    {
+      Function target = (Function) (enclosingFunction());
+      java.util.Set<ASTNode> contributors = _map.get(target);
+      if (contributors == null) {
+        contributors = new java.util.LinkedHashSet<ASTNode>();
+        _map.put((ASTNode) target, contributors);
+      }
+      contributors.add(this);
+    }
+    super.collect_contributors_Function_functionCalls(_root, _map);
+  }
+  /** @apilevel internal */
   protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
     // @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/Errors.jrag:80
     if (!getIdUse().decl().isUnknown() && !hasAllParameters()) {
@@ -471,6 +488,11 @@ protected boolean hasAllParameters_visited = false;
       }
     }
     super.collect_contributors_Program_errors(_root, _map);
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Function_functionCalls(Set<FuncHelper> collection) {
+    super.contributeTo_Function_functionCalls(collection);
+    collection.add(funcHelper(this));
   }
   /** @apilevel internal */
   protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {

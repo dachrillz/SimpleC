@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /** Wrapper class for storing nullable attribute values. 
  * @ast class
  * @declaredat ASTState:2

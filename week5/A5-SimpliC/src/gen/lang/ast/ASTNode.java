@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /**
  * @ast node
  * @astdecl ASTNode;
@@ -13,6 +14,13 @@ import java.util.HashMap;
 
  */
 public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneable {
+  /**
+   * @aspect CallGraph
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:21
+   */
+  protected FuncHelper funcHelper(FuncCall usedFunc) {
+		return new FuncHelper(usedFunc);
+	}
   /**
    * @aspect PrettyPrint
    * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/PrettyPrint.jrag:4
@@ -385,18 +393,19 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     booleanType_reset();
     unknownType_reset();
     unknownDecl_reset();
+    enclosingFunction_reset();
     isMulti_String_reset();
     functionDeclaration_String_reset();
     program_reset();
     getFunctionAsJava_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:307
+   * @declaredat ASTNode:308
    */
   public void flushCollectionCache() {
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:310
+   * @declaredat ASTNode:311
    */
   public ASTNode<T> clone() throws CloneNotSupportedException {
     ASTNode node = (ASTNode) super.clone();
@@ -404,7 +413,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:316
+   * @declaredat ASTNode:317
    */
   public ASTNode<T> copy() {
     try {
@@ -424,7 +433,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:335
+   * @declaredat ASTNode:336
    */
   @Deprecated
   public ASTNode<T> fullCopy() {
@@ -435,7 +444,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:345
+   * @declaredat ASTNode:346
    */
   public ASTNode<T> treeCopyNoTransform() {
     ASTNode tree = (ASTNode) copy();
@@ -456,7 +465,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:365
+   * @declaredat ASTNode:366
    */
   public ASTNode<T> treeCopy() {
     ASTNode tree = (ASTNode) copy();
@@ -474,7 +483,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   /**
    * Performs a full traversal of the tree using getChild to trigger rewrites
    * @apilevel low-level
-   * @declaredat ASTNode:382
+   * @declaredat ASTNode:383
    */
   public void doFullTraversal() {
     for (int i = 0; i < getNumChild(); i++) {
@@ -482,7 +491,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     }
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:388
+   * @declaredat ASTNode:389
    */
   protected boolean is$Equal(ASTNode n1, ASTNode n2) {
     if (n1 == null && n2 == null) return true;
@@ -490,7 +499,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     return n1.is$Equal(n2);
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:394
+   * @declaredat ASTNode:395
    */
   protected boolean is$Equal(ASTNode node) {
     if (getClass() != node.getClass()) {
@@ -521,6 +530,20 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
   }
   /** @apilevel internal */
   protected void contributeTo_Program_errors(Set<ErrorMessage> collection) {
+  }
+
+  /**
+   * @aspect <NoAspect>
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:26
+   */
+    /** @apilevel internal */
+  protected void collect_contributors_Function_functionCalls(Function _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    for (int i = 0; i < getNumChild(); i++) {
+      getChild(i).collect_contributors_Function_functionCalls(_root, _map);
+    }
+  }
+  /** @apilevel internal */
+  protected void contributeTo_Function_functionCalls(Set<FuncHelper> collection) {
   }
 
   /**
@@ -677,6 +700,44 @@ protected boolean unknownDecl_visited = false;
 
   /**
    * @attribute inh
+   * @aspect CallGraph
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="CallGraph", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29")
+  public Function enclosingFunction() {
+    ASTState state = state();
+    if (enclosingFunction_computed) {
+      return enclosingFunction_value;
+    }
+    if (enclosingFunction_visited) {
+      throw new RuntimeException("Circular definition of attribute ASTNode.enclosingFunction().");
+    }
+    enclosingFunction_visited = true;
+    state().enterLazyAttribute();
+    enclosingFunction_value = getParent().Define_enclosingFunction(this, null);
+    enclosingFunction_computed = true;
+    state().leaveLazyAttribute();
+    enclosingFunction_visited = false;
+    return enclosingFunction_value;
+  }
+/** @apilevel internal */
+protected boolean enclosingFunction_visited = false;
+  /** @apilevel internal */
+  private void enclosingFunction_reset() {
+    enclosingFunction_computed = false;
+    
+    enclosingFunction_value = null;
+    enclosingFunction_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean enclosingFunction_computed = false;
+
+  /** @apilevel internal */
+  protected Function enclosingFunction_value;
+
+  /**
+   * @attribute inh
    * @aspect NameAnalysis
    * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/NameAnalysis.jrag:56
    */
@@ -788,10 +849,10 @@ protected boolean program_visited = false;
   /**
    * @attribute inh
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:233")
+  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239")
   public Function getFunctionAsJava(String name) {
     Object _parameters = name;
     if (getFunctionAsJava_String_visited == null) getFunctionAsJava_String_visited = new java.util.HashSet(4);
@@ -1034,11 +1095,31 @@ protected java.util.Set getFunctionAsJava_String_visited;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:235
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute getFunctionAsJava
    */
   protected boolean canDefine_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
+    return false;
+  }
+  /** @apilevel internal */
+  public String Define_uniqueName(ASTNode _callerNode, ASTNode _childNode, String name) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_uniqueName(self, _callerNode, name)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_uniqueName(self, _callerNode, name);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:8
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute uniqueName
+   */
+  protected boolean canDefine_uniqueName(ASTNode _callerNode, ASTNode _childNode, String name) {
     return false;
   }
   /** @apilevel internal */
@@ -1059,6 +1140,26 @@ protected java.util.Set getFunctionAsJava_String_visited;
    * @return {@code true} if this node has an equation for the inherited attribute function
    */
   protected boolean canDefine_function(ASTNode _callerNode, ASTNode _childNode) {
+    return false;
+  }
+  /** @apilevel internal */
+  public Function Define_enclosingFunction(ASTNode _callerNode, ASTNode _childNode) {
+    ASTNode self = this;
+    ASTNode parent = getParent();
+    while (parent != null && !parent.canDefine_enclosingFunction(self, _callerNode)) {
+      _callerNode = self;
+      self = parent;
+      parent = self.getParent();
+    }
+    return parent.Define_enclosingFunction(self, _callerNode);
+  }
+
+  /**
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:30
+   * @apilevel internal
+   * @return {@code true} if this node has an equation for the inherited attribute enclosingFunction
+   */
+  protected boolean canDefine_enclosingFunction(ASTNode _callerNode, ASTNode _childNode) {
     return false;
   }
   /** @apilevel internal */

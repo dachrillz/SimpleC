@@ -1,0 +1,11 @@
+int a(int b, int c){
+    return b + c;
+}
+
+int main(){
+    int a1 = read();
+    int a2 = read();
+
+    print(a(a1, a2));
+    return 0;
+}

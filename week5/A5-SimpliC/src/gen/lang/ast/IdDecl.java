@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
+import java.util.Scanner;
 /**
  * @ast node
  * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/lang.ast:32
@@ -30,7 +31,7 @@ public class IdDecl extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:182
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:188
    */
   public int eval(ActivationRecord actrec){
         throw new RuntimeException("IdDecl evaluation not implemented!"); 
@@ -78,31 +79,33 @@ public class IdDecl extends Expr implements Cloneable {
    */
   public void flushAttrCache() {
     super.flushAttrCache();
+    uniqueID_reset();
     type_reset();
     isVariableAndFunction_reset();
     equalsParameters_FuncCall_reset();
     isUnknown_reset();
     isMultiDeclared_reset();
+    uniqueName_String_reset();
     isVariable_reset();
     isFunction_reset();
     function_reset();
     lookup_String_reset();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:43
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:45
+   * @declaredat ASTNode:47
    */
   public IdDecl clone() throws CloneNotSupportedException {
     IdDecl node = (IdDecl) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:50
+   * @declaredat ASTNode:52
    */
   public IdDecl copy() {
     try {
@@ -122,7 +125,7 @@ public class IdDecl extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:69
+   * @declaredat ASTNode:71
    */
   @Deprecated
   public IdDecl fullCopy() {
@@ -133,7 +136,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:79
+   * @declaredat ASTNode:81
    */
   public IdDecl treeCopyNoTransform() {
     IdDecl tree = (IdDecl) copy();
@@ -154,7 +157,7 @@ public class IdDecl extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:99
+   * @declaredat ASTNode:101
    */
   public IdDecl treeCopy() {
     IdDecl tree = (IdDecl) copy();
@@ -170,7 +173,7 @@ public class IdDecl extends Expr implements Cloneable {
     return tree;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:113
+   * @declaredat ASTNode:115
    */
   protected boolean is$Equal(ASTNode node) {
     return super.is$Equal(node) && (tokenString_ID == ((IdDecl) node).tokenString_ID);    
@@ -212,6 +215,44 @@ public class IdDecl extends Expr implements Cloneable {
   @ASTNodeAnnotation.Token(name="ID")
   public String getID() {
     return tokenString_ID != null ? tokenString_ID : "";
+  }
+/** @apilevel internal */
+protected boolean uniqueID_visited = false;
+  /** @apilevel internal */
+  private void uniqueID_reset() {
+    uniqueID_computed = false;
+    
+    uniqueID_value = null;
+    uniqueID_visited = false;
+  }
+  /** @apilevel internal */
+  protected boolean uniqueID_computed = false;
+
+  /** @apilevel internal */
+  protected String uniqueID_value;
+
+  /**
+   * @attribute syn
+   * @aspect UniqueNames
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:11
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="UniqueNames", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:11")
+  public String uniqueID() {
+    ASTState state = state();
+    if (uniqueID_computed) {
+      return uniqueID_value;
+    }
+    if (uniqueID_visited) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.uniqueID().");
+    }
+    uniqueID_visited = true;
+    state().enterLazyAttribute();
+    uniqueID_value = uniqueName(getID());
+    uniqueID_computed = true;
+    state().leaveLazyAttribute();
+    uniqueID_visited = false;
+    return uniqueID_value;
   }
 /** @apilevel internal */
 protected boolean type_visited = false;
@@ -416,6 +457,42 @@ protected boolean isMultiDeclared_visited = false;
           }
           */
       }
+  /**
+   * @attribute inh
+   * @aspect UniqueNames
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:10
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
+  @ASTNodeAnnotation.Source(aspect="UniqueNames", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/UniqueNames.jrag:10")
+  public String uniqueName(String name) {
+    Object _parameters = name;
+    if (uniqueName_String_visited == null) uniqueName_String_visited = new java.util.HashSet(4);
+    if (uniqueName_String_values == null) uniqueName_String_values = new java.util.HashMap(4);
+    ASTState state = state();
+    if (uniqueName_String_values.containsKey(_parameters)) {
+      return (String) uniqueName_String_values.get(_parameters);
+    }
+    if (uniqueName_String_visited.contains(_parameters)) {
+      throw new RuntimeException("Circular definition of attribute IdDecl.uniqueName(String).");
+    }
+    uniqueName_String_visited.add(_parameters);
+    state().enterLazyAttribute();
+    String uniqueName_String_value = getParent().Define_uniqueName(this, null, name);
+    uniqueName_String_values.put(_parameters, uniqueName_String_value);
+    state().leaveLazyAttribute();
+    uniqueName_String_visited.remove(_parameters);
+    return uniqueName_String_value;
+  }
+/** @apilevel internal */
+protected java.util.Set uniqueName_String_visited;
+  /** @apilevel internal */
+  private void uniqueName_String_reset() {
+    uniqueName_String_values = null;
+    uniqueName_String_visited = null;
+  }
+  /** @apilevel internal */
+  protected java.util.Map uniqueName_String_values;
+
   /**
    * @attribute inh
    * @aspect TypeAnalysis
