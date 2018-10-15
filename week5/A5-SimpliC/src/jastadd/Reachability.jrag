@@ -1,8 +1,8 @@
 aspect Reachability{
 
-    syn Set<FuncHelper> Function.reachable() circular [new TreeSet<FuncHelper>()]{
-        Set<FuncHelper> mySet = new TreeSet<>();
-        for(FuncHelper f : functionCalls()){
+    syn Set<FuncAux> Function.reachable() circular [new TreeSet<FuncAux>()]{
+        Set<FuncAux> mySet = new TreeSet<>();
+        for(FuncAux f : functionCalls()){
             mySet.add(f);
             System.out.println(f);
             mySet.addAll(f.getIdUse().getIdUse().decl().enclosingFunction().reachable());

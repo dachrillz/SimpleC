@@ -16,10 +16,10 @@ import java.util.Scanner;
 public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneable {
   /**
    * @aspect CallGraph
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:21
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:23
    */
-  protected FuncHelper funcHelper(FuncCall usedFunc) {
-		return new FuncHelper(usedFunc);
+  protected FuncAux funcHelper(FuncCall usedFunc) {
+		return new FuncAux(usedFunc);
 	}
   /**
    * @aspect PrettyPrint
@@ -534,7 +534,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 
   /**
    * @aspect <NoAspect>
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:26
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:28
    */
     /** @apilevel internal */
   protected void collect_contributors_Function_functionCalls(Function _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
@@ -543,7 +543,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
     }
   }
   /** @apilevel internal */
-  protected void contributeTo_Function_functionCalls(Set<FuncHelper> collection) {
+  protected void contributeTo_Function_functionCalls(Set<FuncAux> collection) {
   }
 
   /**
@@ -701,10 +701,10 @@ protected boolean unknownDecl_visited = false;
   /**
    * @attribute inh
    * @aspect CallGraph
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:31
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="CallGraph", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29")
+  @ASTNodeAnnotation.Source(aspect="CallGraph", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:31")
   public Function enclosingFunction() {
     ASTState state = state();
     if (enclosingFunction_computed) {
@@ -1155,7 +1155,7 @@ protected java.util.Set getFunctionAsJava_String_visited;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:30
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:32
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute enclosingFunction
    */

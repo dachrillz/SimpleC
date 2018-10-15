@@ -461,7 +461,7 @@ protected boolean hasAllParameters_visited = false;
   }
   /** @apilevel internal */
   protected void collect_contributors_Function_functionCalls(Function _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
-    // @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:32
+    // @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:34
     {
       Function target = (Function) (enclosingFunction());
       java.util.Set<ASTNode> contributors = _map.get(target);
@@ -490,7 +490,7 @@ protected boolean hasAllParameters_visited = false;
     super.collect_contributors_Program_errors(_root, _map);
   }
   /** @apilevel internal */
-  protected void contributeTo_Function_functionCalls(Set<FuncHelper> collection) {
+  protected void contributeTo_Function_functionCalls(Set<FuncAux> collection) {
     super.contributeTo_Function_functionCalls(collection);
     collection.add(funcHelper(this));
   }

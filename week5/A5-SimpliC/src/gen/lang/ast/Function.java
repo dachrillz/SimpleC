@@ -381,7 +381,7 @@ public class Function extends ASTNode<ASTNode> implements Cloneable {
   }
   /**
    * @aspect <NoAspect>
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:26
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:28
    */
   /** @apilevel internal */
 protected java.util.Map<ASTNode, java.util.Set<ASTNode>> contributorMap_Function_functionCalls = null;
@@ -407,25 +407,25 @@ protected ASTState.Cycle reachable_cycle = null;
   protected boolean reachable_computed = false;
 
   /** @apilevel internal */
-  protected Set<FuncHelper> reachable_value;
+  protected Set<FuncAux> reachable_value;
   /** @apilevel internal */
   protected boolean reachable_initialized = false;
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN, isCircular=true)
   @ASTNodeAnnotation.Source(aspect="Reachability", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/Reachability.jrag:3")
-  public Set<FuncHelper> reachable() {
+  public Set<FuncAux> reachable() {
     if (reachable_computed) {
       return reachable_value;
     }
     ASTState state = state();
     if (!reachable_initialized) {
       reachable_initialized = true;
-      reachable_value = new TreeSet<FuncHelper>();
+      reachable_value = new TreeSet<FuncAux>();
     }
     if (!state.inCircle() || state.calledByLazyAttribute()) {
       state.enterCircle();
       do {
         reachable_cycle = state.nextCycle();
-        Set<FuncHelper> new_reachable_value = reachable_compute();
+        Set<FuncAux> new_reachable_value = reachable_compute();
         if (!AttributeValue.equals(reachable_value, new_reachable_value)) {
           state.setChangeInCycle();
         }
@@ -433,17 +433,17 @@ protected ASTState.Cycle reachable_cycle = null;
       } while (state.testAndClearChangeInCycle());
       reachable_computed = true;
       state.startLastCycle();
-      Set<FuncHelper> $tmp = reachable_compute();
+      Set<FuncAux> $tmp = reachable_compute();
 
       state.leaveCircle();
     } else if (reachable_cycle != state.cycle()) {
       reachable_cycle = state.cycle();
       if (state.lastCycle()) {
         reachable_computed = true;
-        Set<FuncHelper> new_reachable_value = reachable_compute();
+        Set<FuncAux> new_reachable_value = reachable_compute();
         return new_reachable_value;
       }
-      Set<FuncHelper> new_reachable_value = reachable_compute();
+      Set<FuncAux> new_reachable_value = reachable_compute();
       if (!AttributeValue.equals(reachable_value, new_reachable_value)) {
         state.setChangeInCycle();
       }
@@ -453,9 +453,9 @@ protected ASTState.Cycle reachable_cycle = null;
     return reachable_value;
   }
   /** @apilevel internal */
-  private Set<FuncHelper> reachable_compute() {
-          Set<FuncHelper> mySet = new TreeSet<>();
-          for(FuncHelper f : functionCalls()){
+  private Set<FuncAux> reachable_compute() {
+          Set<FuncAux> mySet = new TreeSet<>();
+          for(FuncAux f : functionCalls()){
               mySet.add(f);
               System.out.println(f);
               mySet.addAll(f.getIdUse().getIdUse().decl().enclosingFunction().reachable());
@@ -612,7 +612,7 @@ protected java.util.Set lookup_String_visited;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:31
    * @apilevel internal
    */
   public Function Define_enclosingFunction(ASTNode _callerNode, ASTNode _childNode) {
@@ -620,7 +620,7 @@ protected java.util.Set lookup_String_visited;
     return this;
   }
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:29
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:31
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute enclosingFunction
    */
@@ -684,11 +684,11 @@ protected boolean Function_functionCalls_visited = false;
   /**
    * @attribute coll
    * @aspect CallGraph
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:26
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:28
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.COLL)
-  @ASTNodeAnnotation.Source(aspect="CallGraph", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:26")
-  public Set<FuncHelper> functionCalls() {
+  @ASTNodeAnnotation.Source(aspect="CallGraph", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/CallGraph.jrag:28")
+  public Set<FuncAux> functionCalls() {
     ASTState state = state();
     if (Function_functionCalls_computed) {
       return Function_functionCalls_value;
@@ -705,14 +705,14 @@ protected boolean Function_functionCalls_visited = false;
     return Function_functionCalls_value;
   }
   /** @apilevel internal */
-  private Set<FuncHelper> functionCalls_compute() {
+  private Set<FuncAux> functionCalls_compute() {
     ASTNode node = this;
     while (node != null && !(node instanceof Function)) {
       node = node.getParent();
     }
     Function root = (Function) node;
     root.survey_Function_functionCalls();
-    Set<FuncHelper> _computedValue = new TreeSet<FuncHelper>();
+    Set<FuncAux> _computedValue = new TreeSet<FuncAux>();
     if (root.contributorMap_Function_functionCalls.containsKey(this)) {
       for (ASTNode contributor : root.contributorMap_Function_functionCalls.get(this)) {
         contributor.contributeTo_Function_functionCalls(_computedValue);
@@ -724,7 +724,7 @@ protected boolean Function_functionCalls_visited = false;
   protected boolean Function_functionCalls_computed = false;
 
   /** @apilevel internal */
-  protected Set<FuncHelper> Function_functionCalls_value;
+  protected Set<FuncAux> Function_functionCalls_value;
 
   /** @apilevel internal */
   protected void collect_contributors_Program_errors(Program _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {

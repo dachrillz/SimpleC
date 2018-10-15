@@ -12,7 +12,7 @@ import lang.ast.LangScanner;
 
 import lang.ast.Function;
 import lang.ast.IdDecl;
-import lang.ast.FuncHelper;
+import lang.ast.FuncAux;
 
 /**
  * Computes the maximum statement nesting depth for a Calc program.
@@ -39,14 +39,14 @@ public class Compiler {
                 if(printExtraStuff){
                     System.out.println("Call Graph! ");
                     for(Function f: program.getFunctionList()){
-                        for(FuncHelper fu : f.functionCalls()){
+                        for(FuncAux fu : f.functionCalls()){
                             System.out.println(f.getName().getID() + "-->" + fu);
                         } 
                     }
                     System.out.println("\nReachable Functions! ");
                     for(Function f : program.getFunctionList()){
                         System.out.println(f.getName().getID() + "{");
-                        for(FuncHelper fu : f.functionCalls()){
+                        for(FuncAux fu : f.functionCalls()){
                             System.out.println(fu.getIdUse().getIdUse().getID() + ", ");
                         }
                         System.out.println("}");
