@@ -31,7 +31,7 @@ public class Numeral extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:146
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:148
    */
   public int eval(ActivationRecord actrec){
 	    return Integer.parseInt(getNUMERAL());

@@ -1,0 +1,5 @@
+int main(){
+    print(5);
+    print(10 + 10);
+    return 0;
+}

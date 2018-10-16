@@ -1,0 +1,87 @@
+import java.util.Set;
+import java.util.TreeSet;
+
+aspect Errors {
+	public class ErrorMessage implements Comparable<ErrorMessage> {
+		protected final String message;
+		protected final int lineNumber;
+		public ErrorMessage(String message, int lineNumber) {
+			this.message = message;
+			this.lineNumber = lineNumber;
+		}
+		public int compareTo(ErrorMessage other) {
+			if (lineNumber == other.lineNumber) {
+				return message.compareTo(other.message);
+			}
+			return Integer.compare(lineNumber, other.lineNumber); 
+		}
+		public String toString() {
+			return "Error at line " + lineNumber + ": " + message;
+		}
+	} 
+	protected ErrorMessage ASTNode.error(String message) {
+		return new ErrorMessage(message, getLine(getStart()));
+	}
+
+	coll Set<ErrorMessage> Program.errors() [new TreeSet<ErrorMessage>()] with add root Program;
+
+	inh Program ASTNode.program();
+	eq Program.getChild().program() = this;
+}
+
+
+aspect ErrorContributions {
+	IdUse contributes error("symbol '" + getID() + "' is not declared")
+		when decl().isUnknown()
+		to Program.errors() for program();
+
+    Decl contributes error("symbol '" + getIdDecl().getID() + "' is already declared")
+        when getIdDecl().isMultiDeclared()
+        to Program.errors() for program();
+        
+    Function contributes error("Symbol '" + getName().getID() + "' is already declared")
+        when getName().isMultiDeclared()
+        to Program.errors() for program();
+
+    //Type Errors
+    Decl contributes error(getIdDecl().getID() + " is not compatible with IDType: " + getIdDecl().type() + " and ExprType: " + getExpr().type())
+        when !compatibleTypes()
+        to Program.errors() for program();
+    
+    Assignment contributes error(getIdUse().getID() + " is not compatible with IDType: " + getIdUse().type() + " and ExprType: " + getExpr().type())
+        when !compatibleTypes()
+        to Program.errors() for program();
+        
+    Return contributes error("The return value is of the type: " + getExpr().type() + " , but was expected to be " + intType())
+        when getExpr().type() != intType()
+        to Program.errors() for program();
+        
+        	
+	//If, IfElse, while
+	While contributes error("Must have boolean expression in While. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+
+	IfElse contributes error("Must have boolean expression in IfElse. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+	If contributes error("Must have boolean expression in If. Got: " + getCondition().type())
+	    when !compatibleTypes()
+	    to Program.errors() for program();
+	    
+    //Check if a variable is both a function and a variable
+    IdDecl contributes error("The variable '" + getID() + "' is both a function and a variable.")
+        when isVariableAndFunction()
+        to Program.errors() for program();
+        
+    //Check if a function has correct amount of arguments
+    FuncCall contributes error("The function " + getIdUse().getID() + " takes " +
+                            getIdUse().decl().function().getNumArguments() +
+                            " number of  arguments, but " + getNumArgs() + " were given.")
+        when !getIdUse().decl().isUnknown() && !hasAllParameters()
+        to Program.errors() for program();
+    
+        
+}

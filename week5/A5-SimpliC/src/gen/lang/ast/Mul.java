@@ -48,7 +48,7 @@ public class Mul extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:108
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:110
    */
   public int eval(ActivationRecord actrec){
         return getLeft().eval(actrec) * getRight().eval(actrec);

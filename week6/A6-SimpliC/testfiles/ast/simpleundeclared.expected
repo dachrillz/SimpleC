@@ -1,0 +1,15 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="function"
+      List
+      Block
+        List
+          Decl
+            IntType
+            IdDecl ID="a"
+            Opt
+              IdUse ID="b"
+          Return
+            IdUse ID="a"

@@ -849,10 +849,10 @@ protected boolean program_visited = false;
   /**
    * @attribute inh
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.INH)
-  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239")
+  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241")
   public Function getFunctionAsJava(String name) {
     Object _parameters = name;
     if (getFunctionAsJava_String_visited == null) getFunctionAsJava_String_visited = new java.util.HashSet(4);
@@ -1095,7 +1095,7 @@ protected java.util.Set getFunctionAsJava_String_visited;
   }
 
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:243
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute getFunctionAsJava
    */

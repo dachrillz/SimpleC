@@ -1,0 +1,5 @@
+int a(){
+    int diff = gcd1(a, b) - gcd2(a, b);
+    return diff;
+}
+

@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * @ast class
  * @aspect Interpreter
- * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:208
+ * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:210
  */
 public class WrappedInteger extends java.lang.Object {
   

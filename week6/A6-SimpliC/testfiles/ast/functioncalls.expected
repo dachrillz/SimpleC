@@ -1,0 +1,36 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Assignment
+            IdUse ID="a"
+            FuncCall
+              IdUse ID="c"
+              List
+          Assignment
+            IdUse ID="b"
+            FuncCall
+              IdUse ID="d"
+              List
+          Assignment
+            IdUse ID="e"
+            FuncCall
+              IdUse ID="f"
+              List
+                Plus
+                  Numeral NUMERAL="1"
+                  Numeral NUMERAL="1"
+          Assignment
+            IdUse ID="g"
+            FuncCall
+              IdUse ID="h"
+              List
+                FuncCall
+                  IdUse ID="b"
+                  List
+          Return
+            Numeral NUMERAL="0"

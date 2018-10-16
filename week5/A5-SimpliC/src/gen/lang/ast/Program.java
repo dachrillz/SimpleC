@@ -525,10 +525,10 @@ protected boolean main_visited = false;
   /**
    * @attribute syn
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:228
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:230
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:228")
+  @ASTNodeAnnotation.Source(aspect="Interpreter", declaredAt="/home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:230")
   public Function main() {
     ASTState state = state();
     if (main_computed) {
@@ -756,7 +756,7 @@ protected boolean main_visited = false;
     return true;
   }
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241
    * @apilevel internal
    */
   public Function Define_getFunctionAsJava(ASTNode _callerNode, ASTNode _childNode, String name) {
@@ -771,7 +771,7 @@ protected boolean main_visited = false;
         }
   }
   /**
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:239
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:241
    * @apilevel internal
    * @return {@code true} if this node has an equation for the inherited attribute getFunctionAsJava
    */

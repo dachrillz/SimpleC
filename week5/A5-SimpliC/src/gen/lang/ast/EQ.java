@@ -33,7 +33,7 @@ public class EQ extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:137
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:139
    */
   public int eval(ActivationRecord actrec) {
 		return getLeft().eval(actrec) == getRight().eval(actrec) ? 1 : 0;

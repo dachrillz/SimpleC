@@ -48,7 +48,7 @@ public class Mod extends Expr implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:120
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:122
    */
   public int eval(ActivationRecord actrec){
         return getLeft().eval(actrec) % getRight().eval(actrec);

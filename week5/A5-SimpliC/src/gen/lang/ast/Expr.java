@@ -17,7 +17,7 @@ import java.util.Scanner;
 public abstract class Expr extends ASTNode<ASTNode> implements Cloneable {
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:104
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:106
    */
   public abstract int eval(ActivationRecord actrec);
   /**

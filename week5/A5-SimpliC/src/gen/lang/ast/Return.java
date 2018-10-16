@@ -33,11 +33,11 @@ public class Return extends Statement implements Cloneable {
 	}
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:42
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:44
    */
   public WrappedInteger eval(ActivationRecord actrec){
         int temp = getExpr().eval(actrec);
-        return new WrappedInteger(temp, false);
+        return new WrappedInteger(temp, true);
     }
   /**
    * @declaredat ASTNode:1

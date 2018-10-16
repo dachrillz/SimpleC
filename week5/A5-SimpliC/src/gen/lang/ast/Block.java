@@ -41,8 +41,10 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
         WrappedInteger temp = new WrappedInteger(0, false);
         for(Statement statement : getStatementList()){
             temp = statement.eval(actrec);
-            if(statement instanceof Return || temp.getReturn()){
-                return new WrappedInteger(temp.getInt(), true);
+            if(temp.getReturn()){
+            //if(statement instanceof Return || temp.getReturn()){
+                //return new WrappedInteger(temp.getInt(), true);
+                return temp;
             } 
         }
         return temp;

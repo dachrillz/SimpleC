@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * @ast class
  * @aspect Interpreter
- * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:193
+ * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:195
  */
 public class ActivationRecord extends java.lang.Object {
   

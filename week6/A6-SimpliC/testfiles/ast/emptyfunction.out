@@ -1,0 +1,10 @@
+Program
+  List
+    Function
+      IntType
+      IdDecl ID="a"
+      List
+      Block
+        List
+          Return
+            IdUse ID="a"

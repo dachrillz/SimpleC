@@ -28,7 +28,7 @@ public class Assignment extends Statement implements Cloneable {
         }
   /**
    * @aspect Interpreter
-   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:64
+   * @declaredat /home/chrille/compilers/week5/A5-SimpliC/src/jastadd/interpreter.jrag:66
    */
   public WrappedInteger eval(ActivationRecord actrec){
         IdDecl id = getIdUse().decl();

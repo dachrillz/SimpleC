@@ -1,0 +1,7 @@
+int a(){
+    print(gcd1(a, b));
+    print(gcd2(a, b));
+    return 0;
+}
+
+

@@ -1,0 +1,15 @@
+aspect UniqueNames{
+
+    eq Function.getArguments().uniqueName(String name) = name;
+    eq Function.getBlock().uniqueName(String name) = name;
+
+    inh String Block.uniqueName(String name);
+
+    eq Block.getStatement(int i).uniqueName(String name) = uniqueName(i + "_" + name);
+
+    inh String IdDecl.uniqueName(String name);
+    syn String IdDecl.uniqueID() =  uniqueName(getID());
+
+    //inh String IdUse.uniqueName(String name);
+    //syn String IdUse.uniqueID() = uniqueName(getID());
+}

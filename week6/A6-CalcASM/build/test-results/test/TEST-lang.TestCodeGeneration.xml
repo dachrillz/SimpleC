@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lang.TestCodeGeneration" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-10-15T18:38:25" hostname="chrille-X540LA" time="0.191">
+  <properties/>
+  <testcase name="runTest[nesting1.in]" classname="lang.TestCodeGeneration" time="0.078"/>
+  <testcase name="runTest[neg1.in]" classname="lang.TestCodeGeneration" time="0.019"/>
+  <testcase name="runTest[mul1.in]" classname="lang.TestCodeGeneration" time="0.015"/>
+  <testcase name="runTest[div1.in]" classname="lang.TestCodeGeneration" time="0.013"/>
+  <testcase name="runTest[nesting2.in]" classname="lang.TestCodeGeneration" time="0.016"/>
+  <testcase name="runTest[div2.in]" classname="lang.TestCodeGeneration" time="0.013"/>
+  <testcase name="runTest[mul2.in]" classname="lang.TestCodeGeneration" time="0.014"/>
+  <testcase name="runTest[div3.in]" classname="lang.TestCodeGeneration" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

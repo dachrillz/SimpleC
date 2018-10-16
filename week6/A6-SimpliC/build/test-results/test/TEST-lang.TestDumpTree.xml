@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lang.TestDumpTree" tests="20" skipped="0" failures="0" errors="0" timestamp="2018-10-16T12:22:23" hostname="chrille-X540LA" time="0.174">
+  <properties/>
+  <testcase name="runTest[functionwithvariabledeclarationandassignments.in]" classname="lang.TestDumpTree" time="0.055"/>
+  <testcase name="runTest[arithmeticoperations.in]" classname="lang.TestDumpTree" time="0.013"/>
+  <testcase name="runTest[emptyfunction.in]" classname="lang.TestDumpTree" time="0.004"/>
+  <testcase name="runTest[expressionoffunctions.in]" classname="lang.TestDumpTree" time="0.007"/>
+  <testcase name="runTest[functionwithvariabledeclaration.in]" classname="lang.TestDumpTree" time="0.002"/>
+  <testcase name="runTest[associativityandorder.in]" classname="lang.TestDumpTree" time="0.021"/>
+  <testcase name="runTest[emptyfunctions.in]" classname="lang.TestDumpTree" time="0.005"/>
+  <testcase name="runTest[simpleexpressions.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[functioncalls.in]" classname="lang.TestDumpTree" time="0.005"/>
+  <testcase name="runTest[functionwithvariabledeclarations.in]" classname="lang.TestDumpTree" time="0.002"/>
+  <testcase name="runTest[functionwitharguments.in]" classname="lang.TestDumpTree" time="0.002"/>
+  <testcase name="runTest[logicaloperators.in]" classname="lang.TestDumpTree" time="0.017"/>
+  <testcase name="runTest[doubledeclare.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[errorfornameanalysis.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[example.in]" classname="lang.TestDumpTree" time="0.01"/>
+  <testcase name="runTest[if.in]" classname="lang.TestDumpTree" time="0.004"/>
+  <testcase name="runTest[simpleundeclared.in]" classname="lang.TestDumpTree" time="0.002"/>
+  <testcase name="runTest[print.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[while.in]" classname="lang.TestDumpTree" time="0.003"/>
+  <testcase name="runTest[comment.in]" classname="lang.TestDumpTree" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
